@@ -1,0 +1,32 @@
+# API backend
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+
+# HTTP + HTML parsing
+requests
+beautifulsoup4
+lxml
+
+# data handling
+pandas
+openpyxl
+
+# RAG: local embeddings + vector database
+sentence-transformers
+chromadb
+
+# LLM: official Google Gen AI SDK
+google-genai
+
+# frontend
+streamlit
+
+# uploaded documents
+pypdf
+python-docx
+
+# testing
+pytest
+httpx
