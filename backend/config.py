@@ -18,3 +18,14 @@ def require(name: str, value: str | None) -> str:
             f"{name} is not set. Copy .env.example to .env and fill in a real value."
         )
     return value
+
+
+# ---------- Project paths (Level 1) ----------
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = PROJECT_ROOT / "data"
+RAW_DIR = DATA_DIR / "raw"              # downloaded originals (HTML, JSON)
+PROCESSED_DIR = DATA_DIR / "processed"  # cleaned text, split into sections
+FINANCIAL_DIR = DATA_DIR / "financial"  # Level 4: structured numbers
+VECTORSTORE_DIR = PROJECT_ROOT / "vectorstore"  # Level 2: ChromaDB
