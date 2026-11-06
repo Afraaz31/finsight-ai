@@ -29,3 +29,10 @@ RAW_DIR = DATA_DIR / "raw"              # downloaded originals (HTML, JSON)
 PROCESSED_DIR = DATA_DIR / "processed"  # cleaned text, split into sections
 FINANCIAL_DIR = DATA_DIR / "financial"  # Level 4: structured numbers
 VECTORSTORE_DIR = PROJECT_ROOT / "vectorstore"  # Level 2: ChromaDB
+
+# ---------- RAG settings (Level 2) ----------
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
+CHUNK_SIZE = 800          # max characters per chunk (model reads ~256 tokens ≈ 1,000 chars)
+CHUNK_OVERLAP = 150       # characters repeated between neighbouring chunks
+SEC_COLLECTION = "sec_filings"      # ChromaDB collection for the 5 companies' 10-Ks
+UPLOAD_COLLECTION = "user_uploads"  # Level 4: user-uploaded documents (kept separate)
