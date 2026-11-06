@@ -14,7 +14,7 @@ import re
 from backend.companies import COMPANIES, COMPANY_ALIASES
 from backend.config import (MAX_CONTEXT_CHUNKS, MIN_RELEVANCE_SCORE, PROCESSED_DIR,
                             RAG_TOP_K, SEC_COLLECTION)
-from backend.services import cache_service
+from backend.services import cache_service, number_guard
 from backend.services.llm_service import generate_answer
 from backend.services.retrieval_service import search
 
@@ -26,7 +26,9 @@ companies' annual reports (SEC Form 10-K) using ONLY the numbered sources given 
 Rules:
 1. Use only facts found in the sources. Do not use outside knowledge for company-specific facts.
 2. Never invent, estimate or calculate financial figures. Quote numbers exactly as written in the \
-sources, with their units, and say which fiscal year or period they belong to.
+sources, with their units, and say which fiscal year or period they belong to. Do not add, \
+subtract, or work out differences, totals or percentages yourself. If a calculated figure is not \
+written in the sources, give the reported figures and say the exact calculation is not stated.
 3. Cite every factual sentence with its source number in square brackets, like [1] or [2][3]. \
 Only cite a source that actually supports that sentence. When you say information is unavailable \
 or a company is not covered, cite nothing.
@@ -200,9 +202,13 @@ def answer_question(question: str, ticker: str | None = None, use_cache: bool = 
         return {"answer": NO_EVIDENCE_ANSWER, "sources": [], "companies": tickers,
                 "used_llm": False, "model": None, "cached": False, "retrieved_chunks": 0}
 
-    answer, model = generate_answer(SYSTEM_PROMPT, build_user_prompt(question, build_context(hits)))
+    context = build_context(hits)
+    answer, model = generate_answer(SYSTEM_PROMPT, build_user_prompt(question, context))
+    missing = number_guard.unverified_numbers(answer, context + "\n" + question)
+    answer = number_guard.add_warning(answer, missing)
     result = {"answer": answer, "sources": format_sources(hits, answer), "companies": tickers,
-              "used_llm": True, "model": model, "cached": False, "retrieved_chunks": len(hits)}
+              "used_llm": True, "model": model, "cached": False, "retrieved_chunks": len(hits),
+              "unverified_numbers": missing}
     if use_cache and not model.startswith("ollama:"):   # keep only Gemini-quality answers
         cache_service.put(cache_key, question, result)
     return result

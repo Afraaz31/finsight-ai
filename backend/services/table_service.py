@@ -13,6 +13,7 @@ import re
 
 import pandas as pd
 
+from backend.services import number_guard
 from backend.services.llm_service import generate_answer
 
 log = logging.getLogger(__name__)
@@ -325,8 +326,11 @@ def answer_table_question(question: str, df: pd.DataFrame, filename: str, sheet:
     explanation, model = generate_answer(
         EXPLAIN_PROMPT,
         f"FILE: {filename} (sheet: {sheet})\nQUESTION: {question}\nRESULT:\n{result_text}")
+    missing = number_guard.unverified_numbers(explanation, result_text + "\n" + question)
+    explanation = number_guard.add_warning(explanation, missing)
     return {
         "answer": explanation,
+        "unverified_numbers": missing,
         "calculation": {"plan": plan, "summary": result["summary"],
                         "table": None if result["table"] is None
                         else result["table"].to_dict(orient="records")},
