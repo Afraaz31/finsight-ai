@@ -29,7 +29,7 @@ def get_or_create_collection(name: str):
 
 
 def build_filter(ticker: str | None = None, section_id: str | None = None,
-                 fiscal_year: int | None = None) -> dict | None:
+                 fiscal_year: int | None = None, doc_id: str | None = None) -> dict | None:
     """Turn optional filters into ChromaDB's `where` format."""
     conditions = []
     if ticker:
@@ -38,6 +38,8 @@ def build_filter(ticker: str | None = None, section_id: str | None = None,
         conditions.append({"section_id": section_id.upper()})
     if fiscal_year:
         conditions.append({"fiscal_year": int(fiscal_year)})
+    if doc_id:
+        conditions.append({"doc_id": doc_id})      # Level 4: one uploaded file only
     if not conditions:
         return None
     if len(conditions) == 1:
@@ -46,7 +48,8 @@ def build_filter(ticker: str | None = None, section_id: str | None = None,
 
 
 def search(question: str, k: int = 5, ticker: str | None = None, section_id: str | None = None,
-           fiscal_year: int | None = None, collection_name: str = SEC_COLLECTION) -> list[dict]:
+           fiscal_year: int | None = None, collection_name: str = SEC_COLLECTION,
+           doc_id: str | None = None) -> list[dict]:
     """Return the k chunks whose meaning is closest to the question.
 
     Each result: {"id", "text", "metadata", "score"} where score is 0..1 (higher = more similar).
@@ -59,7 +62,7 @@ def search(question: str, k: int = 5, ticker: str | None = None, section_id: str
     result = collection.query(
         query_embeddings=[embed_query(question)],
         n_results=k,
-        where=build_filter(ticker, section_id, fiscal_year),
+        where=build_filter(ticker, section_id, fiscal_year, doc_id),
         include=["documents", "metadatas", "distances"],
     )
     hits = []

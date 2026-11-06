@@ -55,3 +55,10 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_TIMEOUT_SECONDS = 300                  # CPU-only laptops are slow
 CACHE_DIR = DATA_DIR / "cache" / "answers"    # saved answers (data/ is gitignored)
+
+# ---------- Uploaded documents (Level 4) ----------
+UPLOAD_DIR = DATA_DIR / "uploads"            # one folder per uploaded file (gitignored)
+MAX_UPLOAD_MB = 10
+TEXT_EXTENSIONS = {".pdf", ".txt", ".docx"}  # -> RAG (chunks + embeddings)
+TABLE_EXTENSIONS = {".csv", ".xlsx"}         # -> Pandas (exact calculations)
+SMALL_DOC_CHUNKS = 8                         # docs this small: send ALL chunks (good for summaries)
