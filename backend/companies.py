@@ -15,3 +15,13 @@ def get_company(ticker: str) -> dict:
     if t not in COMPANIES:
         raise ValueError(f"Unsupported ticker '{ticker}'. Supported: {', '.join(COMPANIES)}")
     return {"ticker": t, **COMPANIES[t]}
+
+
+# ---------- Level 3: words that mean each company in a question ----------
+COMPANY_ALIASES = {
+    "AAPL": ["apple", "aapl", "iphone"],
+    "MSFT": ["microsoft", "msft", "azure"],
+    "AMZN": ["amazon", "amzn", "aws"],
+    "GOOGL": ["alphabet", "google", "googl", "youtube"],
+    "NVDA": ["nvidia", "nvda"],
+}

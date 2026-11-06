@@ -16,3 +16,6 @@ vectorstore/
 # editor / OS
 .vscode/
 .DS_Store
+
+# personal Claude Code settings
+.claude/settings.local.json

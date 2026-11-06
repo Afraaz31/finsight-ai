@@ -36,3 +36,9 @@ CHUNK_SIZE = 800          # max characters per chunk (model reads ~256 tokens â‰
 CHUNK_OVERLAP = 150       # characters repeated between neighbouring chunks
 SEC_COLLECTION = "sec_filings"      # ChromaDB collection for the 5 companies' 10-Ks
 UPLOAD_COLLECTION = "user_uploads"  # Level 4: user-uploaded documents (kept separate)
+
+# ---------- Answer generation settings (Level 3) ----------
+RAG_TOP_K = 5                 # chunks retrieved per company for a question
+MAX_CONTEXT_CHUNKS = 15       # hard cap on chunks sent to Gemini (protects the free quota)
+MIN_RELEVANCE_SCORE = 0.25    # chunks scoring below this are treated as "not relevant"
+LLM_TEMPERATURE = 0.2         # low = factual and consistent, high = creative
