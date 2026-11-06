@@ -42,3 +42,16 @@ RAG_TOP_K = 5                 # chunks retrieved per company for a question
 MAX_CONTEXT_CHUNKS = 15       # hard cap on chunks sent to Gemini (protects the free quota)
 MIN_RELEVANCE_SCORE = 0.25    # chunks scoring below this are treated as "not relevant"
 LLM_TEMPERATURE = 0.2         # low = factual and consistent, high = creative
+
+# ---------- Quota Shield (Level 3.5) ----------
+# Tried in order after GEMINI_MODEL fails (quota, overload, missing model). Each has its own free quota.
+GEMINI_FALLBACK_MODELS = [
+    m.strip() for m in os.getenv("GEMINI_FALLBACK_MODELS", "gemini-3.1-flash-lite,gemma-4-31b-it").split(",")
+    if m.strip()
+]
+LLM_TIMEOUT_SECONDS = 120                     # a stuck request gives up after this
+OLLAMA_ENABLED = os.getenv("OLLAMA_ENABLED", "false").lower() == "true"   # last-resort local model
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_TIMEOUT_SECONDS = 300                  # CPU-only laptops are slow
+CACHE_DIR = DATA_DIR / "cache" / "answers"    # saved answers (data/ is gitignored)

@@ -49,7 +49,7 @@ def test_build_context_numbers_sources_with_period():
 # ---------- pipeline (with fakes) ----------
 def test_no_evidence_means_no_gemini_call(monkeypatch):
     monkeypatch.setattr(rag_service, "search", lambda *a, **k: [fake_hit("weak", "AAPL", score=0.05)])
-    monkeypatch.setattr(rag_service, "generate",
+    monkeypatch.setattr(rag_service, "generate_answer",
                         lambda *a, **k: pytest.fail("Gemini must not be called without evidence"))
     result = answer_question("What is Apple's favourite colour?")
     assert result["used_llm"] is False
@@ -64,11 +64,12 @@ def test_each_company_gets_its_own_search(monkeypatch):
         return [fake_hit(f"{ticker}-1", ticker)]
 
     monkeypatch.setattr(rag_service, "search", fake_search)
-    monkeypatch.setattr(rag_service, "generate", lambda system, user: "Apple has risks [1]; Microsoft too [2].")
+    monkeypatch.setattr(rag_service, "generate_answer",
+                        lambda system, user: ("Apple has risks [1]; Microsoft too [2].", "fake-model"))
     result = answer_question("Compare Apple and Microsoft risks")
     assert searched == ["AAPL", "MSFT"]
     assert [s["ticker"] for s in result["sources"]] == ["AAPL", "MSFT"]
-    assert all(s["cited"] for s in result["sources"])
+    assert result["model"] == "fake-model"
     assert result["sources"][0]["document_url"] == "https://www.sec.gov/AAPL.htm"
 
 

@@ -14,7 +14,8 @@ import re
 from backend.companies import COMPANIES, COMPANY_ALIASES
 from backend.config import (MAX_CONTEXT_CHUNKS, MIN_RELEVANCE_SCORE, PROCESSED_DIR,
                             RAG_TOP_K, SEC_COLLECTION)
-from backend.services.llm_service import generate
+from backend.services import cache_service
+from backend.services.llm_service import generate_answer
 from backend.services.retrieval_service import search
 
 log = logging.getLogger(__name__)
@@ -26,7 +27,9 @@ Rules:
 1. Use only facts found in the sources. Do not use outside knowledge for company-specific facts.
 2. Never invent, estimate or calculate financial figures. Quote numbers exactly as written in the \
 sources, with their units, and say which fiscal year or period they belong to.
-3. Cite every factual sentence with its source number in square brackets, like [1] or [2][3].
+3. Cite every factual sentence with its source number in square brackets, like [1] or [2][3]. \
+Only cite a source that actually supports that sentence. When you say information is unavailable \
+or a company is not covered, cite nothing.
 4. If the sources do not contain the answer, say clearly: "The retrieved filings don't contain \
 enough information to answer this." Then say what is missing. Never guess.
 5. Companies have different fiscal year ends. Always state the period, and never treat different \
@@ -146,17 +149,18 @@ def build_user_prompt(question: str, context: str) -> str:
 
 
 def format_sources(hits: list[dict], answer: str) -> list[dict]:
-    """Sources for the UI, marking which ones Gemini actually cited."""
+    """Sources for the UI: ONLY the ones Gemini actually cited (none if it cited nothing)."""
     cited = {int(n) for n in re.findall(r"\[(\d+)\]", answer)}
     unknown = cited - set(range(1, len(hits) + 1))
     if unknown:
-        log.warning("Gemini cited sources that don't exist: %s", sorted(unknown))
+        log.warning("The model cited sources that don't exist: %s", sorted(unknown))
     sources = []
     for n, hit in enumerate(hits, 1):
+        if n not in cited:
+            continue
         m = hit["metadata"]
         sources.append({
             "number": n,
-            "cited": n in cited,
             "company": m["company"],
             "ticker": m["ticker"],
             "fiscal_year": m["fiscal_year"],
@@ -170,18 +174,35 @@ def format_sources(hits: list[dict], answer: str) -> list[dict]:
 
 
 # ---------- 4. The whole pipeline ----------
-def answer_question(question: str, ticker: str | None = None) -> dict:
-    """Answer one question. `ticker` (e.g. from a UI dropdown) overrides company detection."""
+def answer_question(question: str, ticker: str | None = None, use_cache: bool = True) -> dict:
+    """Answer one question. `ticker` (e.g. from a UI dropdown) overrides company detection.
+
+    Result: answer, sources (cited only), companies, used_llm, model, cached, retrieved_chunks.
+    """
     question = question.strip()
     if not question:
         raise ValueError("Question is empty.")
     tickers = [ticker.upper()] if ticker else detect_companies(question)
+
+    # Same question + same company choice + same rules -> same answer: reuse it.
+    cache_key = cache_service.make_key(cache_service.normalize(question), ",".join(tickers),
+                                       SEC_COLLECTION, SYSTEM_PROMPT)
+    if use_cache:
+        cached = cache_service.get(cache_key)
+        if cached:
+            log.info("Cache hit for %r (no LLM call)", question)
+            return {**cached, "cached": True}
+
     hits = retrieve(question, tickers)
     log.info("Question: %r  companies=%s  chunks=%d", question, tickers or "all", len(hits))
 
-    if not hits:   # nothing relevant -> honest answer, and no Gemini quota spent
-        return {"answer": NO_EVIDENCE_ANSWER, "sources": [], "companies": tickers, "used_llm": False}
+    if not hits:   # nothing relevant -> honest answer, and no quota spent
+        return {"answer": NO_EVIDENCE_ANSWER, "sources": [], "companies": tickers,
+                "used_llm": False, "model": None, "cached": False, "retrieved_chunks": 0}
 
-    answer = generate(SYSTEM_PROMPT, build_user_prompt(question, build_context(hits)))
-    return {"answer": answer, "sources": format_sources(hits, answer),
-            "companies": tickers, "used_llm": True}
+    answer, model = generate_answer(SYSTEM_PROMPT, build_user_prompt(question, build_context(hits)))
+    result = {"answer": answer, "sources": format_sources(hits, answer), "companies": tickers,
+              "used_llm": True, "model": model, "cached": False, "retrieved_chunks": len(hits)}
+    if use_cache and not model.startswith("ollama:"):   # keep only Gemini-quality answers
+        cache_service.put(cache_key, question, result)
+    return result

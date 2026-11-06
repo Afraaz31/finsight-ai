@@ -1,32 +1,47 @@
-"""Talks to Google Gemini. The ONLY file in the project that calls the LLM.
+"""Talks to the LLM. The ONLY file in the project that calls Gemini (or the local Ollama backup).
 
-Free tier only: this file never enables billing or switches to a paid model.
+Quota Shield: try GEMINI_MODEL first, then each model in GEMINI_FALLBACK_MODELS (each has its own
+free daily quota), then optionally a local Ollama model. Free tier only: never enables billing.
 """
 import logging
-import time
 
+import requests
 from google import genai
 from google.genai import errors, types
 
-from backend.config import GEMINI_API_KEY, GEMINI_MODEL, LLM_TEMPERATURE, require
+from backend.config import (GEMINI_API_KEY, GEMINI_FALLBACK_MODELS, GEMINI_MODEL, LLM_TEMPERATURE,
+                            LLM_TIMEOUT_SECONDS, OLLAMA_ENABLED, OLLAMA_MODEL,
+                            OLLAMA_TIMEOUT_SECONDS, OLLAMA_URL, require)
 
 log = logging.getLogger(__name__)
 
-TIMEOUT_MS = 120_000  # give up on one Gemini call after 120 s instead of waiting forever
-
 _client = None
+
+# Errors where trying the NEXT model can help (each model has its own quota / capacity).
+TRY_NEXT_MODEL = {404, 429, 500, 502, 503, 504}
 
 
 class LLMError(Exception):
-    """A Gemini problem, with a message that is safe to show to the user."""
+    """An LLM problem, with a message that is safe to show to the user."""
 
 
 def get_client() -> genai.Client:
     global _client
     if _client is None:
-        _client = genai.Client(api_key=require("GEMINI_API_KEY", GEMINI_API_KEY),
-                               http_options=types.HttpOptions(timeout=TIMEOUT_MS))
+        _client = genai.Client(
+            api_key=require("GEMINI_API_KEY", GEMINI_API_KEY),
+            http_options=types.HttpOptions(timeout=LLM_TIMEOUT_SECONDS * 1000),  # milliseconds
+        )
     return _client
+
+
+def model_chain() -> list[str]:
+    """Main model first, then fallbacks, without duplicates."""
+    chain = []
+    for model in [GEMINI_MODEL, *GEMINI_FALLBACK_MODELS]:
+        if model and model not in chain:
+            chain.append(model)
+    return chain
 
 
 def friendly_message(code: int, detail: str = "") -> str:
@@ -36,8 +51,8 @@ def friendly_message(code: int, detail: str = "") -> str:
                 "wait 60 seconds. If the daily limit is used up, it resets at midnight Pacific time "
                 "(about 1:30 PM IST). FinSight never switches to a paid plan automatically.")
     if code == 404:
-        return (f"Gemini model '{GEMINI_MODEL}' was not found. Run  python -m scripts.check_gemini  "
-                "and put an available 'flash' model name in GEMINI_MODEL in your .env file.")
+        return ("Gemini model not found. Run  python -m scripts.check_gemini  and fix GEMINI_MODEL / "
+                "GEMINI_FALLBACK_MODELS in your .env file.")
     if code in (400, 401, 403):
         return f"Gemini rejected the request (code {code}). Check GEMINI_API_KEY in .env. Detail: {detail}"
     if code >= 500:
@@ -45,31 +60,86 @@ def friendly_message(code: int, detail: str = "") -> str:
     return f"Gemini error {code}: {detail}"
 
 
-def generate(system_prompt: str, user_prompt: str) -> str:
-    """Send one prompt to Gemini and return its text answer. Retries once if Gemini is overloaded."""
+def _call_gemini(model: str, system_prompt: str, user_prompt: str) -> str:
+    """One request to one Gemini-API model."""
+    if model.startswith("gemma"):
+        # Gemma models on the Gemini API don't accept a separate system instruction,
+        # so the rules are placed at the top of the user message instead.
+        contents = f"{system_prompt}\n\n{user_prompt}"
+        config = types.GenerateContentConfig(temperature=LLM_TEMPERATURE)
+    else:
+        contents = user_prompt
+        config = types.GenerateContentConfig(system_instruction=system_prompt,
+                                             temperature=LLM_TEMPERATURE)
+    response = get_client().models.generate_content(model=model, contents=contents, config=config)
+    text = response.text
+    if not text:
+        raise LLMError("empty answer (possibly blocked by a safety filter)")
+    return text.strip()
+
+
+def _call_ollama(system_prompt: str, user_prompt: str) -> str:
+    """Local backup model via Ollama (free, unlimited, offline; slower on CPU)."""
     try:
-        client = get_client()
+        response = requests.post(
+            f"{OLLAMA_URL}/api/chat",
+            json={
+                "model": OLLAMA_MODEL,
+                "messages": [{"role": "system", "content": system_prompt},
+                             {"role": "user", "content": user_prompt}],
+                "stream": False,
+                "options": {"temperature": LLM_TEMPERATURE},
+            },
+            timeout=OLLAMA_TIMEOUT_SECONDS,
+        )
+    except requests.RequestException as exc:
+        raise LLMError(f"Ollama is not reachable at {OLLAMA_URL} (is the Ollama app running?): {exc}")
+    if response.status_code != 200:
+        raise LLMError(f"Ollama returned {response.status_code}: {response.text[:200]} "
+                       f"(did you run  ollama pull {OLLAMA_MODEL} ?)")
+    text = response.json().get("message", {}).get("content", "").strip()
+    if not text:
+        raise LLMError("Ollama returned an empty answer.")
+    return text
+
+
+def generate_answer(system_prompt: str, user_prompt: str) -> tuple[str, str]:
+    """Return (answer_text, model_used). Walks the Quota Shield chain until one model answers."""
+    try:
+        get_client()
     except RuntimeError as exc:  # missing or placeholder API key in .env
         raise LLMError(str(exc)) from exc
 
-    config = types.GenerateContentConfig(system_instruction=system_prompt,
-                                         temperature=LLM_TEMPERATURE)
-    for attempt in (1, 2):
+    failures = []
+    for model in model_chain():
         try:
-            response = client.models.generate_content(
-                model=GEMINI_MODEL, contents=user_prompt, config=config)
+            text = _call_gemini(model, system_prompt, user_prompt)
+            if failures:
+                log.warning("Answered by fallback model %s after: %s", model, "; ".join(failures))
+            return text, model
         except errors.APIError as exc:
-            if exc.code >= 500 and attempt == 1:
-                log.warning("Gemini returned %s, retrying once in 3 s ...", exc.code)
-                time.sleep(3)
-                continue
-            raise LLMError(friendly_message(exc.code, exc.message or "")) from exc
-        except Exception as exc:  # no internet, DNS failure, timeout ...
-            raise LLMError(f"Could not reach Gemini: {exc}") from exc
+            if exc.code not in TRY_NEXT_MODEL:
+                # bad key / bad request: every model would fail the same way
+                raise LLMError(friendly_message(exc.code, exc.message or "")) from exc
+            failures.append(f"{model}: {exc.code}")
+            log.warning("Model %s failed with %s, trying the next one", model, exc.code)
+        except LLMError as exc:
+            failures.append(f"{model}: {exc}")
+        except Exception as exc:  # timeout, no internet, DNS ...
+            failures.append(f"{model}: {type(exc).__name__}")
+            log.warning("Model %s failed (%s), trying the next one", model, exc)
 
-        text = response.text
-        if not text:
-            raise LLMError("Gemini returned an empty answer (it may have been blocked by a safety "
-                           "filter). Try rephrasing the question.")
-        return text.strip()
-    raise LLMError("Gemini is temporarily unavailable. Try again in a minute.")
+    if OLLAMA_ENABLED:
+        log.warning("All Gemini models failed (%s). Using local Ollama model %s.",
+                    "; ".join(failures), OLLAMA_MODEL)
+        return _call_ollama(system_prompt, user_prompt), f"ollama:{OLLAMA_MODEL}"
+
+    last_code = next((int(f.rsplit(": ", 1)[1]) for f in reversed(failures)
+                      if f.rsplit(": ", 1)[1].isdigit()), 0)
+    hint = friendly_message(last_code) if last_code else "Check your internet connection."
+    raise LLMError(f"All models failed ({'; '.join(failures)}). {hint}")
+
+
+def generate(system_prompt: str, user_prompt: str) -> str:
+    """Convenience wrapper: just the answer text."""
+    return generate_answer(system_prompt, user_prompt)[0]
