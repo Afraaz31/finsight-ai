@@ -25,7 +25,7 @@ How to present, demo and defend the project. Read it twice, then practise the de
    - a Quota Shield (model fallback chain, answer cache, local Ollama)
    - honest refusals: scanned PDFs, unsupported companies, unreported metrics
 6. **Proof:**
-   - **129 automated tests**, using no API quota.
+   - **131 automated tests**, using no API quota.
    - Apple's FY2026 revenue (**$478.83B**) matches the 10-K exactly in both pipelines.
 
 ---
@@ -35,29 +35,30 @@ How to present, demo and defend the project. Read it twice, then practise the de
 **Before the interview:**
 - Run `python -m scripts.preflight` (it should say READY), then `python -m scripts.prewarm`.
 - Start everything with `run_demo.ps1`.
-- Close extra browser tabs.
+- Close extra Chrome tabs.
 
 | # | Do | Say |
 |---|---|---|
-| 1 | Show the home screen: the sidebar shows the status and the model chain | "The UI is a thin client; all logic is in the FastAPI backend. The sidebar shows the chunk count and the model chain, ending with a local model." |
-| 2 | Click **"What are NVIDIA's major business risks?"** | "This is a *narrative* question, so it goes through RAG. Each claim has a citation." Open a source card → **Open original SEC filing**. "Every claim can be checked." |
-| 3 | Click **"Compare Apple's revenue with Microsoft's"** | "This is a *numbers* question. These figures come from SEC XBRL data, not the AI. Python calculated the $147.00B difference and the 44.30%. Note the warning: Apple's year ends in September and Microsoft's in June, so they aren't the same period." |
-| 4 | Ask **"Explain Amazon's operating income"** | "*Both*: the exact figure is cited as [F], plus the explanation from the MD&A text." |
-| 5 | **Compare financials** page: all 5, Net income | "No AI on this page: ranking, % of leader, a chart, SEC links." Switch to **Gross profit**: "Amazon and Alphabet don't report gross profit in XBRL, so the system says so instead of inventing it." |
-| 6 | Ask **"What is Tesla's revenue?"** | "Unsupported company: an honest answer, no invented number." |
-| 7 | **My uploaded files** → upload `kestrel_statements.xlsx` → "How did revenue grow year by year?" | "For tables, the LLM only chooses an operation from a whitelist as JSON. Python validates it and runs it with Pandas. Here's the plan, and here's the exact result." |
-| 8 | Upload `scanned_invoice.pdf` | "Scanned images have no text layer. It refuses honestly rather than guessing." |
-| 9 | If the interviewer has a file, **upload their file** and ask their question | (this is the real test, so stay calm) |
-| 10 | Open **http://127.0.0.1:8000/docs** | "Every endpoint is documented automatically from Pydantic schemas: proper status codes, 422 for bad input, 404 for unknown documents, 503 when the AI is unavailable." |
+| 1 | **Home**: point at the 5 company cards | "FinSight covers Apple, Microsoft, Amazon, Alphabet and NVIDIA. These figures come straight from SEC XBRL data: Apple's latest revenue is $478.83B. The left navigation shows the six areas of the app." |
+| 2 | Click **"What are NVIDIA's major business risks?"** under *Try asking* | "A *narrative* question goes through RAG over the 10-K text. Every claim has a citation." Open a source → **Open original SEC filing**: "Every claim can be checked." |
+| 3 | Open **🔍 How this answer was made** | "The full trail: the route chosen, chunks retrieved, the model that answered, whether it came from the cache, and the number-guard result." |
+| 4 | On Ask AI, click **"Compare Apple's revenue with Microsoft's"** | "A *numbers* question: the figures come from SEC XBRL data, not the AI. Python calculated the difference and the percentage. Note the warning that Apple's year ends in September and Microsoft's in June." |
+| 5 | Click **"Explain Amazon's operating income"** | "*Both*: the exact figure is cited as [F], plus the explanation from the MD&A text." |
+| 6 | **Company Dashboard** → pick a company | "KPIs, net margin calculated by Python, a 5-year trend, and insights written by Python, not the AI. Here gross profit says *not reported* because the company doesn't tag it." |
+| 7 | **Compare** → *5-year trend* tab | "All five companies over five years, each in its brand colour. No AI on this page; it's all exact data." |
+| 8 | **Upload & Analyze** → click **📗 Statements (XLSX)** → "How did revenue grow year by year?" | "For tables, the LLM only chooses an operation from a whitelist as JSON. Python validates it and runs it with Pandas. Here's the exact calculation and the plan." |
+| 9 | Upload `samples/scanned_invoice.pdf` | "Scanned images have no text layer, so it refuses honestly rather than guessing." |
+| 10 | If the interviewer has a file: **drag it into the upload zone** and ask their question | (this is the real test, so stay calm) |
+| 11 | **How it works** page, then **http://127.0.0.1:8000/docs** | "The architecture on one page, and every API endpoint documented automatically from the Pydantic schemas." |
 
 **If something goes wrong live:**
 
 | Problem | What happens / what to say |
 |---|---|
-| Gemini slow or 503 | "The fallback chain switches models automatically." The answer shows which model answered |
+| Gemini slow or 503 | "The fallback chain switches models automatically." The answer badge shows which model answered |
 | Quota used up | Demo questions come from the cache (⚡ badge). "Repeated questions are cached to save free-tier quota." |
 | No internet | Ollama answers locally (slower). Numbers questions still show the exact table without the AI |
-| The UI shows "API not running" | Restart `run_demo.ps1`. Calmly explain the two-process architecture while it starts |
+| The app shows "API not running" | Restart `run_demo.ps1`. Calmly explain the two-process architecture while it starts |
 
 ---
 
@@ -142,7 +143,7 @@ For a **narrative** question, steps 3–4 become: detect the company, topic sect
     - The first model allowed only 20 requests a day. I checked the real limits and switched to Flash Lite, which allows 500 a day.
     - I built a fallback chain across models with separate quotas, plus an answer cache and a local Ollama model. Overload errors move to the next model instead of retrying the same one.
 16. *How did you test without spending quota?*
-    - 129 pytest tests with fakes for the LLM, embeddings and network.
+    - 131 pytest tests with fakes for the LLM, embeddings and network.
     - TestClient for the API; Streamlit AppTest for the UI.
     - Live checks were run separately and verified against the real filings.
 17. *What would you change for production?*
@@ -178,7 +179,7 @@ Interviewers love these, so tell 2 or 3:
 | SEC chunks in ChromaDB | 4,593 |
 | Embedding size | 384 dimensions (all-MiniLM-L6-v2) |
 | Chunk size / overlap | 800 / 150 characters |
-| Automated tests | 129 |
+| Automated tests | 131 |
 | Main model free limit | gemini-3.5-flash-lite: 500 requests/day, 15/minute |
 | Apple revenue FY2026 | **$478.83B** (period ending 26 Sep 2026); same in the 10-K and XBRL |
 | Highest revenue (latest FY) | Amazon $716.92B (FY2025) |

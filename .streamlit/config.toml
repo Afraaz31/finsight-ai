@@ -1,10 +1,10 @@
 # FinSight AI - Streamlit settings (read automatically when you run streamlit from the project root)
 [theme]
-base = "dark"
-primaryColor = "#3B82F6"              # blue buttons and highlights
-backgroundColor = "#0B1426"           # dark navy page
-secondaryBackgroundColor = "#13213A"  # sidebar, input boxes, expanders
-textColor = "#E6EDF7"
+base = "light"
+primaryColor = "#2563EB"              # FinSight blue: buttons, links, active items
+backgroundColor = "#F6F8FC"           # soft grey-blue page
+secondaryBackgroundColor = "#EEF2F8"  # inputs, expanders
+textColor = "#0F172A"
 font = "sans serif"
 
 [server]

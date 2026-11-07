@@ -34,17 +34,20 @@ Annual reports run to hundreds of pages, and comparing companies means digging t
 | **Number guard** | Every number in an AI answer is checked against the evidence; anything not found is flagged with a warning |
 | **Quota Shield** | A free-tier fallback chain across Gemini models, an answer cache, and a local Ollama model as an offline last resort |
 | **Honest failures** | Scanned PDFs, unsupported companies, unreported metrics and missing data are all stated clearly, never guessed |
-| **Web API + UI** | FastAPI backend with interactive `/docs`, and a Streamlit chat interface |
+| **Company Dashboard** | One company at a glance: 8 KPI cards with YoY change, net profit margin calculated by Python, a 5-year trend chart and key insights written by Python (not the AI) |
+| **How it works page** | The router, both pipelines, upload handling and safeguards explained on one page |
+| **Answer trail** | Every answer has a "How this answer was made" panel (route, companies, model, cache, number-guard result) and a Download button |
+| **Web API + UI** | FastAPI backend with interactive `/docs`, and a multi-page Streamlit app with company logos: Home · Ask AI · Upload & Analyze · Compare · Company Dashboard · How it works |
 
 ---
 
 ## Screenshots
 
-| Cited answer from the 10-K text | Compare financials (no AI on this page) |
+| Home: the 5 companies with real SEC figures | Ask AI: exact figures + "How this answer was made" |
 |---|---|
-| ![Answer with SEC source cards](docs/screenshots/sec_answer_sources.png) | ![Net income comparison](docs/screenshots/compare_net_income.png) |
-| **Uploaded spreadsheet: maths done by Python** | **Honest "not reported" note** |
-| ![Revenue growth calculated by Python](docs/screenshots/xlsx_growth.png) | ![Gross profit comparison](docs/screenshots/compare_gross_profit.png) |
+| ![Home page](docs/screenshots/home.png) | ![Exact-figures answer with its trail](docs/screenshots/numbers_answer.png) |
+| **Company Dashboard (Python-written insights)** | **Compare: 5-year trend, no AI on this page** |
+| ![Company dashboard](docs/screenshots/dashboard.png) | ![Revenue trend of all five companies](docs/screenshots/compare_trend.png) |
 
 More in [`docs/screenshots/`](docs/screenshots/).
 
@@ -261,7 +264,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**129 tests** cover:
+**131 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -271,7 +274,7 @@ python -m pytest tests -v
 - XBRL extraction traps (comparative years, quarterly values, tag changes, derived and stale values)
 - the question router and the demo questions
 - every API endpoint and status code
-- the Streamlit UI (headless)
+- every page of the Streamlit UI (headless)
 
 The LLM, the embedding model and the network are replaced with fakes where needed, so **tests use no API quota**.
 
@@ -324,9 +327,15 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 finsight-ai/
 ├── backend/            FastAPI app, routes, schemas, services (RAG, LLM, financials, uploads)
 ├── ingestion/          SEC download, HTML cleaning, chunking, vector store, XBRL facts
-├── frontend/           Streamlit UI + API client
+├── frontend/           Streamlit UI (talks only to the API)
+│   ├── app.py          entry: page config, theme, logo, navigation, API status
+│   ├── ui.py           shared design: CSS, cards, answer rendering, sources, trail, cached API data
+│   ├── logos.py        FinSight + company logos (inline SVG, work offline)
+│   ├── api_client.py   HTTP calls to FastAPI
+│   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
+│   └── views/          home · ask · upload · compare · dashboard · how_it_works
 ├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed
-├── tests/              pytest suite (129 tests)
+├── tests/              pytest suite (131 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)
