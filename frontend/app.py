@@ -83,7 +83,7 @@ def render_comparison(comp: dict, chart: bool = False) -> None:
                      column_config={"SEC filing": st.column_config.LinkColumn("SEC filing", display_text="open ↗"),
                                     "% of leader": st.column_config.NumberColumn(format="%.2f%%")})
         if chart and len(comp["rows"]) > 1:
-            st.bar_chart(pd.DataFrame({"Company": [r["ticker"] for r in comp["rows"]],
+            st.bar_chart(pd.DataFrame({"Company": [f"{r['rank']}. {r['ticker']}" for r in comp["rows"]],
                                        "USD billions": [round(r["value"] / 1e9, 2) for r in comp["rows"]]}),
                          x="Company", y="USD billions")
     if comp.get("summary"):

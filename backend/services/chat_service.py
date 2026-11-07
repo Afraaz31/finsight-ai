@@ -35,14 +35,27 @@ FIGURES_RULE = """
 and cite them as [F]. Never calculate new figures from them."""
 
 
-def _companies_for(question: str, ticker: str | None) -> list[str]:
+# Words that mean "compare / rank the companies" when no company is named.
+ALL_COMPANY_WORDS = ["which company", "which companies", "all companies", "all five", "all 5", "companies",
+                     "highest", "lowest", "largest", "smallest", "most", "least", "rank", "compare",
+                     "comparison", "versus", " vs"]
+
+
+def _companies_for(question: str, ticker: str | None) -> list[str] | None:
+    """Companies for a numbers question, or None if the question names no supported company.
+
+    "Which company had the highest revenue?" -> all 5 (a ranking question)
+    "What is Tesla's revenue?"               -> None  (not a supported company: let RAG say so)
+    """
     if ticker:
         return [ticker.upper()]
     found = detect_companies(question)
     if found:
         return found
-    # "Which company had the highest revenue?" -> no company named -> compare all of them
-    return list(COMPANIES)
+    q = question.lower()
+    if any(word in q for word in ALL_COMPANY_WORDS):
+        return list(COMPANIES)
+    return None
 
 
 def _fallback_summary(comparisons: list[dict]) -> str:
@@ -67,6 +80,9 @@ def answer_chat(question: str, ticker: str | None = None, use_cache: bool = True
                 "route": "narrative", "financials": None}
 
     tickers = _companies_for(question, ticker)
+    if tickers is None:   # a metric, but no supported company (e.g. Tesla) -> honest RAG answer
+        return {**answer_question(question, ticker=ticker, use_cache=use_cache),
+                "route": "narrative", "financials": None}
     comparisons = [compare(tickers, metric) for metric in decision["metrics"]]
     figures = figures_text(comparisons)
 
