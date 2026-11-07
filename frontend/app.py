@@ -16,11 +16,12 @@ from frontend import api_client  # noqa: E402
 from frontend.api_client import ApiError  # noqa: E402
 
 SEC_MODE, UPLOAD_MODE = "5 public companies (SEC 10-K)", "My uploaded files"
+COMPARE_MODE = "Compare financials (exact SEC figures)"
 SEC_SUGGESTIONS = [
     "What are NVIDIA's major business risks?",
-    "Explain the business segments of Alphabet",
-    "Compare the main risks of Apple and Microsoft",
-    "Summarize Amazon's annual report",
+    "Compare Apple's revenue with Microsoft's",
+    "Which company reported the highest net income?",
+    "Explain Amazon's operating income",
 ]
 TEXT_SUGGESTIONS = ["Summarize this document", "What was total revenue?", "What are the main risks mentioned?"]
 TABLE_SUGGESTIONS = ["What is the net profit margin for each year?", "How did revenue grow year by year?",
@@ -32,6 +33,11 @@ st.markdown("""<style>
 .fs-badge {display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.78rem;
            background:rgba(59,130,246,.15); border:1px solid rgba(59,130,246,.4); margin-right:6px;}
 </style>""", unsafe_allow_html=True)
+
+
+def md(text) -> str:
+    """Escape '$' so Streamlit doesn't render '$478.83B ... $331.84B' as a LaTeX math formula."""
+    return str(text).replace("$", "\\$")
 
 
 # ---------------- state ----------------
@@ -52,28 +58,62 @@ def cached_companies() -> list[dict]:
     return api_client.companies()
 
 
+@st.cache_data(ttl=300, show_spinner=False)
+def cached_metrics() -> list[dict]:
+    return api_client.metrics()
+
+
 # ---------------- rendering ----------------
+ROUTE_LABELS = {"narrative": "📄 from 10-K text", "numbers": "🔢 exact SEC figures",
+                "both": "🔢+📄 figures + 10-K text"}
+
+
+def render_comparison(comp: dict, chart: bool = False) -> None:
+    """One metric across companies: table with SEC links, summary, notes, optional bar chart."""
+    st.markdown(f"**{comp['label']}** · exact values from SEC XBRL data, compared by Python")
+    if not comp["rows"]:
+        st.info("No company in this selection reports this metric.")
+    else:
+        table = pd.DataFrame([{
+            "Rank": r.get("rank"), "Company": r["company"], "Fiscal year": f"FY{r['fiscal_year']}",
+            "Period end": r["period_end"], comp["label"]: r["value_display"],
+            "% of leader": r.get("share_of_leader_pct"), "Derived": "yes" if r["derived"] else "",
+            "SEC filing": r["source_url"]} for r in comp["rows"]])
+        st.dataframe(table, hide_index=True, width="stretch",
+                     column_config={"SEC filing": st.column_config.LinkColumn("SEC filing", display_text="open ↗"),
+                                    "% of leader": st.column_config.NumberColumn(format="%.2f%%")})
+        if chart and len(comp["rows"]) > 1:
+            st.bar_chart(pd.DataFrame({"Company": [r["ticker"] for r in comp["rows"]],
+                                       "USD billions": [round(r["value"] / 1e9, 2) for r in comp["rows"]]}),
+                         x="Company", y="USD billions")
+    if comp.get("summary"):
+        st.success(md(comp["summary"]))
+    for note in comp.get("notes", []):
+        st.caption(f"ℹ️ {md(note)}")
+
+
 def render_answer(result: dict, mode: str) -> None:
-    st.markdown(result["answer"])
+    st.markdown(md(result["answer"]))
 
     badges = []
     if result.get("cached"):
         badges.append("⚡ from cache (no quota used)")
     if result.get("model"):
         badges.append(f"🤖 {result['model']}")
+    if mode == SEC_MODE and result.get("route"):
+        badges.append(ROUTE_LABELS.get(result["route"], result["route"]))
     if mode == SEC_MODE and result.get("retrieved_chunks"):
         badges.append(f"📄 {result['retrieved_chunks']} chunks retrieved")
     if badges:
         st.markdown(" ".join(f"<span class='fs-badge'>{b}</span>" for b in badges), unsafe_allow_html=True)
 
-    if result.get("unverified_numbers"):
-        st.warning("These figures were not found in the sources: "
-                   + ", ".join(result["unverified_numbers"]) + ". Verify them before relying on them.")
+    for comp in result.get("financials") or []:
+        render_comparison(comp)
 
     calc = result.get("calculation")
     if calc:
         st.markdown("**Calculation (done by Python, not the AI)**")
-        st.caption(calc["summary"])
+        st.caption(md(calc["summary"]))
         if calc.get("table"):
             st.dataframe(pd.DataFrame(calc["table"]), hide_index=True, width="stretch")
         with st.expander("Calculation plan (JSON chosen by the AI, checked by Python)"):
@@ -87,27 +127,27 @@ def render_answer(result: dict, mode: str) -> None:
                 label = f"[{s['number']}] {s['company']} · FY{s['fiscal_year']} · {s['section']}"
                 with st.expander(label):
                     st.caption(f"Period ending {s['period_end']} · relevance {s['score']:.2f}")
-                    st.markdown(f"> {s['excerpt']}…")
+                    st.markdown(f"> {md(s['excerpt'])}…")
                     st.link_button("Open original SEC filing ↗", s["document_url"])
             else:
                 where = f"page {s['page']}" if s.get("page") else f"sheet {s.get('sheet')}"
                 number = f"[{s['number']}] " if s.get("number") else ""
                 with st.expander(f"{number}{s['filename']} · {where}"):
                     if s.get("excerpt"):
-                        st.markdown(f"> {s['excerpt']}…")
+                        st.markdown(f"> {md(s['excerpt'])}…")
                     if s.get("detail"):
-                        st.caption(s["detail"])
+                        st.caption(md(s["detail"]))
 
 
 def render_history(mode: str) -> None:
     for message in st.session_state.messages[mode]:
         with st.chat_message(message["role"], avatar="🧑" if message["role"] == "user" else "📊"):
             if message.get("error"):
-                st.error(message["error"])
+                st.error(md(message["error"]))
             elif message.get("result"):
                 render_answer(message["result"], mode)
             else:
-                st.markdown(message["content"])
+                st.markdown(md(message["content"]))
 
 
 # ---------------- sidebar ----------------
@@ -200,13 +240,42 @@ def sidebar_uploads() -> tuple[list[str], str | None, list[dict]]:
     return selected, sheet, chosen
 
 
+# ---------------- compare mode ----------------
+def compare_page(companies: list[dict]) -> None:
+    st.title("Compare financials")
+    st.caption("Exact figures from SEC XBRL Company Facts (original 10-K values). No AI is used on this page: "
+               "Python retrieves, ranks and calculates everything.")
+    try:
+        metrics = cached_metrics()
+    except ApiError as exc:
+        st.error(exc.message)
+        return
+    names = {f"{c['name']} ({c['ticker']})": c["ticker"] for c in companies}
+    labels = {m["label"]: m["metric"] for m in metrics}
+    left, middle, right = st.columns([3, 2, 1])
+    chosen = left.multiselect("Companies (2-5)", list(names), default=list(names)[:2], max_selections=5)
+    metric_label = middle.selectbox("Metric", list(labels))
+    year = right.selectbox("Fiscal year", ["Latest"] + [str(y) for y in range(2026, 2019, -1)])
+    if st.button("Compare", type="primary"):
+        if len(chosen) < 2:
+            st.warning("Choose at least 2 companies.")
+            return
+        try:
+            with st.spinner("Comparing exact SEC figures…"):
+                result = api_client.compare([names[c] for c in chosen], labels[metric_label],
+                                            None if year == "Latest" else int(year))
+            render_comparison(result, chart=True)
+        except ApiError as exc:
+            st.error(exc.message)
+
+
 # ---------------- main ----------------
 def ask(mode: str, question: str, ticker: str | None, doc_ids: list[str], sheet: str | None,
         use_cache: bool) -> None:
     history = st.session_state.messages[mode]
     history.append({"role": "user", "content": question})
     with st.chat_message("user", avatar="🧑"):
-        st.markdown(question)
+        st.markdown(md(question))
     with st.chat_message("assistant", avatar="📊"):
         try:
             with st.spinner("Searching the documents and writing a grounded answer…"):
@@ -217,7 +286,7 @@ def ask(mode: str, question: str, ticker: str | None, doc_ids: list[str], sheet:
             render_answer(result, mode)
             history.append({"role": "assistant", "content": result["answer"], "result": result})
         except ApiError as exc:
-            st.error(exc.message)
+            st.error(md(exc.message))
             history.append({"role": "assistant", "content": "", "error": exc.message})
 
 
@@ -242,8 +311,14 @@ def main() -> None:
     init_state()
     st.sidebar.title("📊 FinSight AI")
     health = sidebar_status()
-    mode = st.sidebar.radio("Ask about", [SEC_MODE, UPLOAD_MODE])
+    mode = st.sidebar.radio("Ask about", [SEC_MODE, UPLOAD_MODE, COMPARE_MODE])
     st.sidebar.divider()
+    if health is not None and mode == COMPARE_MODE:
+        try:
+            compare_page(cached_companies())
+        except ApiError as exc:
+            st.error(exc.message)
+        return
 
     ticker, doc_ids, sheet, chosen = None, [], None, []
     if health is not None:

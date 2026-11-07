@@ -66,6 +66,77 @@ class SecSource(BaseModel):
     excerpt: str
 
 
+# ---------- financial figures (Level 7) ----------
+class FinancialRow(BaseModel):
+    ticker: str
+    company: str
+    metric: str
+    label: str
+    fiscal_year: int
+    period_start: str | None = None
+    period_end: str
+    value: float
+    value_display: str
+    unit: str
+    tag: str
+    derived: bool
+    form: str
+    accession: str
+    filed: str
+    source_url: str
+    rank: int | None = None
+    difference_vs_leader: float | None = None
+    share_of_leader_pct: float | None = None
+    yoy_change: float | None = None
+    yoy_change_pct: float | None = None
+
+
+class Comparison(BaseModel):
+    metric: str
+    label: str
+    fiscal_year: int | None = None
+    rows: list[FinancialRow]
+    summary: str | None = None
+    notes: list[str] = []
+
+
+class CompareRequest(BaseModel):
+    tickers: list[str] = Field(min_length=2, max_length=5, examples=[["AAPL", "MSFT"]])
+    metric: str = Field(examples=["revenue"])
+    fiscal_year: int | None = Field(default=None, description="Leave empty for each company's latest year")
+
+    @field_validator("tickers")
+    @classmethod
+    def supported_tickers(cls, value: list[str]) -> list[str]:
+        cleaned = [t.strip().upper() for t in value]
+        unknown = [t for t in cleaned if t not in COMPANIES]
+        if unknown:
+            raise ValueError(f"Unsupported ticker(s) {unknown}. Supported: {', '.join(COMPANIES)}")
+        return cleaned
+
+    @field_validator("metric")
+    @classmethod
+    def known_metric(cls, value: str) -> str:
+        from backend.services.financial_service import METRICS
+        value = value.strip().lower()
+        if value not in METRICS:
+            raise ValueError(f"Unknown metric '{value}'. Available: {', '.join(METRICS)}")
+        return value
+
+
+class MetricHistory(BaseModel):
+    metric: str
+    label: str
+    latest: FinancialRow | None = None
+    history: list[FinancialRow]
+
+
+class CompanyFinancials(BaseModel):
+    ticker: str
+    company: str
+    metrics: list[MetricHistory]
+
+
 class ChatResponse(BaseModel):
     answer: str
     sources: list[SecSource]
@@ -75,6 +146,8 @@ class ChatResponse(BaseModel):
     cached: bool = False
     retrieved_chunks: int = 0
     unverified_numbers: list[str] = []
+    route: str = "narrative"                    # narrative | numbers | both  (Level 7)
+    financials: list[Comparison] | None = None  # exact SEC figures (Level 7)
 
 
 # ---------- uploads ----------

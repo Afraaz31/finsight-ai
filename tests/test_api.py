@@ -58,7 +58,7 @@ def test_chat_returns_answer_and_sources(monkeypatch):
         seen.update(question=question, ticker=ticker)
         return FAKE_CHAT
 
-    monkeypatch.setattr(chat_route, "answer_question", fake_answer)
+    monkeypatch.setattr(chat_route, "answer_chat", fake_answer)
     response = client.post("/chat", json={"question": "  What are NVIDIA's risks?  ", "ticker": "nvda"})
     assert response.status_code == 200
     assert response.json()["sources"][0]["ticker"] == "NVDA"
@@ -78,7 +78,7 @@ def test_chat_rejects_bad_input(payload):
 def test_chat_llm_down_gives_503(monkeypatch):
     def broken(*args, **kwargs):
         raise LLMError("All models failed. Gemini free-tier limit reached.")
-    monkeypatch.setattr(chat_route, "answer_question", broken)
+    monkeypatch.setattr(chat_route, "answer_chat", broken)
     response = client.post("/chat", json={"question": "What are Apple's risks?"})
     assert response.status_code == 503
     assert "free-tier" in response.json()["detail"]
@@ -87,7 +87,7 @@ def test_chat_llm_down_gives_503(monkeypatch):
 def test_unexpected_error_hides_details(monkeypatch):
     def crash(*args, **kwargs):
         raise KeyError("secret internal detail")
-    monkeypatch.setattr(chat_route, "answer_question", crash)
+    monkeypatch.setattr(chat_route, "answer_chat", crash)
     response = client.post("/chat", json={"question": "What are Apple's risks?"})
     assert response.status_code == 500
     assert "secret" not in response.text

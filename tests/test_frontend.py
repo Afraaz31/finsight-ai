@@ -103,3 +103,56 @@ def test_table_answer_shows_python_calculation(monkeypatch):
     assert not app.exception
     assert len(app.dataframe) == 1                                # the calculation table
     assert any("done by Python" in m.value for m in app.markdown)
+
+
+# ---------- Level 7 ----------
+COMPARISON = {"metric": "revenue", "label": "Revenue", "fiscal_year": None,
+              "summary": "Apple Inc.'s revenue ($478.83B, FY2026) is $178.83B higher than Microsoft's.",
+              "notes": ["Fiscal years end on different dates (AAPL 2026-09-26, MSFT 2026-06-30)."],
+              "rows": [{"ticker": "AAPL", "company": "Apple Inc.", "fiscal_year": 2026, "period_end": "2026-09-26",
+                        "value": 478.834e9, "value_display": "$478.83B", "derived": False, "rank": 1,
+                        "share_of_leader_pct": 100.0, "source_url": "https://www.sec.gov/a/"},
+                       {"ticker": "MSFT", "company": "Microsoft Corporation", "fiscal_year": 2026,
+                        "period_end": "2026-06-30", "value": 300e9, "value_display": "$300.00B", "derived": False,
+                        "rank": 2, "share_of_leader_pct": 62.65, "source_url": "https://www.sec.gov/m/"}]}
+
+
+def test_numbers_answer_shows_exact_figures_table(monkeypatch):
+    answer = {**ANSWER, "sources": [], "route": "numbers", "financials": [COMPARISON],
+              "answer": "Apple's revenue was $478.83B [F]."}
+    monkeypatch.setattr(api_client, "chat", lambda *a: answer)
+    app = run_app()
+    app.chat_input[0].set_value("Compare Apple's revenue with Microsoft's").run()
+    assert not app.exception
+    assert len(app.dataframe) == 1
+    assert any("$178.83B higher" in s.value for s in app.success)
+
+
+def test_compare_mode_shows_table_and_summary(monkeypatch):
+    monkeypatch.setattr(api_client, "metrics", lambda: [{"metric": "revenue", "label": "Revenue",
+                                                         "period_type": "duration"}])
+    monkeypatch.setattr(api_client, "companies", lambda: COMPANIES + [
+        {"ticker": "MSFT", "name": "Microsoft Corporation", "cik": "0000789019", "fiscal_years": [2025, 2026]}])
+    seen = {}
+
+    def fake_compare(tickers, metric, fiscal_year):
+        seen.update(tickers=tickers, metric=metric, fiscal_year=fiscal_year)
+        return COMPARISON
+    monkeypatch.setattr(api_client, "compare", fake_compare)
+    app = run_app()
+    app.sidebar.radio[0].set_value("Compare financials (exact SEC figures)").run()
+    next(b for b in app.button if b.label == "Compare").click().run()
+    assert not app.exception
+    assert seen == {"tickers": ["AAPL", "MSFT"], "metric": "revenue", "fiscal_year": None}
+    assert len(app.dataframe) == 1
+    assert any("different dates" in c.value for c in app.caption)
+
+
+def test_dollar_amounts_are_not_rendered_as_math(monkeypatch):
+    # Streamlit renders text between two "$" signs as LaTeX; the UI must escape them.
+    answer = {**ANSWER, "answer": "Apple's revenue was $478.83B and Microsoft's was $331.84B [1]."}
+    monkeypatch.setattr(api_client, "chat", lambda *a: answer)
+    app = run_app()
+    app.chat_input[0].set_value("Compare Apple's revenue with Microsoft's").run()
+    assert not app.exception
+    assert any("\$478.83B" in m.value and "\$331.84B" in m.value for m in app.markdown)

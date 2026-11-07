@@ -69,3 +69,16 @@ def ask_uploads(question: str, doc_ids: list[str], sheet: str | None, use_cache:
 
 def delete_upload(doc_id: str) -> None:
     _call("DELETE", f"/uploads/{doc_id}")
+
+
+# ---------- Level 7: exact SEC figures ----------
+def metrics() -> list[dict]:
+    return _call("GET", "/metrics")
+
+
+def financials(ticker: str) -> dict:
+    return _call("GET", f"/financials/{ticker}")
+
+
+def compare(tickers: list[str], metric: str, fiscal_year: int | None) -> dict:
+    return _call("POST", "/compare", json={"tickers": tickers, "metric": metric, "fiscal_year": fiscal_year})

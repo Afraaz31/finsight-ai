@@ -62,3 +62,7 @@ MAX_UPLOAD_MB = 10
 TEXT_EXTENSIONS = {".pdf", ".txt", ".docx"}  # -> RAG (chunks + embeddings)
 TABLE_EXTENSIONS = {".csv", ".xlsx"}         # -> Pandas (exact calculations)
 SMALL_DOC_CHUNKS = 8                         # docs this small: send ALL chunks (good for summaries)
+
+# ---------- Structured financial data (Level 7) ----------
+METRICS_PATH = FINANCIAL_DIR / "metrics.csv"   # one row per company x metric x fiscal year
+FINANCIAL_YEARS_KEPT = 5                        # most recent fiscal years kept per metric

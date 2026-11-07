@@ -2,7 +2,7 @@
 from fastapi import APIRouter
 
 from backend.schemas.api_schemas import ChatRequest, ChatResponse
-from backend.services.rag_service import answer_question
+from backend.services.chat_service import answer_chat
 
 router = APIRouter(tags=["sec"])
 
@@ -13,4 +13,4 @@ def chat(request: ChatRequest) -> dict:
 
     Errors: 422 bad input, 503 when the LLM or the vector store is unavailable.
     """
-    return answer_question(request.question, ticker=request.ticker, use_cache=request.use_cache)
+    return answer_chat(request.question, ticker=request.ticker, use_cache=request.use_cache)
