@@ -1,0 +1,71 @@
+"""Talks to the FinSight FastAPI backend over HTTP. The UI never imports backend code directly.
+
+Every function returns the JSON from the API or raises ApiError with a message you can show.
+"""
+import os
+
+import requests
+
+API_URL = os.getenv("FINSIGHT_API_URL", "http://127.0.0.1:8000").rstrip("/")
+QUICK_TIMEOUT = 10        # health, lists
+ANSWER_TIMEOUT = 330      # a question may fall back to Ollama on CPU (up to ~300 s)
+
+
+class ApiError(Exception):
+    def __init__(self, status: int, message: str):
+        super().__init__(message)
+        self.status, self.message = status, message
+
+
+def _detail(response: requests.Response) -> str:
+    """FastAPI puts the reason in "detail" (a string, or a list of field errors for 422)."""
+    try:
+        detail = response.json().get("detail", response.text)
+    except ValueError:
+        return response.text or f"HTTP {response.status_code}"
+    if isinstance(detail, list):   # 422 validation errors
+        return "; ".join(str(d.get("msg", d)).replace("Value error, ", "") for d in detail)
+    return str(detail)
+
+
+def _call(method: str, path: str, timeout: int = QUICK_TIMEOUT, **kwargs):
+    try:
+        response = requests.request(method, f"{API_URL}{path}", timeout=timeout, **kwargs)
+    except requests.ConnectionError:
+        raise ApiError(0, f"Can't reach the FinSight API at {API_URL}. Start it with: "
+                          "uvicorn backend.main:app --port 8000")
+    except requests.Timeout:
+        raise ApiError(0, "The API took too long to answer. Try again.")
+    if response.status_code >= 400:
+        raise ApiError(response.status_code, _detail(response))
+    return response.json() if response.content else None
+
+
+def health() -> dict:
+    return _call("GET", "/health")
+
+
+def companies() -> list[dict]:
+    return _call("GET", "/companies")
+
+
+def chat(question: str, ticker: str | None, use_cache: bool) -> dict:
+    return _call("POST", "/chat", timeout=ANSWER_TIMEOUT,
+                 json={"question": question, "ticker": ticker, "use_cache": use_cache})
+
+
+def upload(filename: str, data: bytes) -> dict:
+    return _call("POST", "/uploads", timeout=120, files={"file": (filename, data)})
+
+
+def list_uploads() -> list[dict]:
+    return _call("GET", "/uploads")
+
+
+def ask_uploads(question: str, doc_ids: list[str], sheet: str | None, use_cache: bool) -> dict:
+    return _call("POST", "/uploads/ask", timeout=ANSWER_TIMEOUT,
+                 json={"question": question, "doc_ids": doc_ids, "sheet": sheet, "use_cache": use_cache})
+
+
+def delete_upload(doc_id: str) -> None:
+    _call("DELETE", f"/uploads/{doc_id}")
