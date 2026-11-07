@@ -35,6 +35,10 @@ class UploadError(Exception):
     """A problem with the uploaded file. The message is safe to show to the user."""
 
 
+class UploadNotFound(UploadError):
+    """No upload with that doc_id (the API turns this into HTTP 404)."""
+
+
 # ---------- 1. Validate ----------
 def validate(filename: str, data: bytes) -> str:
     """Check name, size and real content type. Returns the lower-case extension."""
@@ -185,7 +189,7 @@ def list_uploads() -> list[dict]:
 def get_upload(doc_id: str) -> dict:
     path = UPLOAD_DIR / doc_id / "meta.json"
     if not doc_id.isalnum() or not path.exists():      # isalnum blocks paths like "../.."
-        raise UploadError(f"No uploaded document with id '{doc_id}'.")
+        raise UploadNotFound(f"No uploaded document with id '{doc_id}'.")
     return json.loads(path.read_text(encoding="utf-8"))
 
 
