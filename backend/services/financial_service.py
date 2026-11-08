@@ -255,7 +255,52 @@ def compare(tickers: list[str], metric: str, fiscal_year: int | None = None) -> 
         if r["derived"]:
             notes.append(f"{r['company']}'s {label.lower()} is derived by Python as total liabilities and "
                          "equity minus stockholders' equity, because the company does not report it directly.")
-    return {"metric": metric, "label": label, "fiscal_year": fiscal_year,
+    return {"metric": metric, "label": label, "fiscal_year": fiscal_year, "mode": "compare",
+            "rows": rows, "summary": summary, "notes": notes}
+
+
+def year_over_year(ticker: str, metric: str, years: list[int] | None = None) -> dict:
+    """One company, two fiscal years: "was 2026 better than 2025?" (Level 10). Python does the maths.
+
+    years: years named in the question (the earliest and latest are used); default = the latest two.
+    Same shape as compare(), with mode="trend", so the API and UI can show it the same way.
+    """
+    ticker = ticker.upper()
+    if ticker not in COMPANIES:
+        raise UnknownCompany(f"Unsupported ticker '{ticker}'.")
+    label, name = METRICS[check_metric(metric)]["label"], COMPANIES[ticker]["name"]
+    rows = history(ticker, metric)
+    notes, summary = [], None
+    if years:
+        wanted = {int(y) for y in years}
+        missing = sorted(wanted - {r["fiscal_year"] for r in rows})
+        if missing:
+            notes.append(f"{name} has no reported {label.lower()} for "
+                         + ", ".join(f"FY{y}" for y in missing) + " in its SEC XBRL data.")
+        picked = [r for r in rows if r["fiscal_year"] in wanted]
+        rows = [picked[0], picked[-1]] if len(picked) >= 2 else picked
+    else:
+        rows = rows[-2:]
+    if len(rows) == 2:
+        old, new = rows
+        diff = new["value"] - old["value"]
+        direction = "rose" if diff > 0 else "fell" if diff < 0 else "was unchanged"
+        summary = (f"{name}'s {label.lower()} {direction} from {old['value_display']} (FY{old['fiscal_year']}) "
+                   f"to {new['value_display']} (FY{new['fiscal_year']})")
+        if diff and old["value"]:
+            pct = (new["value"] / old["value"] - 1) * 100
+            summary += f": a change of {'+' if diff > 0 else '-'}{format_money(abs(diff))} ({pct:+.2f}%)"
+        summary += "."
+        new["yoy_change"], new["yoy_change_pct"] = diff, (round((new["value"] / old["value"] - 1) * 100, 2)
+                                                          if old["value"] else None)
+        old["yoy_change"] = old["yoy_change_pct"] = None
+    elif not rows:
+        notes.append(f"{name} does not report {label.lower()} in its SEC XBRL data.")
+    for r in rows:
+        if r["derived"]:
+            notes.append(f"{name}'s {label.lower()} for FY{r['fiscal_year']} is derived by Python "
+                         "(total liabilities and equity minus stockholders' equity).")
+    return {"metric": metric, "label": label, "fiscal_year": None, "mode": "trend",
             "rows": rows, "summary": summary, "notes": notes}
 
 

@@ -36,6 +36,8 @@ Annual reports run to hundreds of pages, and comparing companies means digging t
 | **Honest failures** | Scanned PDFs, unsupported companies, unreported metrics and missing data are all stated clearly, never guessed |
 | **Company Dashboard** | One company at a glance: 8 KPI cards with YoY change, net profit margin calculated by Python, a 5-year trend chart and key insights written by Python (not the AI) |
 | **How it works page** | The router, both pipelines, upload handling and safeguards explained on one page |
+| **Exact sources** | Every source shows its **full passage** inside the app, a **📖 Read the full section** popup with a search box, and a **📍 Open at this exact spot** link that opens SEC.gov scrolled to that sentence and highlighted (URL text fragment) |
+| **Year over year** | "Was Apple's 2026 profit better than 2025?" gets an exact table of both years with the change in $ and %, calculated by Python |
 | **Answer trail** | Every answer has a "How this answer was made" panel (route, companies, model, cache, number-guard result) and a Download button |
 | **Web API + UI** | FastAPI backend with interactive `/docs`, and a multi-page Streamlit app with company logos: Home · Ask AI · Upload & Analyze · Compare · Company Dashboard · How it works |
 
@@ -264,7 +266,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**131 tests** cover:
+**158 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -273,6 +275,7 @@ python -m pytest tests -v
 - upload validation and safe table maths
 - XBRL extraction traps (comparative years, quarterly values, tag changes, derived and stale values)
 - the question router and the demo questions
+- exact-spot links, full 10-K sections and audit-question retrieval
 - every API endpoint and status code
 - every page of the Streamlit UI (headless)
 
@@ -335,7 +338,7 @@ finsight-ai/
 │   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
 │   └── views/          home · ask · upload · compare · dashboard · how_it_works
 ├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed
-├── tests/              pytest suite (131 tests)
+├── tests/              pytest suite (158 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)

@@ -221,3 +221,37 @@ def test_api_without_financial_data_gives_503(tmp_path, monkeypatch):
     response = client.post("/compare", json={"tickers": ["AAPL", "MSFT"], "metric": "revenue"})
     assert response.status_code == 503
     assert "fetch_financial_facts" in response.json()["detail"]
+
+
+# ---------- Level 10: one company, two years ----------
+def test_plural_and_judgement_words_route_to_figures_plus_text():
+    assert route("apple 2026 was good or bad as compare to profits of 2025??") == \
+        {"route": "both", "metrics": ["net_income"]}
+    assert detect_metrics("Compare Apple's revenues with Microsoft's") == ["revenue"]
+
+
+def test_year_over_year_is_calculated_by_python(metrics_csv):
+    t = financial_service.year_over_year("AAPL", "revenue", [2025, 2026])
+    assert t["mode"] == "trend" and [r["fiscal_year"] for r in t["rows"]] == [2025, 2026]
+    assert "rose from $416.16B (FY2025) to $478.83B (FY2026)" in t["summary"]
+    assert "+15.06%" in t["summary"] and t["rows"][1]["yoy_change_pct"] == pytest.approx(15.06, abs=0.01)
+
+
+def test_year_over_year_reports_missing_years_honestly(metrics_csv):
+    t = financial_service.year_over_year("AAPL", "net_income", [2025, 2026])   # only FY2026 is reported
+    assert len(t["rows"]) == 1 and t["summary"] is None
+    assert any("FY2025" in n for n in t["notes"])
+
+
+def test_single_company_question_compares_its_own_years(metrics_csv, monkeypatch):
+    seen = {}
+
+    def fake_llm(system, user):
+        seen["user"] = user
+        return "Apple's revenue rose from $416.16B to $478.83B (+15.06%) [F].", "fake-model"
+    monkeypatch.setattr(chat_service, "generate_answer", fake_llm)
+    monkeypatch.setattr(chat_service, "retrieve", lambda q, t: [])
+    result = chat_service.answer_chat("Was Apple's revenue in 2026 better than in 2025?")
+    assert result["route"] == "both" and result["financials"][0]["mode"] == "trend"
+    assert "FY2025" in seen["user"] and "FY2026" in seen["user"]
+    assert result["unverified_numbers"] == []

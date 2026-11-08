@@ -22,7 +22,8 @@ PERFORMANCE_WORDS = ["financial performance", "financials", "financial results",
 DEFAULT_PERFORMANCE_METRICS = ["revenue", "operating_income", "net_income"]
 # Words that ask for explanation or context -> the 10-K text is needed too.
 EXPLAIN_WORDS = ["explain", "why", "driver", "drove", "reason", "what caused", "discuss", "how did",
-                 "risk", "strategy", "segment", "competition", "summar", "describe", "outlook"]
+                 "risk", "strategy", "segment", "competition", "summar", "describe", "outlook",
+                 "good", "bad", "better", "worse", "improve", "declin", "grow"]   # judging a result -> add context
 MAX_METRICS = 3
 
 
@@ -31,8 +32,9 @@ def detect_metrics(question: str) -> list[str]:
     found = []
     for metric, words in METRIC_WORDS:
         for word in words:
-            if re.search(rf"\b{re.escape(word)}\b", q):
-                q = re.sub(rf"\b{re.escape(word)}\b", " ", q)   # "net income" must not also count as "income"
+            pattern = rf"\b{re.escape(word)}s?\b"              # "profit" also matches "profits"
+            if re.search(pattern, q):
+                q = re.sub(pattern, " ", q)   # "net income" must not also count as "income"
                 if metric not in found:
                     found.append(metric)
     if "operating_cash_flow" in found and "cash" in found:

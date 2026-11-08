@@ -16,6 +16,8 @@ EXPECTED = {
     "Summarize the management discussion in Apple's annual report": "narrative",
     "What are Microsoft's major business risks?": "narrative",
     "What is Tesla's revenue?": "numbers",   # the router sees "revenue"; chat_service then sends it to RAG
+    "Find the audit report of Apple": "narrative",
+    "Was Apple's 2026 profit better than 2025?": "both",   # figures (year over year) + the 10-K explanation
 }
 
 

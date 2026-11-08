@@ -74,7 +74,8 @@ def build_upload_context(hits: list[dict]) -> str:
 def _cited_sources(hits: list[dict], answer: str) -> list[dict]:
     cited = {int(n) for n in re.findall(r"\[(\d+)\]", answer)}
     return [{"number": n, "filename": h["metadata"]["filename"], "page": h["metadata"]["page"],
-             "excerpt": h["text"].split("\n", 1)[-1][:300], "score": h["score"]}
+             "excerpt": h["text"].split("\n", 1)[-1][:300],
+             "text": h["text"].split("\n", 1)[-1], "score": h["score"]}
             for n, h in enumerate(hits, 1) if n in cited]
 
 

@@ -25,7 +25,7 @@ How to present, demo and defend the project. Read it twice, then practise the de
    - a Quota Shield (model fallback chain, answer cache, local Ollama)
    - honest refusals: scanned PDFs, unsupported companies, unreported metrics
 6. **Proof:**
-   - **131 automated tests**, using no API quota.
+   - **158 automated tests**, using no API quota.
    - Apple's FY2026 revenue (**$478.83B**) matches the 10-K exactly in both pipelines.
 
 ---
@@ -40,7 +40,7 @@ How to present, demo and defend the project. Read it twice, then practise the de
 | # | Do | Say |
 |---|---|---|
 | 1 | **Home**: point at the 5 company cards | "FinSight covers Apple, Microsoft, Amazon, Alphabet and NVIDIA. These figures come straight from SEC XBRL data: Apple's latest revenue is $478.83B. The left navigation shows the six areas of the app." |
-| 2 | Click **"What are NVIDIA's major business risks?"** under *Try asking* | "A *narrative* question goes through RAG over the 10-K text. Every claim has a citation." Open a source → **Open original SEC filing**: "Every claim can be checked." |
+| 2 | Click **"What are NVIDIA's major business risks?"** under *Try asking* | "A *narrative* question goes through RAG over the 10-K text. Every claim has a citation." Each source shows its full passage; click **📍 Open at this exact spot**: "SEC.gov opens scrolled to that exact sentence, highlighted. Or **📖 Read the full section** right here in the app." |
 | 3 | Open **🔍 How this answer was made** | "The full trail: the route chosen, chunks retrieved, the model that answered, whether it came from the cache, and the number-guard result." |
 | 4 | On Ask AI, click **"Compare Apple's revenue with Microsoft's"** | "A *numbers* question: the figures come from SEC XBRL data, not the AI. Python calculated the difference and the percentage. Note the warning that Apple's year ends in September and Microsoft's in June." |
 | 5 | Click **"Explain Amazon's operating income"** | "*Both*: the exact figure is cited as [F], plus the explanation from the MD&A text." |
@@ -143,7 +143,7 @@ For a **narrative** question, steps 3–4 become: detect the company, topic sect
     - The first model allowed only 20 requests a day. I checked the real limits and switched to Flash Lite, which allows 500 a day.
     - I built a fallback chain across models with separate quotas, plus an answer cache and a local Ollama model. Overload errors move to the next model instead of retrying the same one.
 16. *How did you test without spending quota?*
-    - 131 pytest tests with fakes for the LLM, embeddings and network.
+    - 158 pytest tests with fakes for the LLM, embeddings and network.
     - TestClient for the API; Streamlit AppTest for the UI.
     - Live checks were run separately and verified against the real filings.
 17. *What would you change for production?*
@@ -179,7 +179,7 @@ Interviewers love these, so tell 2 or 3:
 | SEC chunks in ChromaDB | 4,593 |
 | Embedding size | 384 dimensions (all-MiniLM-L6-v2) |
 | Chunk size / overlap | 800 / 150 characters |
-| Automated tests | 131 |
+| Automated tests | 158 |
 | Main model free limit | gemini-3.5-flash-lite: 500 requests/day, 15/minute |
 | Apple revenue FY2026 | **$478.83B** (period ending 26 Sep 2026); same in the 10-K and XBRL |
 | Highest revenue (latest FY) | Amazon $716.92B (FY2025) |

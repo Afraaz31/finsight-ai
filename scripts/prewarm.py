@@ -23,6 +23,8 @@ DEMO_QUESTIONS = [
     "Summarize the management discussion in Apple's annual report",
     "What are Microsoft's major business risks?",
     "What is Tesla's revenue?",
+    "Find the audit report of Apple",                       # Level 10: full passages + exact-spot links
+    "Was Apple's 2026 profit better than 2025?",            # Level 10: one company, year over year
 ]
 
 

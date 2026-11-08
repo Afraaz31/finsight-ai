@@ -10,7 +10,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 
-from backend.routes import chat, financials, health, uploads
+from backend.routes import chat, filings, financials, health, uploads
+from backend.services.filing_service import SectionNotFound
 from backend.services.financial_service import UnknownCompany
 from backend.services.llm_service import LLMError
 from backend.services.table_service import PlanError
@@ -46,6 +47,7 @@ app.include_router(health.router)
 app.include_router(chat.router)
 app.include_router(uploads.router)
 app.include_router(financials.router)
+app.include_router(filings.router)
 
 
 # ---------- request logging ----------
@@ -65,6 +67,11 @@ def _error(status_code: int, message: str) -> JSONResponse:
 
 @app.exception_handler(UploadNotFound)
 async def not_found(_request: Request, exc: UploadNotFound):
+    return _error(404, str(exc))
+
+
+@app.exception_handler(SectionNotFound)
+async def section_not_found(_request: Request, exc: SectionNotFound):
     return _error(404, str(exc))
 
 

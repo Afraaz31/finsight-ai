@@ -12,11 +12,11 @@ import logging
 from backend.companies import COMPANIES
 from backend.config import METRICS_PATH
 from backend.services import cache_service, number_guard
-from backend.services.financial_service import compare, figures_text
+from backend.services.financial_service import compare, figures_text, year_over_year
 from backend.services.llm_service import LLMError, generate_answer
 from backend.services.question_router import route
-from backend.services.rag_service import (SYSTEM_PROMPT, answer_question, build_context,
-                                          detect_companies, format_sources, retrieve)
+from backend.services.rag_service import (RETRIEVAL_VERSION, SYSTEM_PROMPT, YEAR, answer_question,
+                                          build_context, detect_companies, format_sources, retrieve)
 
 log = logging.getLogger(__name__)
 
@@ -28,11 +28,17 @@ Rules:
 calculate anything new: no new sums, differences or percentages.
 2. Always state each company's fiscal year and period end. If the periods differ, say so clearly.
 3. Mention any notes (e.g. derived values, companies that don't report the metric).
-4. No investment advice. Plain English for a non-expert, under about 150 words."""
+4. No investment advice. Plain English for a non-expert, under about 150 words.
+5. If the figures are ONE company's different years, describe the change (rose or fell, by how much, \
+using the given difference and percentage). If asked whether a year was "good" or "bad", say what the \
+figures show and label any judgement as interpretation, e.g. "This suggests..."."""
 
 FIGURES_RULE = """
 10. VERIFIED FIGURES were retrieved from SEC XBRL data and calculated by Python. Quote them exactly \
-and cite them as [F]. Never calculate new figures from them."""
+and cite them as [F]. Never calculate new figures from them. If they compare one company's years, \
+start the answer with that change, then explain it with the 10-K text. If the question asks whether the \
+result was good or bad (better, worse...), answer that directly, based on the figures, and label it as \
+interpretation, e.g. "This suggests..."."""
 
 
 # Words that mean "compare / rank the companies" when no company is named.
@@ -83,12 +89,16 @@ def answer_chat(question: str, ticker: str | None = None, use_cache: bool = True
     if tickers is None:   # a metric, but no supported company (e.g. Tesla) -> honest RAG answer
         return {**answer_question(question, ticker=ticker, use_cache=use_cache),
                 "route": "narrative", "financials": None}
-    comparisons = [compare(tickers, metric) for metric in decision["metrics"]]
+    if len(tickers) == 1:   # one company -> compare its own years ("was 2026 better than 2025?")
+        years = sorted({int(y) for y in YEAR.findall(question)}) or None
+        comparisons = [year_over_year(tickers[0], metric, years) for metric in decision["metrics"]]
+    else:
+        comparisons = [compare(tickers, metric) for metric in decision["metrics"]]
     figures = figures_text(comparisons)
 
     data_version = METRICS_PATH.stat().st_mtime if METRICS_PATH.exists() else 0
     key = cache_service.make_key(cache_service.normalize(question), ",".join(tickers), decision["route"],
-                                 FIGURES_PROMPT, SYSTEM_PROMPT, data_version)
+                                 FIGURES_PROMPT, SYSTEM_PROMPT, FIGURES_RULE, RETRIEVAL_VERSION, data_version)
     if use_cache and (cached := cache_service.get(key)):
         return {**cached, "cached": True}
 

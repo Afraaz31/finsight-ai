@@ -64,6 +64,22 @@ class SecSource(BaseModel):
     document_url: str
     score: float
     excerpt: str
+    text: str | None = None          # the full passage (Level 10)
+    section_id: str | None = None    # e.g. "8" -> used by "Read the full section"
+    deep_link: str | None = None     # opens the filing scrolled to this passage
+
+
+class SectionResponse(BaseModel):
+    """One full 10-K section (Level 10: read it inside FinSight, no SEC website needed)."""
+    ticker: str
+    company: str
+    fiscal_year: int
+    period_end: str
+    section_id: str
+    section: str
+    text: str
+    char_count: int
+    document_url: str
 
 
 # ---------- financial figures (Level 7) ----------
@@ -95,6 +111,7 @@ class Comparison(BaseModel):
     metric: str
     label: str
     fiscal_year: int | None = None
+    mode: Literal["compare", "trend"] = "compare"   # trend = one company, two years (Level 10)
     rows: list[FinancialRow]
     summary: str | None = None
     notes: list[str] = []
@@ -186,6 +203,7 @@ class UploadSource(BaseModel):
     sheet: str | None = None      # tables
     detail: str | None = None     # tables: what Python calculated
     excerpt: str | None = None
+    text: str | None = None       # the full passage (Level 10)
     score: float | None = None
 
 

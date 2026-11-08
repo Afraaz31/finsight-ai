@@ -82,3 +82,9 @@ def financials(ticker: str) -> dict:
 
 def compare(tickers: list[str], metric: str, fiscal_year: int | None) -> dict:
     return _call("POST", "/compare", json={"tickers": tickers, "metric": metric, "fiscal_year": fiscal_year})
+
+
+# ---------- Level 10: full 10-K sections ----------
+def section(ticker: str, fiscal_year: int, section_id: str) -> dict:
+    return _call("GET", "/sec/section", params={"ticker": ticker, "fiscal_year": fiscal_year,
+                                                 "section_id": section_id})

@@ -183,3 +183,71 @@ def test_logos_and_helpers():
     assert "<svg" in finsight_mark(40)
     assert ui.safe_md("$5 and $6") == "\\$5 and \\$6"
     assert ui.fmt_money(478.834e9) == "$478.83B"
+
+
+# ---------- Level 10: exact sources ----------
+PASSAGE = ("In our opinion, the consolidated financial statements present fairly, in all material respects, "
+           "the financial position of Apple Inc. The firm Ernst & Young LLP has served as auditor since 2009.")
+AUDIT_ANSWER = {"answer": "Apple's auditor, Ernst & Young LLP, issued an unqualified opinion [1].",
+                "sources": [{"number": 1, "company": "Apple Inc.", "ticker": "AAPL", "fiscal_year": 2026,
+                             "period_end": "2026-09-26", "section": "Item 8. Financial Statements",
+                             "document_url": "https://www.sec.gov/x.htm", "score": 0.71, "excerpt": PASSAGE[:300],
+                             "text": PASSAGE, "section_id": "8",
+                             "deep_link": "https://www.sec.gov/x.htm#:~:text=In%20our%20opinion,auditor"}],
+                "companies": ["AAPL"], "used_llm": True, "model": "gemini-3.5-flash-lite", "cached": False,
+                "retrieved_chunks": 4, "unverified_numbers": [], "route": "narrative", "financials": []}
+
+
+def test_sources_show_full_passage_exact_link_and_full_section(monkeypatch):
+    monkeypatch.setattr(api_client, "chat", lambda q, t, c: AUDIT_ANSWER)
+    calls = []
+
+    def fake_section(ticker, fiscal_year, section_id):
+        calls.append((ticker, fiscal_year, section_id))
+        return {"ticker": ticker, "company": "Apple Inc.", "fiscal_year": fiscal_year, "period_end": "2026-09-26",
+                "section_id": section_id, "section": "Item 8. Financial Statements",
+                "text": "Report of Independent Registered Public Accounting Firm\nIn our opinion ...",
+                "char_count": 70, "document_url": "https://www.sec.gov/x.htm"}
+    monkeypatch.setattr(api_client, "section", fake_section)
+    app = open_page("views/ask.py")
+    app.chat_input[0].set_value("Find the audit report of Apple").run()
+    assert not app.exception
+    text = all_markdown(app)
+    assert "has served as auditor since 2009" in text                  # the full passage, not just 300 chars
+    links = [b.proto.url for b in app.get("link_button")]
+    assert "https://www.sec.gov/x.htm#:~:text=In%20our%20opinion,auditor" in links
+    [read] = [b for b in app.button if b.label == "📖 Read the full section"]
+    read.click().run()
+    assert not app.exception
+    assert calls == [("AAPL", 2026, "8")]
+    assert "Report of Independent Registered Public Accounting Firm" in all_markdown(app)
+
+
+def test_trend_answer_shows_year_over_year_table(monkeypatch):
+    trend = {"metric": "net_income", "label": "Net income", "fiscal_year": None, "mode": "trend", "notes": [],
+             "summary": "Apple Inc.'s net income rose from $100.00B (FY2025) to $120.00B (FY2026): "
+                        "a change of +$20.00B (+20.00%).",
+             "rows": [row("AAPL", "net_income", 2025, 100e9), {**row("AAPL", "net_income", 2026, 120e9, 20.0),
+                                                                 "yoy_change": 20e9}]}
+    answer = {**SEC_ANSWER, "answer": "Apple's net income rose 20.00% [F].", "route": "both", "financials": [trend]}
+    monkeypatch.setattr(api_client, "chat", lambda q, t, c: answer)
+    app = open_page("views/ask.py")
+    app.chat_input[0].set_value("Was Apple's 2026 profit better than 2025?").run()
+    assert not app.exception
+    table = app.dataframe[0].value
+    assert list(table["Fiscal year"]) == ["FY2025", "FY2026"]
+    assert list(table["Change %"]) == ["—", "+20.00%"]
+
+
+def test_find_in_section_shows_matches_with_surrounding_lines():
+    """Searching the full section shows each match in context (signature, date, 'auditor since'), not a bare line."""
+    text = "\n".join(["Statements of operations", "Net sales | $1 | $2", "Critical audit matter text.",
+                      "/s/ Ernst & Young LLP", "We have served as the Company's auditor since 2009.",
+                      "San Jose, California", "November 3, 2026", "Unrelated note 1", "Unrelated note 2"])
+    count, shown = ui.find_in_section(text, "ernst & young")
+    assert count == 1
+    assert "**Ernst & Young**" in shown                                   # the match, highlighted
+    assert "auditor since 2009" in shown and "November 3, 2026" in shown  # the lines around it
+    assert "Unrelated note 2" not in shown and "Net sales" in shown       # 2 before, 3 after - not the whole text
+    assert ui.find_in_section(text, "Deloitte") == (0, "No matches.")
+    assert ui.find_in_section(text, "$1")[1].count("**\\$1**") == 1       # $ stays escaped (no LaTeX)

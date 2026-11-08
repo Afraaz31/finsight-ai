@@ -28,13 +28,15 @@ def get_or_create_collection(name: str):
     return get_client().get_or_create_collection(name=name, metadata={"hnsw:space": "cosine"})
 
 
-def build_filter(ticker: str | None = None, section_id: str | None = None,
+def build_filter(ticker: str | None = None, section_id: str | list[str] | None = None,
                  fiscal_year: int | None = None, doc_id: str | None = None) -> dict | None:
-    """Turn optional filters into ChromaDB's `where` format."""
+    """Turn optional filters into ChromaDB's `where` format. section_id may be a list (any of them)."""
     conditions = []
     if ticker:
         conditions.append({"ticker": ticker.upper()})
-    if section_id:
+    if isinstance(section_id, list):
+        conditions.append({"section_id": {"$in": [s.upper() for s in section_id]}})
+    elif section_id:
         conditions.append({"section_id": section_id.upper()})
     if fiscal_year:
         conditions.append({"fiscal_year": int(fiscal_year)})
@@ -47,11 +49,12 @@ def build_filter(ticker: str | None = None, section_id: str | None = None,
     return {"$and": conditions}   # ChromaDB needs $and when there is more than one condition
 
 
-def search(question: str, k: int = 5, ticker: str | None = None, section_id: str | None = None,
+def search(question: str, k: int = 5, ticker: str | None = None, section_id: str | list[str] | None = None,
            fiscal_year: int | None = None, collection_name: str = SEC_COLLECTION,
-           doc_id: str | None = None) -> list[dict]:
+           doc_id: str | None = None, contains: str | None = None) -> list[dict]:
     """Return the k chunks whose meaning is closest to the question.
 
+    contains: only chunks whose text includes this exact phrase (Level 10: the auditor's signature block).
     Each result: {"id", "text", "metadata", "score"} where score is 0..1 (higher = more similar).
     """
     collection = get_or_create_collection(collection_name)
@@ -63,6 +66,7 @@ def search(question: str, k: int = 5, ticker: str | None = None, section_id: str
         query_embeddings=[embed_query(question)],
         n_results=k,
         where=build_filter(ticker, section_id, fiscal_year, doc_id),
+        where_document={"$contains": contains} if contains else None,
         include=["documents", "metadatas", "distances"],
     )
     hits = []

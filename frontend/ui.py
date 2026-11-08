@@ -4,6 +4,7 @@ Pages import this module, so the design lives in ONE place.
 """
 import html
 import json
+import re
 
 import pandas as pd
 import streamlit as st
@@ -224,13 +225,25 @@ ROUTE_LABELS = {"narrative": ("📄 From 10-K text", ""), "numbers": ("🔢 Exac
 
 
 def render_comparison(comp: dict, chart: bool = False, key: str = "") -> None:
-    """One metric across companies: ranked table with SEC links, summary, notes, optional chart."""
+    """One metric across companies (ranked table) or one company across years (trend table)."""
+    trend = comp.get("mode") == "trend"
     with st.container(border=True):
+        how = "year-over-year change calculated by Python" if trend else "ranked and calculated by Python"
         st.markdown(f"**{comp['label']}** <span class='fs-muted'>· exact values from SEC XBRL data, "
-                    "ranked and calculated by Python</span>", unsafe_allow_html=True)
+                    f"{how}</span>", unsafe_allow_html=True)
         rows = comp.get("rows") or []
         if not rows:
-            st.info("No company in this selection reports this metric.")
+            st.info("No reported figures for this metric." if trend
+                    else "No company in this selection reports this metric.")
+        elif trend:   # one company, two years (Level 10)
+            table = pd.DataFrame([{
+                "Fiscal year": f"FY{r['fiscal_year']}", "Period end": r["period_end"], comp["label"]: r["value_display"],
+                "Change": "—" if r.get("yoy_change") is None else
+                          ("+" if r["yoy_change"] >= 0 else "-") + fmt_money(abs(r["yoy_change"])),
+                "Change %": "—" if r.get("yoy_change_pct") is None else f"{r['yoy_change_pct']:+.2f}%",
+                "SEC filing": r["source_url"]} for r in rows])
+            st.dataframe(table, hide_index=True, width="stretch", column_config={
+                "SEC filing": st.column_config.LinkColumn("SEC filing", display_text="open ↗")})
         else:
             table = pd.DataFrame([{
                 "Rank": r.get("rank"), "Company": r["company"], "Fiscal year": f"FY{r['fiscal_year']}",
@@ -250,24 +263,90 @@ def render_comparison(comp: dict, chart: bool = False, key: str = "") -> None:
             st.caption(f"ℹ️ {safe_md(note)}")
 
 
+def passage_md(text: str) -> str:
+    """Show a passage exactly as written (line breaks kept, $ signs safe)."""
+    return safe_md(text).replace("\n", "  \n")
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def section(ticker: str, fiscal_year: int, section_id: str) -> dict:
+    return api_client.section(ticker, fiscal_year, section_id)
+
+
+@st.dialog("📖 Full section from the 10-K", width="large")
+def section_dialog(ticker: str, fiscal_year: int, section_id: str) -> None:
+    """Level 10: read the whole chapter (e.g. Item 8 with the auditor's report) inside FinSight."""
+    try:
+        sec = section(ticker, fiscal_year, section_id)
+    except ApiError as err:
+        st.error(err.message)
+        return
+    st.markdown(f"**{sec['company']} · Form 10-K FY{sec['fiscal_year']} · {safe_md(sec['section'])}**")
+    st.caption(f"Period ending {sec['period_end']} · {sec['char_count']:,} characters · official SEC text")
+    find = st.text_input("Find in this section", placeholder="e.g. auditor, opinion, Ernst & Young",
+                         key=f"find_{ticker}_{fiscal_year}_{section_id}")
+    body = passage_md(sec["text"])
+    if find.strip():
+        count, body = find_in_section(sec["text"], find)
+        st.caption(f"{count} line(s) contain \"{safe_md(find.strip())}\" · shown with the lines around them")
+    with st.container(height=480, border=True):
+        st.markdown(body)
+    st.link_button("Open the original filing on SEC.gov ↗", sec["document_url"])
+
+
+def find_in_section(text: str, term: str, before: int = 2, after: int = 3) -> tuple[int, str]:
+    """Lines containing `term`, each shown WITH the lines around it (the signature line alone says little;
+    with its neighbours it shows the date, city and "auditor since"). Returns (matches, markdown)."""
+    term, lines = term.strip(), text.split("\n")
+    hits = [i for i, line in enumerate(lines) if term and term.lower() in line.lower()]
+    blocks, last = [], -1                          # overlapping windows are merged into one block
+    for i in hits:
+        start, end = max(i - before, last + 1), min(i + after + 1, len(lines))
+        if start < end:
+            if blocks and start == last + 1:
+                blocks[-1] += lines[start:end]
+            else:
+                blocks.append(lines[start:end])
+            last = end - 1
+    pattern = re.compile(re.escape(safe_md(term)), re.IGNORECASE)
+    shown = [pattern.sub(lambda m: f"**{m.group(0)}**", passage_md("\n".join(b))) for b in blocks]
+    return len(hits), "\n\n---\n\n".join(shown) or "No matches."
+
+
 def render_sources(result: dict, kind: str) -> None:
+    """Level 10: each source shows the FULL passage, so the user never has to dig through the website."""
     sources = result.get("sources") or []
     if not sources:
         return
-    st.markdown(f"**Sources ({len(sources)})**")
-    for s in sources:
+    st.markdown(f"**Sources ({len(sources)})** <span class='fs-muted'>· the exact passages the answer is "
+                "based on</span>", unsafe_allow_html=True)
+    for i, s in enumerate(sources):
         if kind == "sec":
             label = f"[{s['number']}] {s['company']} · FY{s['fiscal_year']} · {s['section']}"
-            with st.expander(label):
+            with st.expander(label, expanded=(i == 0)):
                 st.caption(f"Period ending {s['period_end']} · relevance {s['score']:.2f}")
-                st.markdown(f"> {safe_md(s['excerpt'])}…")
-                st.link_button("Open original SEC filing ↗", s["document_url"])
+                with st.container(border=True):
+                    st.markdown(passage_md(s.get("text") or s["excerpt"]))
+                left, mid, right = st.columns(3)
+                with left:
+                    if s.get("section_id") and st.button("📖 Read the full section", key=f"sec_{s['number']}_{i}_"
+                                                         f"{s['ticker']}_{s['fiscal_year']}_{s['section_id']}",
+                                                         width="stretch"):
+                        section_dialog(s["ticker"], s["fiscal_year"], s["section_id"])
+                with mid:
+                    st.link_button("📍 Open at this exact spot ↗", s.get("deep_link") or s["document_url"],
+                                   width="stretch",
+                                   help="Opens the 10-K on SEC.gov scrolled to this passage, highlighted "
+                                        "(Chrome / Edge).")
+                with right:
+                    st.link_button("Whole filing on SEC.gov ↗", s["document_url"], width="stretch")
         else:
             where = f"page {s['page']}" if s.get("page") else f"sheet {s.get('sheet')}"
             number = f"[{s['number']}] " if s.get("number") else ""
-            with st.expander(f"📎 {number}{s['filename']} · {where}"):
-                if s.get("excerpt"):
-                    st.markdown(f"> {safe_md(s['excerpt'])}…")
+            with st.expander(f"📎 {number}{s['filename']} · {where}", expanded=(i == 0)):
+                if s.get("text") or s.get("excerpt"):
+                    with st.container(border=True):
+                        st.markdown(passage_md(s.get("text") or s["excerpt"]))
                 if s.get("detail"):
                     st.caption(safe_md(s["detail"]))
 
@@ -347,9 +426,13 @@ def answer_as_text(result: dict) -> str:
         lines += [f"Note: {n}" for n in comp.get("notes", [])]
     for s in result.get("sources") or []:
         if "document_url" in s:
-            lines.append(f"- [{s['number']}] {s['company']} FY{s['fiscal_year']} {s['section']}: {s['document_url']}")
+            lines.append(f"- [{s['number']}] {s['company']} FY{s['fiscal_year']} {s['section']}: "
+                         f"{s.get('deep_link') or s['document_url']}")
         else:
             lines.append(f"- {s['filename']} " + (f"page {s['page']}" if s.get("page") else f"sheet {s.get('sheet')}"))
+        passage = s.get("text") or s.get("excerpt")
+        if passage:   # the full passage travels with the answer, so the file is complete on its own
+            lines += ["", *[f"  > {line}" for line in passage.splitlines() if line.strip()], ""]
     if result.get("calculation"):
         lines += ["", "Calculation plan:", json.dumps(result["calculation"]["plan"])]
     return "\n".join(lines)
