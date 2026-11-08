@@ -10,7 +10,7 @@ ui.page_header(ui.finsight_mark(44), "How FinSight works",
 def card(col, icon: str, title: str, lines: list[str]) -> None:
     body = "".join(f"<div class='fs-muted' style='margin:3px 0'>• {line}</div>" for line in lines)
     col.markdown(f"<div class='fs-card' style='height:100%'><div style='font-size:1.4rem'>{icon}</div>"
-                 f"<div style='font-weight:800;color:#0F172A;margin:4px 0 6px'>{title}</div>{body}</div>",
+                 f"<div style='font-weight:800;color:#EEF2FA;margin:4px 0 6px'>{title}</div>{body}</div>",
                  unsafe_allow_html=True)
 
 

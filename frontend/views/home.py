@@ -56,7 +56,7 @@ with left:
     with st.container(border=True):
         st.markdown("<div style='text-align:center;padding:8px 0'>"
                     "<div style='font-size:2.2rem'>☁️</div>"
-                    "<div style='font-weight:800;font-size:1.1rem;color:#0F172A'>Analyse your own financial documents</div>"
+                    "<div style='font-weight:800;font-size:1.1rem;color:#EEF2FA'>Analyse your own financial documents</div>"
                     "<div class='fs-muted'>PDF · TXT · DOCX · CSV · XLSX · up to 10 MB. Text files are answered with "
                     "citations; spreadsheets are calculated exactly with Python.</div></div>", unsafe_allow_html=True)
         if st.button("Upload or try a sample file", type="primary", width="stretch"):
@@ -78,5 +78,5 @@ for col, (icon, title, text) in zip((f1, f2, f3), [
         ("🛡️", "Honest by design", "Unsupported companies, unreported metrics and scanned PDFs are stated clearly, "
                                   "never guessed.")]):
     col.markdown(f"<div class='fs-card' style='height:100%'><div style='font-size:1.5rem'>{icon}</div>"
-                 f"<div style='font-weight:700;color:#0F172A;margin:4px 0'>{title}</div>"
+                 f"<div style='font-weight:700;color:#EEF2FA;margin:4px 0'>{title}</div>"
                  f"<div class='fs-muted'>{text}</div></div>", unsafe_allow_html=True)

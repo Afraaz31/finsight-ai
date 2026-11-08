@@ -29,7 +29,7 @@ except ApiError as exc:
 rev = ui.latest(fin, "revenue")
 period = f"FY{rev['fiscal_year']} · period ending {rev['period_end']}" if rev else ""
 st.markdown(f"<div class='fs-brand' style='margin:6px 0 12px'>{ui.company_logo_img(ticker, 46)}<div>"
-            f"<div style='font-size:1.75rem;font-weight:800;color:#0F172A'>{html.escape(fin['company'])} ({ticker})</div>"
+            f"<div style='font-size:1.75rem;font-weight:800;color:#EEF2FA'>{html.escape(fin['company'])} ({ticker})</div>"
             f"<div class='fs-muted'>{period} · exact values from SEC XBRL Company Facts</div></div></div>",
             unsafe_allow_html=True)
 
@@ -82,7 +82,7 @@ with left:
                      .encode(x=alt.X("Fiscal year:O", axis=alt.Axis(labelAngle=0)), y=alt.Y("USD billions:Q"),
                              color=alt.Color("Metric:N", scale=alt.Scale(
                                  domain=["Revenue", "Operating income", "Net income"],
-                                 range=["#2563EB", "#06B6D4", "#10B981"]),
+                                 range=["#60A5FA", "#22D3EE", "#34D399"]),
                                              legend=alt.Legend(orient="top")),
                              tooltip=["Metric", "Fiscal year", "Value", "YoY %"]).properties(height=320))
             st.altair_chart(chart, width="stretch")
