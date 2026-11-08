@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 
-from backend.routes import chat, filings, financials, health, uploads
+from backend.routes import chat, filings, financials, health, reports, uploads
 from backend.services.filing_service import SectionNotFound
 from backend.services.financial_service import UnknownCompany
 from backend.services.llm_service import LLMError
@@ -48,6 +48,7 @@ app.include_router(chat.router)
 app.include_router(uploads.router)
 app.include_router(financials.router)
 app.include_router(filings.router)
+app.include_router(reports.router)
 
 
 # ---------- request logging ----------

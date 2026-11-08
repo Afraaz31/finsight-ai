@@ -32,6 +32,9 @@ st.markdown(f"<div class='fs-brand' style='margin:6px 0 12px'>{ui.company_logo_i
             f"<div style='font-size:1.75rem;font-weight:800;color:#EEF2FA'>{html.escape(fin['company'])} ({ticker})</div>"
             f"<div class='fs-muted'>{period} · exact values from SEC XBRL Company Facts</div></div></div>",
             unsafe_allow_html=True)
+if st.button(f"📑 Full company report for {fin['company']}", type="primary"):
+    st.session_state.ask_pending = f"Company report of {fin['company']}"
+    st.switch_page("views/ask.py")
 
 
 def kpi(col, label: str, metric: str) -> None:

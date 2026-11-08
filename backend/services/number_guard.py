@@ -57,3 +57,12 @@ def add_warning(answer: str, missing: list[str]) -> str:
     shown = ", ".join(dict.fromkeys(missing))
     return (answer + f"\n\n⚠ Check: the figure(s) {shown} do not appear in the sources. "
             "They may be the model's own calculation - verify them before relying on them.")
+
+
+CITATION = re.compile(r" ?\[(\d{1,3})\]")
+
+
+def drop_unknown_citations(answer: str, source_count: int) -> str:
+    """Remove [n] citations that point to no source. Real case: an answer built from 5 passages cited [10];
+    a citation that leads nowhere looks like evidence but isn't. [F] (the exact figures) is left alone."""
+    return CITATION.sub(lambda m: m.group(0) if 1 <= int(m.group(1)) <= source_count else "", answer)

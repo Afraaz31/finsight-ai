@@ -88,6 +88,7 @@ def answer_text_question(question: str, metas: list[dict]) -> dict:
     prompt = (f"SOURCES:\n\n{context}\n\n---\nQUESTION: {question}\n\n"
               "Answer using only the sources above.")
     answer, model = generate_answer(UPLOAD_SYSTEM_PROMPT, prompt)
+    answer = number_guard.drop_unknown_citations(answer, len(hits))
     missing = number_guard.unverified_numbers(answer, context + "\n" + question)
     answer = number_guard.add_warning(answer, missing)
     return {"answer": answer, "sources": _cited_sources(hits, answer), "model": model, "used_llm": True,

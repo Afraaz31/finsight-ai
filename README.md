@@ -37,6 +37,7 @@ Annual reports run to hundreds of pages, and comparing companies means digging t
 | **Company Dashboard** | One company at a glance: 8 KPI cards with YoY change, net profit margin calculated by Python, a 5-year trend chart and key insights written by Python (not the AI) |
 | **How it works page** | The router, both pipelines, upload handling and safeguards explained on one page |
 | **Exact sources** | Every source shows its **full passage** inside the app, a **📖 Read the full section** popup with a search box, and a **📍 Open at this exact spot** link that opens SEC.gov scrolled to that sentence and highlighted (URL text fragment) |
+| **Company Report** | A 10-section report per company (overview to sources), figures by Python, text by Gemini, missing points skipped. Ask "Audit report of Apple" or click 📑 on the Company Dashboard |
 | **Year over year** | "Was Apple's 2026 profit better than 2025?" gets an exact table of both years with the change in $ and %, calculated by Python |
 | **Answer trail** | Every answer has a "How this answer was made" panel (route, companies, model, cache, number-guard result) and a Download button |
 | **Web API + UI** | FastAPI backend with interactive `/docs`, and a multi-page Streamlit app with company logos: Home · Ask AI · Upload & Analyze · Compare · Company Dashboard · How it works |
@@ -218,6 +219,9 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 | GET | `/metrics` | Supported financial metrics |
 | GET | `/financials/{ticker}` | All metrics for a company: latest + 5-year history with YoY change |
 | POST | `/compare` | `{"tickers": ["AAPL","MSFT"], "metric": "revenue"}` → ranked comparison |
+| GET | `/report/{ticker}` | The 10-section Company Report (`?fiscal_year=`); sections without data listed in `skipped` |
+| GET | `/sec/sections` | The sections of one processed 10-K (`?ticker=&fiscal_year=`) |
+| GET | `/sec/section` | The full text of one 10-K section (`?ticker=&fiscal_year=&section_id=8`) |
 | POST | `/uploads` | Upload a file (multipart) → `doc_id` |
 | GET | `/uploads` | List uploads |
 | GET / DELETE | `/uploads/{doc_id}` | Details / delete an upload |
@@ -247,6 +251,11 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 
 **Both**
 - Explain Amazon's operating income.
+- apple 2026 was good or bad as compare to profits of 2025?? (year over year)
+
+**Company Report**
+- Audit report of Apple
+- Company report on NVIDIA
 
 **Uploaded files** (try the fictional samples in `samples/`)
 - What was revenue in fiscal 2025 and how much did it grow? (`kestrel_annual_report.pdf`)
@@ -266,7 +275,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**158 tests** cover:
+**187 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -276,6 +285,7 @@ python -m pytest tests -v
 - XBRL extraction traps (comparative years, quarterly values, tag changes, derived and stale values)
 - the question router and the demo questions
 - exact-spot links, full 10-K sections and audit-question retrieval
+- the Company Report: routing, Python figures and ratios, skipped sections, auditor and founding year
 - every API endpoint and status code
 - every page of the Streamlit UI (headless)
 
@@ -338,7 +348,7 @@ finsight-ai/
 │   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
 │   └── views/          home · ask · upload · compare · dashboard · how_it_works
 ├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed
-├── tests/              pytest suite (158 tests)
+├── tests/              pytest suite (187 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)

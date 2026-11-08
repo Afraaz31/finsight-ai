@@ -33,6 +33,12 @@ METRICS = {
     "total_liabilities": {"label": "Total liabilities", "type": "instant", "tags": ["Liabilities"]},
     "cash": {"label": "Cash and cash equivalents", "type": "instant",
              "tags": ["CashAndCashEquivalentsAtCarryingValue"]},
+    # Level 11: for the balance sheet and ratios in the Company Report
+    "current_assets": {"label": "Current assets", "type": "instant", "tags": ["AssetsCurrent"]},
+    "current_liabilities": {"label": "Current liabilities", "type": "instant", "tags": ["LiabilitiesCurrent"]},
+    "stockholders_equity": {"label": "Shareholders' equity", "type": "instant",
+                            "tags": ["StockholdersEquity",
+                                     "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"]},
 }
 
 

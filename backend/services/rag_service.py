@@ -237,6 +237,7 @@ def answer_question(question: str, ticker: str | None = None, use_cache: bool = 
 
     context = build_context(hits)
     answer, model = generate_answer(SYSTEM_PROMPT, build_user_prompt(question, context))
+    answer = number_guard.drop_unknown_citations(answer, len(hits))
     missing = number_guard.unverified_numbers(answer, context + "\n" + question)
     answer = number_guard.add_warning(answer, missing)
     result = {"answer": answer, "sources": format_sources(hits, answer), "companies": tickers,

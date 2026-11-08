@@ -14,6 +14,10 @@ METRIC_WORDS = [
     ("operating_income", ["operating income", "operating profit", "income from operations"]),
     ("net_income", ["net income", "net profit", "net earnings", "profit", "earnings"]),
     ("revenue", ["revenue", "net sales", "sales", "turnover", "top line"]),
+    ("current_assets", ["current assets"]),                  # before "assets"/"liabilities" so these win
+    ("current_liabilities", ["current liabilities"]),
+    ("stockholders_equity", ["shareholders' equity", "stockholders' equity", "shareholders equity",
+                             "stockholders equity", "shareholder equity", "net worth"]),
     ("total_liabilities", ["liabilities"]),
     ("total_assets", ["assets"]),
     ("cash", ["cash and cash equivalents", "cash position", "cash"]),
@@ -25,6 +29,18 @@ EXPLAIN_WORDS = ["explain", "why", "driver", "drove", "reason", "what caused", "
                  "risk", "strategy", "segment", "competition", "summar", "describe", "outlook",
                  "good", "bad", "better", "worse", "improve", "declin", "grow"]   # judging a result -> add context
 MAX_METRICS = 3
+
+# Level 11: "audit report of Apple", "company report on NVIDIA" -> the 10-section Company Report.
+REPORT_RE = re.compile(r"\b(?:audit|company|full|financial|complete|detailed|analysis|analytical|annual|"
+                       r"research|10-k)\s+reports?\b|\breport\s+(?:on|of|for|about)\b", re.IGNORECASE)
+# ...but a specific question stays a normal question ("who is Apple's auditor?", "risks in the annual report").
+NOT_REPORT_WORDS = ["auditor", "opinion", "who audit", "risk", "segment", "summar", "md&a",
+                    "management's discussion", "say about", "mention", "explain"]
+
+
+def wants_report(question: str) -> bool:
+    q = question.lower()
+    return bool(REPORT_RE.search(q)) and not detect_metrics(q) and not any(w in q for w in NOT_REPORT_WORDS)
 
 
 def detect_metrics(question: str) -> list[str]:
@@ -45,7 +61,9 @@ def detect_metrics(question: str) -> list[str]:
 
 
 def route(question: str) -> dict:
-    """{"route": "narrative" | "numbers" | "both", "metrics": [...]}"""
+    """{"route": "report" | "narrative" | "numbers" | "both", "metrics": [...]}"""
+    if wants_report(question):
+        return {"route": "report", "metrics": []}
     metrics = detect_metrics(question)
     if not metrics:
         return {"route": "narrative", "metrics": []}

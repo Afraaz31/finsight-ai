@@ -163,8 +163,44 @@ class ChatResponse(BaseModel):
     cached: bool = False
     retrieved_chunks: int = 0
     unverified_numbers: list[str] = []
-    route: str = "narrative"                    # narrative | numbers | both  (Level 7)
+    route: str = "narrative"                    # narrative | numbers | both | report  (Level 7, 11)
     financials: list[Comparison] | None = None  # exact SEC figures (Level 7)
+    report: "CompanyReport | None" = None       # the 10-section Company Report (Level 11)
+
+
+# ---------- Level 11: Company Report ----------
+class ReportFact(BaseModel):
+    label: str
+    value: str
+    note: str | None = None
+    link: str | None = None
+
+
+class ReportSection(BaseModel):
+    id: str
+    title: str
+    facts: list[ReportFact] = []
+    table: list[dict] | None = None
+    text: str | None = None        # AI-written, with [n] citations (background, risks, outlook)
+    note: str | None = None
+
+
+class CompanyReport(BaseModel):
+    ticker: str
+    company: str
+    fiscal_year: int
+    period_end: str
+    sections: list[ReportSection]
+    skipped: list[str] = []        # sections with no data -> skipped, never guessed
+    sources: list[SecSource] = []
+    model: str | None = None
+    used_llm: bool = False
+    cached: bool = False
+    unverified_numbers: list[str] = []
+    markdown: str = ""
+
+
+ChatResponse.model_rebuild()      # resolves the forward reference to CompanyReport
 
 
 # ---------- uploads ----------

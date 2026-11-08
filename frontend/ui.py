@@ -221,7 +221,44 @@ def sidebar_status() -> dict | None:
 
 # ---------------- answers ----------------
 ROUTE_LABELS = {"narrative": ("📄 From 10-K text", ""), "numbers": ("🔢 Exact SEC figures", "green"),
-                "both": ("🔢 + 📄 Figures and 10-K text", "green")}
+                "both": ("🔢 + 📄 Figures and 10-K text", "green"),
+                "report": ("📑 Company report · figures + 10-K text", "green")}
+
+
+def _cell(text) -> str:
+    """Safe text for a Markdown table cell."""
+    return safe_md(str(text)).replace("|", "\\|").replace("\n", " ")
+
+
+def render_report(rep: dict, key: str) -> None:
+    """Level 11: the 10-section Company Report. Sections without data were skipped by the backend."""
+    with st.container(border=True):
+        st.markdown(f"<div class='fs-brand'>{company_logo_img(rep['ticker'], 40)}<div>"
+                    f"<div style='font-size:1.35rem;font-weight:800;color:#EEF2FA'>{html.escape(rep['company'])} · "
+                    f"Company Report</div><div class='fs-muted'>Form 10-K FY{rep['fiscal_year']} · period ending "
+                    f"{rep['period_end']} · official SEC filings · not investment advice</div></div></div>",
+                    unsafe_allow_html=True)
+        for s in rep["sections"]:
+            st.markdown(f"#### {s['title']}")
+            if s.get("note"):
+                st.caption(safe_md(s["note"]))
+            if s["facts"]:
+                lines = ["| Item | Value | Details |", "|---|---|---|"]
+                for f in s["facts"]:
+                    details = _cell(f.get("note") or "")
+                    if f.get("link"):
+                        details += f" [open ↗]({f['link']})"
+                    lines.append(f"| {_cell(f['label'])} | **{_cell(f['value'])}** | {details} |")
+                st.markdown("\n".join(lines))
+            if s.get("table"):
+                st.dataframe(pd.DataFrame(s["table"]), hide_index=True, width="stretch")
+            if s.get("text"):
+                st.markdown(safe_md(s["text"]))
+        if rep.get("skipped"):
+            st.caption("Skipped, because the SEC filings don't contain it: " + ", ".join(rep["skipped"]))
+        st.download_button("⬇ Download report", data=rep["markdown"], mime="text/markdown",
+                           file_name=f"FinSight_{rep['ticker']}_FY{rep['fiscal_year']}_report.md",
+                           key=f"dl_report_{key}")
 
 
 def render_comparison(comp: dict, chart: bool = False, key: str = "") -> None:
@@ -394,6 +431,8 @@ def render_answer(result: dict, kind: str, key: str) -> None:
     if pills:
         st.markdown(" ".join(pills), unsafe_allow_html=True)
 
+    if result.get("report"):
+        render_report(result["report"], key=key)
     for i, comp in enumerate(result.get("financials") or []):
         render_comparison(comp, key=f"{key}_{i}")
 

@@ -251,3 +251,26 @@ def test_find_in_section_shows_matches_with_surrounding_lines():
     assert "Unrelated note 2" not in shown and "Net sales" in shown       # 2 before, 3 after - not the whole text
     assert ui.find_in_section(text, "Deloitte") == (0, "No matches.")
     assert ui.find_in_section(text, "$1")[1].count("**\\$1**") == 1       # $ stays escaped (no LaTeX)
+
+
+# ---------- Level 11: company report ----------
+REPORT = {"ticker": "AAPL", "company": "Apple Inc.", "fiscal_year": 2026, "period_end": "2026-09-26",
+          "sections": [{"id": "ratios", "title": "6. Financial Ratios", "table": None, "text": None, "note": None,
+                        "facts": [{"label": "Net profit margin", "value": "25.00%", "note": "net income ÷ revenue",
+                                   "link": None}]},
+                       {"id": "risks", "title": "8. Risk Analysis", "table": None, "note": "checks",
+                        "text": "- Intense competition [1].", "facts": []}],
+          "skipped": ["9. Future Outlook"], "sources": [], "model": "fake", "used_llm": True, "cached": False,
+          "unverified_numbers": [], "markdown": "# Apple Inc. (AAPL): Company Report"}
+
+
+def test_company_report_renders_sections_and_skips(monkeypatch):
+    answer = {**SEC_ANSWER, "answer": "Here is the company report for **Apple Inc.**", "route": "report",
+              "financials": None, "sources": [], "report": REPORT}
+    monkeypatch.setattr(api_client, "chat", lambda q, t, c: answer)
+    app = open_page("views/ask.py")
+    app.chat_input[0].set_value("Audit report of Apple").run()
+    assert not app.exception
+    text = all_markdown(app)
+    assert "6. Financial Ratios" in text and "25.00%" in text and "Intense competition" in text
+    assert "9. Future Outlook" in " ".join(c.value for c in app.caption)

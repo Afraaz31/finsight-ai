@@ -12,7 +12,7 @@ SUGGESTIONS = {
                                        "Which company reported the highest net income?",
                                        "Compare the financial performance of all five companies"],
     ("🔢 + 📄 Both", "green"): ["Explain Amazon's operating income",
-                               "Why did Microsoft's operating cash flow change?",
+                               "Audit report of Apple",
                                "Explain NVIDIA's revenue growth"],
 }
 

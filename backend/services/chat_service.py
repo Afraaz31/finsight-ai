@@ -16,7 +16,9 @@ from backend.services.financial_service import compare, figures_text, year_over_
 from backend.services.llm_service import LLMError, generate_answer
 from backend.services.question_router import route
 from backend.services.rag_service import (RETRIEVAL_VERSION, SYSTEM_PROMPT, YEAR, answer_question,
-                                          build_context, detect_companies, format_sources, retrieve)
+                                          available_years, build_context, detect_companies, format_sources,
+                                          retrieve)
+from backend.services.report_service import build_report
 
 log = logging.getLogger(__name__)
 
@@ -74,12 +76,42 @@ def _fallback_summary(comparisons: list[dict]) -> str:
     return "\n\n".join(parts)
 
 
+def company_report_answer(question: str, ticker: str | None, use_cache: bool) -> dict:
+    """Level 11: "audit report of Apple" -> the 10-section Company Report (one company at a time)."""
+    tickers = [ticker.upper()] if ticker else detect_companies(question)
+    base = {"sources": [], "companies": tickers, "used_llm": False, "model": None, "cached": False,
+            "retrieved_chunks": 0, "unverified_numbers": [], "route": "report", "financials": None, "report": None}
+    if len(tickers) != 1:
+        names = ", ".join(c["name"] for c in COMPANIES.values())
+        if not tickers:
+            msg = (f"FinSight builds company reports from official SEC filings for {names}. "
+                   "That company isn't one of them. You can upload its annual report (PDF) on the "
+                   "Upload & Analyze page and ask questions about it there.")
+        else:
+            msg = ("A company report covers one company at a time. Ask for one company (e.g. \"Company "
+                   "report of Apple\"), or use the Compare page to compare several.")
+        return {**base, "answer": msg}
+    years = [int(y) for y in YEAR.findall(question) if int(y) in available_years(tickers[0])]
+    rep = build_report(tickers[0], years[-1] if years else None, use_cache=use_cache)
+    shown = len(rep["sections"])
+    answer = (f"Here is the company report for **{rep['company']}**, built from its Form 10-K for fiscal year "
+              f"{rep['fiscal_year']} (period ending {rep['period_end']}) and the SEC's official figures. "
+              f"{shown} of 10 sections have data.")
+    if rep["skipped"]:
+        answer += " Skipped (no data in the filings): " + ", ".join(rep["skipped"]) + "."
+    return {**base, "answer": answer, "sources": rep["sources"], "used_llm": rep["used_llm"], "model": rep["model"],
+            "cached": rep["cached"], "retrieved_chunks": len(rep["sources"]),
+            "unverified_numbers": rep["unverified_numbers"], "report": rep}
+
+
 def answer_chat(question: str, ticker: str | None = None, use_cache: bool = True) -> dict:
     """Main entry point for SEC questions (used by POST /chat)."""
     question = question.strip()
     if not question:
         raise ValueError("Question is empty.")
     decision = route(question)
+    if decision["route"] == "report":
+        return company_report_answer(question, ticker, use_cache)
 
     if decision["route"] == "narrative":
         return {**answer_question(question, ticker=ticker, use_cache=use_cache),
@@ -120,6 +152,7 @@ def answer_chat(question: str, ticker: str | None = None, use_cache: bool = True
                 "used_llm": False, "model": None, "cached": False, "retrieved_chunks": 0,
                 "unverified_numbers": [], "route": decision["route"], "financials": comparisons}
 
+    answer = number_guard.drop_unknown_citations(answer, len(hits))   # numbers route: no [n] sources at all
     missing = number_guard.unverified_numbers(answer, evidence + "\n" + question)
     answer = number_guard.add_warning(answer, missing)
     if hits:
