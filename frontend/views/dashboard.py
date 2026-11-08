@@ -28,7 +28,7 @@ except ApiError as exc:
 
 rev = ui.latest(fin, "revenue")
 period = f"FY{rev['fiscal_year']} · period ending {rev['period_end']}" if rev else ""
-st.markdown(f"<div class='fs-brand' style='margin:6px 0 12px'>{ui.company_logo(ticker, 46)}<div>"
+st.markdown(f"<div class='fs-brand' style='margin:6px 0 12px'>{ui.company_logo_img(ticker, 46)}<div>"
             f"<div style='font-size:1.75rem;font-weight:800;color:#0F172A'>{html.escape(fin['company'])} ({ticker})</div>"
             f"<div class='fs-muted'>{period} · exact values from SEC XBRL Company Facts</div></div></div>",
             unsafe_allow_html=True)

@@ -5,6 +5,9 @@ Microsoft and Amazon are simple hand-drawn marks. Logos identify the companies o
 FinSight AI is not affiliated with any of them.
 """
 
+import base64
+
+
 def _svg(path: str, color: str, size: int) -> str:
     return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
             f'<path fill="{color}" d="{path}"/></svg>')
@@ -18,7 +21,7 @@ _NVIDIA = "M8.948 8.798v-1.43a6.7 6.7 0 0 1 .424-.018c3.922-.124 6.493 3.374 6.4
 def company_logo(ticker: str, size: int = 32) -> str:
     """Inline SVG logo for a supported ticker."""
     if ticker == "AAPL":
-        return _svg(_APPLE, "#111827", size)
+        return _svg(_APPLE, "#7D8790", size)   # space grey: visible on light and dark
     if ticker == "GOOGL":
         return _svg(_GOOGLE, "#4285F4", size)
     if ticker == "NVDA":
@@ -32,14 +35,14 @@ def company_logo(ticker: str, size: int = 32) -> str:
     if ticker == "AMZN":
         return (f'<svg width="{size}" height="{size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'
                 '<text x="12" y="15" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" '
-                'font-size="17" font-weight="700" fill="#111827">a</text>'
+                'font-size="17" font-weight="700" fill="#7D8790">a</text>'
                 '<path d="M4.5 17.2 Q12 21.6 19.5 17.2" stroke="#FF9900" stroke-width="2" fill="none" '
                 'stroke-linecap="round"/><path d="M17.2 16.1 L19.8 17 L18.6 19.3" stroke="#FF9900" '
                 'stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>')
     return ""
 
 
-BRAND_COLORS = {"AAPL": "#111827", "MSFT": "#00A4EF", "AMZN": "#FF9900", "GOOGL": "#4285F4", "NVDA": "#76B900"}
+BRAND_COLORS = {"AAPL": "#7D8790", "MSFT": "#00A4EF", "AMZN": "#FF9900", "GOOGL": "#4285F4", "NVDA": "#76B900"}
 
 # FinSight AI mark: rising bars + trend arrow on a blue gradient tile
 FINSIGHT_MARK = """<svg width="{s}" height="{s}" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -60,10 +63,23 @@ def finsight_mark(size: int = 40) -> str:
 
 # Wide logo (mark + wordmark) saved as a file for st.logo()
 def finsight_wordmark_svg() -> str:
-    mark = finsight_mark(40).replace("<svg ", '<svg x="0" y="0" ', 1)
+    # White rounded badge behind everything: readable on light AND dark sidebars
+    mark = finsight_mark(36).replace("<svg ", '<svg x="4" y="4" ', 1)
     return ('<svg width="210" height="44" viewBox="0 0 210 44" xmlns="http://www.w3.org/2000/svg">'
+            '<rect x="0.5" y="0.5" width="209" height="43" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/>'
             + mark +
             '<text x="50" y="29" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" '
             'font-weight="800" fill="#0F172A">FinSight</text>'
-            '<text x="148" y="29" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" '
+            '<text x="146" y="29" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" '
             'font-weight="800" fill="#2563EB">AI</text></svg>')
+
+
+def company_logo_img(ticker: str, size: int = 32) -> str:
+    """The logo as an <img> (data URI). Dark-mode extensions such as Dark Reader recolour inline SVG
+    shapes (Apple's turned black on black) but leave images alone, so this shows true colours everywhere."""
+    svg = company_logo(ticker, size)
+    if not svg:
+        return ""
+    data = base64.b64encode(svg.encode("utf-8")).decode("ascii")
+    return (f'<img src="data:image/svg+xml;base64,{data}" width="{size}" height="{size}" '
+            f'alt="{ticker} logo" style="display:inline-block">')

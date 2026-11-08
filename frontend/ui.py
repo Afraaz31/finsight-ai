@@ -10,7 +10,7 @@ import streamlit as st
 
 from frontend import api_client
 from frontend.api_client import ApiError
-from frontend.logos import BRAND_COLORS, company_logo, finsight_mark
+from frontend.logos import BRAND_COLORS, company_logo, company_logo_img, finsight_mark
 
 TICKERS = ["AAPL", "MSFT", "AMZN", "GOOGL", "NVDA"]
 
@@ -62,12 +62,23 @@ div[data-testid="stVerticalBlockBorderWrapper"] {border-radius: 16px;}
 .fs-brand {display: flex; align-items: center; gap: 10px;}
 .fs-brand .t {font-size: 1.25rem; font-weight: 800; color: #0F172A;}
 .fs-brand .t span {color: #2563EB;}
+[data-testid="stElementContainer"]:has(.fs-dr-lock) {display: none;}
 </style>
 """
 
 
+DARKREADER_LOCK = """<span class="fs-dr-lock"></span><script>
+if (!document.head.querySelector('meta[name="darkreader-lock"]')) {
+  const m = document.createElement('meta'); m.name = 'darkreader-lock'; document.head.appendChild(m);
+}
+</script>"""
+
+
 def apply_theme() -> None:
     st.markdown(CSS, unsafe_allow_html=True)
+    # FinSight is designed as a light theme. Dark-mode extensions (Dark Reader) repaint it and hide
+    # dark logos/text, so ask them to leave the page alone (Dark Reader's official opt-out tag).
+    st.html(DARKREADER_LOCK, unsafe_allow_javascript=True)
 
 
 def page_header(icon_html: str, title: str, subtitle: str) -> None:
@@ -310,7 +321,7 @@ def company_card(ticker: str, name: str, fin: dict | None) -> str:
     rev = latest(fin, "revenue") if fin else None
     ni = latest(fin, "net_income") if fin else None
     fy = f"FY{rev['fiscal_year']}" if rev else ""
-    return (f"<div class='fs-card fs-company'>{company_logo(ticker, 40)}"
+    return (f"<div class='fs-card fs-company'>{company_logo_img(ticker, 40)}"
             f"<div class='name'>{html.escape(name)}</div><div class='tick'>{ticker} · {fy}</div>"
             f"<div class='big'>{fmt_money(rev['value']) if rev else '—'}</div><div class='lbl'>Revenue</div>"
             f"<div class='big' style='font-size:1rem'>{fmt_money(ni['value']) if ni else '—'}</div>"
@@ -319,5 +330,5 @@ def company_card(ticker: str, name: str, fin: dict | None) -> str:
 
 __all__ = ["apply_theme", "page_header", "pill", "safe_md", "fmt_money", "delta_html", "health", "companies",
            "metrics", "financials", "metric_history", "latest", "sidebar_status", "render_comparison",
-           "render_answer", "chat_history", "company_card", "TICKERS", "BRAND_COLORS", "company_logo",
+           "render_answer", "chat_history", "company_card", "TICKERS", "BRAND_COLORS", "company_logo", "company_logo_img",
            "finsight_mark"]
