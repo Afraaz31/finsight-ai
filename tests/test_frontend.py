@@ -124,7 +124,7 @@ def test_upload_page_has_dropzone_and_samples():
     app = open_page("views/upload.py")
     labels = [b.label for b in app.button]
     assert "📄 Annual report (PDF)" in labels and "📗 Statements (XLSX)" in labels
-    assert any("Select at least one file" in i.value for i in app.info)
+    assert any("Upload a file" in i.value for i in app.info)
 
 
 def test_upload_page_table_answer_shows_python_calculation(monkeypatch):
@@ -138,7 +138,7 @@ def test_upload_page_table_answer_shows_python_calculation(monkeypatch):
               "calculation": {"plan": {"operation": "ratio"}, "summary": "ratio per Year",
                               "table": [{"Year": 2024, "ratio_%": None}, {"Year": 2025, "ratio_%": 14.03}]}}
     monkeypatch.setattr(api_client, "list_uploads", lambda: [upload])
-    monkeypatch.setattr(api_client, "ask_uploads", lambda *a: result)
+    monkeypatch.setattr(api_client, "ask_assistant", lambda *a: result)
     app = open_page("views/upload.py")
     app.checkbox[0].check().run()
     app.chat_input[0].set_value("What is the margin?").run()
@@ -274,3 +274,34 @@ def test_company_report_renders_sections_and_skips(monkeypatch):
     text = all_markdown(app)
     assert "6. Financial Ratios" in text and "25.00%" in text and "Intense competition" in text
     assert "9. Future Outlook" in " ".join(c.value for c in app.caption)
+
+
+# ---------- Level 12: Orchestrator ----------
+def test_upload_answer_shows_orchestrator_and_both_agents(monkeypatch):
+    uploads = [{"doc_id": "aaa111", "filename": "f.csv", "extension": ".csv", "kind": "table", "uploaded_at": "x",
+                "size_bytes": 2048, "tables": [{"sheet": "csv", "file": "t.csv", "rows": 4, "columns": ["Year"],
+                                                "reshaped_to_long": False}]},
+               {"doc_id": "bbb222", "filename": "memo.txt", "extension": ".txt", "kind": "text", "uploaded_at": "x",
+                "size_bytes": 900, "pages": 1, "chunks": 2}]
+    result = {"answer": "Both files agree: revenue 441.2 [T1][1].", "documents": ["f.csv", "memo.txt"],
+              "used_llm": True, "model": "fake", "cached": False, "unverified_numbers": [], "calculation": None,
+              "sources": [{"filename": "memo.txt", "number": 1, "page": 1, "text": "Revenue was $441.2 million."},
+                          {"filename": "f.csv", "sheet": "csv", "detail": "lookup", "ref": "T1"}],
+              "calculations": [{"ref": "T1", "filename": "f.csv", "sheet": "csv", "plan": {"operation": "lookup"},
+                                "summary": "1 matching row", "table": [{"Year": 2025, "Revenue": 441.2}]}],
+              "orchestrator": {"decided_by": "ai", "reason": "Needs the spreadsheet and the memo.",
+                               "agents": [{"agent": "Spreadsheet Agent", "task": "2025 revenue", "files": ["f.csv"],
+                                           "status": "done"},
+                                          {"agent": "Document Agent", "task": "Revenue in the memo?",
+                                           "files": ["memo.txt"], "status": "done"}]}}
+    seen = {}
+    monkeypatch.setattr(api_client, "list_uploads", lambda: uploads)
+    monkeypatch.setattr(api_client, "ask_assistant", lambda q, ids, s, c: seen.update(ids=ids) or result)
+    app = open_page("views/upload.py")
+    assert any("spreadsheet match" in b.label for b in app.button)        # mixed files -> mixed suggestions
+    app.chat_input[0].set_value("Does the revenue match?").run()
+    assert not app.exception
+    assert seen["ids"] == []                                              # nothing ticked -> all files
+    assert any("Orchestrator · 2 agent(s) · decided by AI" in e.label for e in app.expander)
+    text = all_markdown(app)
+    assert "Spreadsheet Agent" in text and "Document Agent" in text and "[T1] Calculation" in text

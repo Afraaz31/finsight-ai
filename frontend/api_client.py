@@ -88,3 +88,10 @@ def compare(tickers: list[str], metric: str, fiscal_year: int | None) -> dict:
 def section(ticker: str, fiscal_year: int, section_id: str) -> dict:
     return _call("GET", "/sec/section", params={"ticker": ticker, "fiscal_year": fiscal_year,
                                                  "section_id": section_id})
+
+
+# ---------- Level 12: the Orchestrator ----------
+def ask_assistant(question: str, doc_ids: list[str], sheet: str | None, use_cache: bool) -> dict:
+    """Level 12: the Orchestrator (Spreadsheet Agent + Document Agent)."""
+    return _call("POST", "/assistant/ask", timeout=ANSWER_TIMEOUT,
+                 json={"question": question, "doc_ids": doc_ids, "sheet": sheet, "use_cache": use_cache})

@@ -136,7 +136,9 @@ calculate anything yourself. Reply with ONLY one JSON object, no explanation.
 Allowed "operation" values:
 - "sum" | "mean" | "min" | "max" | "count": aggregate "column" (count may omit column)
 - "lookup": return matching rows (optional "columns": [...] to show)
-- "top": rows with the largest "column" values (optional "n", default 5; "ascending": true for smallest)
+- "top": rows with the largest "column" values (optional "n", default 5; "ascending": true for smallest). \
+A plural question ("the biggest expenses", "top products") needs several rows: leave out "n" or use \
+n >= 3. Use n = 1 only when the question asks for one single item ("the biggest expense").
 - "growth": change of "column" over "order_by" (e.g. a year/period column), period by period
 - "ratio": numerator / denominator x 100, e.g. a profit margin. Use
   "numerator": {"column": ..., "filters": [...]}, "denominator": {"column": ..., "filters": [...]}

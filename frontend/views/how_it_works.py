@@ -43,7 +43,42 @@ card(c[1], "📗", "CSV · XLSX", ["Real header found, $1,234 and (500) cleaned"
                               "The AI only picks an operation from a whitelist (JSON)",
                               "Python validates and calculates: no AI code is ever run"])
 
-st.markdown("<div class='fs-section'>4 · Safeguards</div>", unsafe_allow_html=True)
+st.markdown("<div class='fs-section'>4 · Orchestrator + 2 agents</div>", unsafe_allow_html=True)
+st.code("""             user question (plain English)
+                          │
+                          ▼
+         ┌──────────────────────────────────┐
+         │           ORCHESTRATOR           │
+         │ 1. reads the question + files    │
+         │ 2. decides: which agent(s),      │
+         │    which files, what task        │
+         └───────┬──────────────────┬───────┘
+                 ▼                  ▼
+  ┌──────────────────────┐  ┌──────────────────────┐
+  │  SPREADSHEET AGENT   │  │    DOCUMENT AGENT    │
+  │ Excel / CSV          │  │ PDF / Word / TXT     │
+  │ Gemini → JSON plan   │  │ search the passages  │
+  │ Pandas → exact maths │  │ (RAG, ChromaDB)      │
+  │ results [T1], [T2]   │  │ passages [1], [2]    │
+  └──────────┬───────────┘  └───────────┬──────────┘
+             └────────────┬─────────────┘
+                          ▼
+         ┌──────────────────────────────────┐
+         │ ORCHESTRATOR: combine + check    │
+         │ one answer with [T1] and [1]     │
+         │ number guard on every figure     │
+         └──────────────────────────────────┘""", language=None)
+c = st.columns(3)
+card(c[0], "🧭", "Orchestrator", ["The only part that talks to you", "One small Gemini call returns a JSON plan: "
+                                 "which agent, which files, what task", "Python validates the plan; if the AI is "
+                                 "down, rules decide (spreadsheets → Spreadsheet Agent, documents → Document Agent)"])
+card(c[1], "📗", "Spreadsheet Agent", ["Several spreadsheets at once, results [T1], [T2]",
+                                      "Picks the right sheet in a multi-sheet Excel file",
+                                      "Gemini plans, Pandas calculates"])
+card(c[2], "📕", "Document Agent", ["Finds the passages in PDF / Word / TXT", "Cites file and page [1], [2]",
+                                   "Both agents needed → the Orchestrator merges one cited answer"])
+
+st.markdown("<div class='fs-section'>5 · Safeguards</div>", unsafe_allow_html=True)
 c = st.columns(4)
 card(c[0], "🧾", "Citations", ["Every claim tagged [n]", "Code checks that each cited source exists"])
 card(c[1], "🛡️", "Number guard", ["Every figure in an answer is checked against the evidence",

@@ -60,9 +60,22 @@ def add_warning(answer: str, missing: list[str]) -> str:
 
 
 CITATION = re.compile(r" ?\[(\d{1,3})\]")
+# "[1, 2]" or "[T1, T2]": a citation LIST. Split it into [1][2] so every cited source is found and linked.
+CITATION_LIST = re.compile(r"\[((?:[TF]?\d{0,3}\s*,\s*)+[TF]?\d{0,3})\]")
+
+
+def split_citation_lists(answer: str) -> str:
+    def split(m: re.Match) -> str:
+        parts = [p.strip() for p in m.group(1).split(",")]
+        if not all(re.fullmatch(r"[TF]?\d{1,3}|F", p) for p in parts):
+            return m.group(0)                                  # not a citation list: leave the text alone
+        return "".join(f"[{p}]" for p in parts)
+    return CITATION_LIST.sub(split, answer)
 
 
 def drop_unknown_citations(answer: str, source_count: int) -> str:
     """Remove [n] citations that point to no source. Real case: an answer built from 5 passages cited [10];
-    a citation that leads nowhere looks like evidence but isn't. [F] (the exact figures) is left alone."""
+    a citation that leads nowhere looks like evidence but isn't. [F] (the exact figures) is left alone.
+    Lists like [1, 2] / [T1, T2] are split first (real case from the Level 12 live checks)."""
+    answer = split_citation_lists(answer)
     return CITATION.sub(lambda m: m.group(0) if 1 <= int(m.group(1)) <= source_count else "", answer)

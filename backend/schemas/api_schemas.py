@@ -241,6 +241,7 @@ class UploadSource(BaseModel):
     excerpt: str | None = None
     text: str | None = None       # the full passage (Level 10)
     score: float | None = None
+    ref: str | None = None        # spreadsheet results: "T1", "T2" (Level 12)
 
 
 class Calculation(BaseModel):
@@ -258,3 +259,47 @@ class UploadAnswer(BaseModel):
     cached: bool = False
     calculation: Calculation | None = None
     unverified_numbers: list[str] = []
+
+
+# ---------- Level 12: Orchestrator + 2 agents ----------
+class AssistantAskRequest(BaseModel):
+    question: str = Field(min_length=3, max_length=1000,
+                          examples=["Does the revenue in the spreadsheet match the annual report?"])
+    doc_ids: list[str] = Field(default=[], max_length=10)   # empty -> the Orchestrator looks at all uploads
+    sheet: str | None = None
+    use_cache: bool = True
+
+
+class AgentStep(BaseModel):
+    agent: str                    # "Spreadsheet Agent" | "Document Agent"
+    task: str                     # what the Orchestrator asked it to do
+    files: list[str]
+    status: str                   # "done" or what went wrong
+
+
+class OrchestratorTrace(BaseModel):
+    decided_by: str               # "ai" (Gemini planner) | "rules" (fallback / only one file type)
+    reason: str
+    agents: list[AgentStep]
+
+
+class TableCalculation(BaseModel):
+    ref: str
+    filename: str
+    sheet: str
+    plan: dict
+    summary: str
+    table: list[dict] | None = None
+
+
+class AssistantAnswer(BaseModel):
+    answer: str
+    sources: list[UploadSource]
+    documents: list[str]
+    used_llm: bool
+    model: str | None = None
+    cached: bool = False
+    calculation: TableCalculation | None = None
+    calculations: list[TableCalculation] = []
+    unverified_numbers: list[str] = []
+    orchestrator: OrchestratorTrace

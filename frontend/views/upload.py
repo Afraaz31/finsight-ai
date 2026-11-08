@@ -1,4 +1,8 @@
-"""Upload & Analyze: add your own financial files and ask questions about them."""
+"""Upload & Analyze: add your own financial files and ask questions about them.
+
+Level 12: one chat for all files. The Orchestrator sends Excel/CSV questions to the Spreadsheet Agent and
+PDF/Word/TXT questions to the Document Agent, or to both. Ticking files is optional (nothing ticked = all).
+"""
 from pathlib import Path
 
 import streamlit as st
@@ -16,12 +20,15 @@ TEXT_SUGGESTIONS = ["Summarize this document", "What was revenue and how much di
                     "What are the main risks mentioned?"]
 TABLE_SUGGESTIONS = ["What is the net profit margin for each year?", "How did revenue grow year by year?",
                      "What were the biggest expenses?"]
+MIXED_SUGGESTIONS = ["Does the revenue in the spreadsheet match the annual report?",
+                     "Calculate revenue growth and explain what the report says caused it",
+                     "What are the main risks mentioned?"]
+AUTO_SHEET = "Auto (the Spreadsheet Agent picks the sheet)"
 
 
 def do_upload(name: str, data: bytes) -> None:
     try:
-        meta = api_client.upload(name, data)
-        st.session_state.selected_docs = {meta["doc_id"]}
+        api_client.upload(name, data)      # not auto-ticked: nothing ticked = the Orchestrator uses every file
         st.toast(f"✅ {name} is ready", icon="📄")
         ui.health.clear()
     except ApiError as exc:
@@ -29,7 +36,8 @@ def do_upload(name: str, data: bytes) -> None:
 
 
 ui.page_header(ui.finsight_mark(44), "Upload & Analyze",
-               "Ask questions about your own financial documents. Answers come only from the files you select.")
+               "Ask about your own files in plain English. The Orchestrator sends Excel/CSV questions to the "
+               "Spreadsheet Agent and PDF/Word/TXT questions to the Document Agent, or to both.")
 
 left, right = st.columns([3, 2], gap="large")
 with left:
@@ -62,8 +70,8 @@ with right:
         st.error(exc.message)
         uploads = []
     with st.container(border=True):
-        st.markdown(f"**Your files ({len(uploads)})** <span class='fs-muted'>· tick the ones to ask about</span>",
-                    unsafe_allow_html=True)
+        st.markdown(f"**Your files ({len(uploads)})** <span class='fs-muted'>· tick files to focus on, or none "
+                    "to let the Orchestrator use all of them</span>", unsafe_allow_html=True)
         if not uploads:
             st.caption("No files yet. Upload one, or try a sample.")
         selected = []
@@ -89,37 +97,40 @@ with right:
         st.session_state.selected_docs = set(selected)
 
 chosen = [u for u in uploads if u["doc_id"] in selected]
+scope = chosen or uploads                  # nothing ticked -> the Orchestrator considers every file
 sheet = None
 if len(chosen) == 1 and chosen[0]["kind"] == "table" and len(chosen[0]["tables"]) > 1:
-    sheet = st.selectbox("Sheet", [t["sheet"] for t in chosen[0]["tables"]])
+    pick = st.selectbox("Sheet", [AUTO_SHEET] + [t["sheet"] for t in chosen[0]["tables"]])
+    sheet = None if pick == AUTO_SHEET else pick
 
 st.markdown("<div class='fs-section'>Ask your documents</div>", unsafe_allow_html=True)
 history = st.session_state.messages["upload"]
-question = st.chat_input("Ask about the selected files…") or st.session_state.upload_pending
+question = st.chat_input("Ask about your files in plain English…") or st.session_state.upload_pending
 st.session_state.upload_pending = None
 
-if chosen and not history and not question:
-    items = TABLE_SUGGESTIONS if all(c["kind"] == "table" for c in chosen) else TEXT_SUGGESTIONS
+if scope and not history and not question:
+    kinds = {u["kind"] for u in scope}
+    items = MIXED_SUGGESTIONS if len(kinds) > 1 else TABLE_SUGGESTIONS if kinds == {"table"} else TEXT_SUGGESTIONS
     cols = st.columns(len(items))
     for col, q in zip(cols, items):
         if col.button(q, key=f"up_sugg_{q}", width="stretch"):
             st.session_state.upload_pending = q
             st.rerun()
-elif not chosen:
-    st.info("Select at least one file on the right to start asking.")
+elif not scope:
+    st.info("Upload a file (or try a sample) to start asking.")
 
 ui.chat_history(history, "upload")
 if question:
-    if not selected:
-        st.warning("Select at least one file first.")
+    if not uploads:
+        st.warning("Upload a file first.")
     else:
         history.append({"role": "user", "content": question})
         with st.chat_message("user", avatar="🧑"):
             st.markdown(ui.safe_md(question))
         with st.chat_message("assistant", avatar="📊"):
             try:
-                with st.spinner("Reading your files and calculating…"):
-                    result = api_client.ask_uploads(question, selected, sheet, True)
+                with st.spinner("🧭 Orchestrator is asking the agents…"):
+                    result = api_client.ask_assistant(question, selected, sheet, True)
                 ui.render_answer(result, "upload", key=f"upload_{len(history)}")
                 history.append({"role": "assistant", "content": result["answer"], "result": result})
             except ApiError as exc:

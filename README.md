@@ -29,6 +29,7 @@ Annual reports run to hundreds of pages, and comparing companies means digging t
 | **Exact financial figures** | Revenue, gross profit, operating income, net income, operating cash flow, total assets, total liabilities, cash, from SEC XBRL Company Facts |
 | **Company comparisons** | Rankings, differences and % differences calculated by Python, with warnings when fiscal years end on different dates |
 | **Question router** | Sends each question to the 10-K text (*narrative*), the exact figures (*numbers*), or *both* |
+| **Orchestrator + 2 agents** | On Upload & Analyze, one Orchestrator reads your question and sends it to the Spreadsheet Agent (Excel/CSV, exact Pandas maths, picks the right sheet), the Document Agent (PDF/Word/TXT) or both, then merges one cited answer |
 | **Your own files** | Upload PDF / TXT / DOCX (answered with RAG, cited by file and page) or CSV / XLSX (answered with **exact Pandas calculations**) |
 | **Safe table maths** | The AI picks an operation from a whitelist as a JSON plan; Python validates and runs it. **No AI-generated code is ever executed** |
 | **Number guard** | Every number in an AI answer is checked against the evidence; anything not found is flagged with a warning |
@@ -94,6 +95,41 @@ flowchart LR
     C --> B[build_vectorstore<br/>embeddings -> ChromaDB]
     CF[SEC Company Facts API] --> M[fetch_financial_facts<br/>annual XBRL values -> metrics.csv]
 ```
+
+### Orchestrator + 2 agents (Upload & Analyze)
+
+One Orchestrator talks to the user; two specialist agents work in the background. Plain Python, no agent framework.
+
+```
+             user question (plain English)
+                          │
+                          ▼
+         ┌──────────────────────────────────┐
+         │           ORCHESTRATOR           │
+         │ 1. reads the question + files    │
+         │ 2. decides: which agent(s),      │
+         │    which files, what task        │
+         └───────┬──────────────────┬───────┘
+                 ▼                  ▼
+  ┌──────────────────────┐  ┌──────────────────────┐
+  │  SPREADSHEET AGENT   │  │    DOCUMENT AGENT    │
+  │ Excel / CSV          │  │ PDF / Word / TXT     │
+  │ Gemini → JSON plan   │  │ search the passages  │
+  │ Pandas → exact maths │  │ (RAG, ChromaDB)      │
+  │ results [T1], [T2]   │  │ passages [1], [2]    │
+  └──────────┬───────────┘  └───────────┬──────────┘
+             └────────────┬─────────────┘
+                          ▼
+         ┌──────────────────────────────────┐
+         │ ORCHESTRATOR: combine + check    │
+         │ one answer with [T1] and [1]     │
+         │ number guard on every figure     │
+         └──────────────────────────────────┘
+```
+
+The Orchestrator decides with one small Gemini call (a JSON plan: which agent, which files, what task). Python
+validates the plan; if Gemini is unavailable or the plan is unusable, rules decide (spreadsheets → Spreadsheet
+Agent, documents → Document Agent). With only one type of file, no AI call is needed to decide.
 
 ### Two pipelines
 
@@ -226,6 +262,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 | GET | `/uploads` | List uploads |
 | GET / DELETE | `/uploads/{doc_id}` | Details / delete an upload |
 | POST | `/uploads/ask` | `{"question": "...", "doc_ids": ["..."]}` → answer from those files only |
+| POST | `/assistant/ask` | `{"question": "...", "doc_ids": []}` → the Orchestrator picks the Spreadsheet Agent, the Document Agent or both (empty `doc_ids` = all uploaded files) |
 
 | Status | Meaning |
 |---|---|
@@ -261,6 +298,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 - What was revenue in fiscal 2025 and how much did it grow? (`kestrel_annual_report.pdf`)
 - What is the net profit margin for each year? (`kestrel_financials.csv`)
 - What were the 3 biggest expenses in 2025? (`kestrel_statements.xlsx`, sheet *Expenses*)
+- Does the revenue in the spreadsheet match the annual report? (both agents: `[T1]` + `[1]`)
 
 **Honest refusals**
 - What is Tesla's revenue? → not covered
@@ -275,7 +313,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**187 tests** cover:
+**204 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -286,6 +324,7 @@ python -m pytest tests -v
 - the question router and the demo questions
 - exact-spot links, full 10-K sections and audit-question retrieval
 - the Company Report: routing, Python figures and ratios, skipped sections, auditor and founding year
+- the Orchestrator and both agents (fake LLM): planner, rule fallback, plan validation, merged answers
 - every API endpoint and status code
 - every page of the Streamlit UI (headless)
 
@@ -338,7 +377,8 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 
 ```
 finsight-ai/
-├── backend/            FastAPI app, routes, schemas, services (RAG, LLM, financials, uploads)
+├── backend/            FastAPI app, routes, schemas, services (RAG, LLM, financials, uploads, reports)
+│   ├── agents/         Level 12: orchestrator, spreadsheet_agent, document_agent
 ├── ingestion/          SEC download, HTML cleaning, chunking, vector store, XBRL facts
 ├── frontend/           Streamlit UI (talks only to the API)
 │   ├── app.py          entry: page config, theme, logo, navigation, API status
@@ -348,7 +388,7 @@ finsight-ai/
 │   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
 │   └── views/          home · ask · upload · compare · dashboard · how_it_works
 ├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed
-├── tests/              pytest suite (187 tests)
+├── tests/              pytest suite (204 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)

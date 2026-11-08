@@ -230,6 +230,29 @@ def _cell(text) -> str:
     return safe_md(str(text)).replace("|", "\\|").replace("\n", " ")
 
 
+AGENT_ICONS = {"Spreadsheet Agent": "📗", "Document Agent": "📕"}
+
+
+def all_calculations(result: dict) -> list[dict]:
+    """Level 12: the Spreadsheet Agent may return several results ([T1], [T2]); older answers have one."""
+    return result.get("calculations") or ([result["calculation"]] if result.get("calculation") else [])
+
+
+def render_orchestrator(trace: dict) -> None:
+    """Level 12: show who did the work: the Orchestrator's decision and each agent's task."""
+    how = "decided by AI (Gemini planner)" if trace["decided_by"] == "ai" else "decided by rules"
+    with st.expander(f"🧭 Orchestrator · {len(trace['agents'])} agent(s) · {how}", expanded=False):
+        if trace.get("reason"):
+            st.caption(safe_md(trace["reason"]))
+        for step in trace["agents"]:
+            ok = "✅" if step["status"].startswith("done") else "⚠️"   # "done · skipped x.csv" is still done
+            st.markdown(f"{ok} {AGENT_ICONS.get(step['agent'], '🤖')} **{step['agent']}** · "
+                        f"{_cell(', '.join(step['files']))}  \n<span class='fs-muted'>Task: "
+                        f"{html.escape(step['task'])}</span>", unsafe_allow_html=True)
+            if step["status"] != "done":
+                st.caption(safe_md(step["status"]))
+
+
 def render_report(rep: dict, key: str) -> None:
     """Level 11: the 10-section Company Report. Sections without data were skipped by the backend."""
     with st.container(border=True):
@@ -379,7 +402,7 @@ def render_sources(result: dict, kind: str) -> None:
                     st.link_button("Whole filing on SEC.gov ↗", s["document_url"], width="stretch")
         else:
             where = f"page {s['page']}" if s.get("page") else f"sheet {s.get('sheet')}"
-            number = f"[{s['number']}] " if s.get("number") else ""
+            number = f"[{s['number']}] " if s.get("number") else (f"[{s['ref']}] " if s.get("ref") else "")
             with st.expander(f"📎 {number}{s['filename']} · {where}", expanded=(i == 0)):
                 if s.get("text") or s.get("excerpt"):
                     with st.container(border=True):
@@ -402,8 +425,12 @@ def render_transparency(result: dict, kind: str) -> None:
             if result.get("financials"):
                 steps.append(("Exact figures", ", ".join(c["label"] for c in result["financials"])))
         else:
+            if result.get("orchestrator"):
+                trace = result["orchestrator"]
+                steps.append(("Orchestrator", ("Gemini planner" if trace["decided_by"] == "ai" else "rules") + " → "
+                              + " + ".join(a["agent"] for a in trace["agents"])))
             steps.append(("Documents", ", ".join(result.get("documents") or [])))
-            if result.get("calculation"):
+            if all_calculations(result):
                 steps.append(("Calculation", "Python (Pandas) - plan below"))
         steps.append(("Model", result.get("model") or "none (no AI call needed)"))
         steps.append(("Cache", "hit - no quota used" if result.get("cached") else "fresh answer"))
@@ -413,8 +440,8 @@ def render_transparency(result: dict, kind: str) -> None:
             st.markdown(f"<div class='fs-step'><div class='n'>{n}</div><div><b>{name}</b><br>"
                         f"<span class='fs-muted'>{html.escape(str(value))}</span></div></div>",
                         unsafe_allow_html=True)
-        if result.get("calculation"):
-            st.json(result["calculation"]["plan"])
+        for calc in all_calculations(result):
+            st.json(calc["plan"])
 
 
 def render_answer(result: dict, kind: str, key: str) -> None:
@@ -436,10 +463,14 @@ def render_answer(result: dict, kind: str, key: str) -> None:
     for i, comp in enumerate(result.get("financials") or []):
         render_comparison(comp, key=f"{key}_{i}")
 
-    calc = result.get("calculation")
-    if calc:
+    if result.get("orchestrator"):
+        render_orchestrator(result["orchestrator"])
+    for calc in all_calculations(result):
         with st.container(border=True):
-            st.markdown("**🧮 Calculation (done by Python, not the AI)**")
+            ref = f"[{calc['ref']}] " if calc.get("ref") else ""
+            where = f" · {calc['filename']} / {calc['sheet']}" if calc.get("filename") else ""
+            st.markdown(f"**🧮 {ref}Calculation (done by Python, not the AI)**"
+                        f"<span class='fs-muted'>{html.escape(where)}</span>", unsafe_allow_html=True)
             st.caption(safe_md(calc["summary"]))
             if calc.get("table"):   # empty cells (e.g. the first year's change) shown as "—", not "None"
                 # round floats too: once a column holds "—" it is shown as text, so 46.30000000000001 would leak
@@ -472,8 +503,9 @@ def answer_as_text(result: dict) -> str:
         passage = s.get("text") or s.get("excerpt")
         if passage:   # the full passage travels with the answer, so the file is complete on its own
             lines += ["", *[f"  > {line}" for line in passage.splitlines() if line.strip()], ""]
-    if result.get("calculation"):
-        lines += ["", "Calculation plan:", json.dumps(result["calculation"]["plan"])]
+    for calc in all_calculations(result):
+        lines += ["", f"Calculation {calc.get('ref', '')} ({calc.get('filename', '')}): {calc['summary']}",
+                  "Plan: " + json.dumps(calc["plan"])]
     return "\n".join(lines)
 
 
