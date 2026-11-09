@@ -12,6 +12,7 @@ import json
 import logging
 import re
 
+from backend import observability as obs
 from backend.agents import document_agent, spreadsheet_agent
 from backend.services import cache_service, number_guard
 from backend.services.document_qa_service import UPLOAD_SYSTEM_PROMPT
@@ -145,17 +146,22 @@ def ask(question: str, doc_ids: list[str] | None = None, sheet: str | None = Non
     if use_cache and (cached := cache_service.get(key)):
         return {**cached, "cached": True}
 
-    plan = decide(question, metas)
+    with obs.span("orchestrator.decide", files=len(metas)):
+        plan = decide(question, metas)
+    obs.event("plan", decided_by=plan["decided_by"], agents=[a for a in ("spreadsheet", "document") if plan[a]])
     by_id = {m["doc_id"]: m for m in metas}
     both = bool(plan["spreadsheet"] and plan["document"])
     results = []
     if plan["spreadsheet"]:
-        results.append(spreadsheet_agent.run(plan["spreadsheet"]["task"],
-                                             [by_id[f] for f in plan["spreadsheet"]["files"]],
-                                             sheet=sheet, explain=not both))
+        with obs.span("spreadsheet_agent", files=len(plan["spreadsheet"]["files"])):
+            results.append(spreadsheet_agent.run(plan["spreadsheet"]["task"],
+                                                 [by_id[f] for f in plan["spreadsheet"]["files"]],
+                                                 sheet=sheet, explain=not both))
     if plan["document"]:
-        results.append(document_agent.run(plan["document"]["task"],
-                                          [by_id[f] for f in plan["document"]["files"]], write_answer=not both))
+        with obs.span("document_agent", files=len(plan["document"]["files"])):
+            results.append(document_agent.run(plan["document"]["task"],
+                                              [by_id[f] for f in plan["document"]["files"]],
+                                              write_answer=not both))
 
     sheet_r = next((r for r in results if r["agent"] == spreadsheet_agent.NAME), None)
     doc_r = next((r for r in results if r["agent"] == document_agent.NAME), None)
@@ -169,7 +175,8 @@ def ask(question: str, doc_ids: list[str] | None = None, sheet: str | None = Non
     else:
         findings = (f"SPREADSHEET RESULTS (calculated exactly by Python):\n{sheet_r['evidence'] or '(none)'}\n\n"
                     f"DOCUMENT SOURCES:\n{doc_r['evidence'] or '(none)'}")
-        answer, model = generate_answer(COMBINE_PROMPT, f"{findings}\n\n---\nQUESTION: {question}")
+        with obs.span("orchestrator.combine"):
+            answer, model = generate_answer(COMBINE_PROMPT, f"{findings}\n\n---\nQUESTION: {question}")
         answer = number_guard.drop_unknown_citations(answer, len(doc_r["hits"]))   # [T1] etc. are kept
         cited = {int(n) for n in re.findall(r"\[(\d+)\]", answer)}
         sources = [s for s in document_agent._cited_sources(doc_r["hits"], answer) if s["number"] in cited] \

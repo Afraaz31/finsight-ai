@@ -31,6 +31,7 @@ DEMO_QUESTIONS = [
     "Audit report of Alphabet",                        # Level 11: the 10-section Company Report
     "Audit report of NVIDIA",                          # Level 11: the 10-section Company Report
     "Was Apple's 2026 profit better than 2025?",            # Level 10: one company, year over year
+    "Explain NVIDIA's revenue growth",                       # Ask AI suggestion button (figures + 10-K text)
 ]
 
 # Level 12: Upload & Analyze questions, asked with NOTHING ticked (the Orchestrator sees every uploaded file).

@@ -22,6 +22,7 @@ EXPECTED = {
     "Audit report of Alphabet": "report",
     "Audit report of NVIDIA": "report",
     "Was Apple's 2026 profit better than 2025?": "both",   # figures (year over year) + the 10-K explanation
+    "Explain NVIDIA's revenue growth": "both",             # Ask AI suggestion: figures + 10-K explanation
 }
 
 

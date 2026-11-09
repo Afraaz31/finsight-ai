@@ -12,20 +12,24 @@ ANSWER_TIMEOUT = 330      # a question may fall back to Ollama on CPU (up to ~30
 
 
 class ApiError(Exception):
-    def __init__(self, status: int, message: str):
+    def __init__(self, status: int, message: str, guardrail: str | None = None):
+        if guardrail:   # Level 13: a guardrail refused the request -> say which one
+            message = f"🛡️ {message} (guardrail: {guardrail.replace('_', ' ')})"
         super().__init__(message)
-        self.status, self.message = status, message
+        self.status, self.message, self.guardrail = status, message, guardrail
 
 
-def _detail(response: requests.Response) -> str:
-    """FastAPI puts the reason in "detail" (a string, or a list of field errors for 422)."""
+def _detail(response: requests.Response) -> tuple[str, str | None]:
+    """FastAPI puts the reason in "detail" (a string, or a list of field errors for 422).
+    Level 13: a guardrail refusal also names the guardrail."""
     try:
-        detail = response.json().get("detail", response.text)
-    except ValueError:
-        return response.text or f"HTTP {response.status_code}"
+        body = response.json()
+        detail = body.get("detail", response.text)
+    except (ValueError, AttributeError):
+        return response.text or f"HTTP {response.status_code}", None
     if isinstance(detail, list):   # 422 validation errors
-        return "; ".join(str(d.get("msg", d)).replace("Value error, ", "") for d in detail)
-    return str(detail)
+        return "; ".join(str(d.get("msg", d)).replace("Value error, ", "") for d in detail), None
+    return str(detail), body.get("guardrail")
 
 
 def _call(method: str, path: str, timeout: int = QUICK_TIMEOUT, **kwargs):
@@ -37,7 +41,7 @@ def _call(method: str, path: str, timeout: int = QUICK_TIMEOUT, **kwargs):
     except requests.Timeout:
         raise ApiError(0, "The API took too long to answer. Try again.")
     if response.status_code >= 400:
-        raise ApiError(response.status_code, _detail(response))
+        raise ApiError(response.status_code, *_detail(response))
     return response.json() if response.content else None
 
 
@@ -88,6 +92,15 @@ def compare(tickers: list[str], metric: str, fiscal_year: int | None) -> dict:
 def section(ticker: str, fiscal_year: int, section_id: str) -> dict:
     return _call("GET", "/sec/section", params={"ticker": ticker, "fiscal_year": fiscal_year,
                                                  "section_id": section_id})
+
+
+# ---------- Level 13: observability ----------
+def observability_summary() -> dict:
+    return _call("GET", "/observability/summary")
+
+
+def observability_traces(limit: int = 50) -> list[dict]:
+    return _call("GET", "/observability/traces", params={"limit": limit})
 
 
 # ---------- Level 12: the Orchestrator ----------

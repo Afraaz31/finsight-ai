@@ -36,12 +36,14 @@ Annual reports run to hundreds of pages, and comparing companies means digging t
 | **Quota Shield** | A free-tier fallback chain across Gemini models, an answer cache, and a local Ollama model as an offline last resort |
 | **Honest failures** | Scanned PDFs, unsupported companies, unreported metrics and missing data are all stated clearly, never guessed |
 | **Company Dashboard** | One company at a glance: 8 KPI cards with YoY change, net profit margin calculated by Python, a 5-year trend chart and key insights written by Python (not the AI) |
-| **How it works page** | The router, both pipelines, upload handling and safeguards explained on one page |
+| **How it works page** | The router, both pipelines, upload handling, the Orchestrator, observability and guardrails (with the flow diagram and the guardrail table) and safeguards explained on one page |
 | **Exact sources** | Every source shows its **full passage** inside the app, a **📖 Read the full section** popup with a search box, and a **📍 Open at this exact spot** link that opens SEC.gov scrolled to that sentence and highlighted (URL text fragment) |
 | **Company Report** | A 10-section report per company (overview to sources), figures by Python, text by Gemini, missing points skipped. Ask "Audit report of Apple" or click 📑 on the Company Dashboard |
 | **Year over year** | "Was Apple's 2026 profit better than 2025?" gets an exact table of both years with the change in $ and %, calculated by Python |
-| **Answer trail** | Every answer has a "How this answer was made" panel (route, companies, model, cache, number-guard result) and a Download button |
-| **Web API + UI** | FastAPI backend with interactive `/docs`, and a multi-page Streamlit app with company logos: Home · Ask AI · Upload & Analyze · Compare · Company Dashboard · How it works |
+| **Answer trail** | Every answer has a "How this answer was made" panel (route, companies, model, cache, number-guard result, guardrails, request id) and a Download button |
+| **Observability** | Every request gets a request id and one trace (route, timed steps, every AI call with model, latency and token counts, cache hit, fallbacks, guardrail actions) in a local JSON-lines file, shown on the **Monitoring page** with p50/p95 latency, cache hit rate, tokens per model and today's free-quota usage |
+| **Guardrails** | Prompt-injection, investment-advice and off-topic questions are refused before any AI call; personal data (email, phone, card, Aadhaar, PAN, SSN) is redacted before anything reaches the AI; a daily AI budget and a per-minute rate limit; advice wording gets a disclaimer, leaked instructions are replaced, uncited answers are flagged |
+| **Web API + UI** | FastAPI backend with interactive `/docs`, and a multi-page Streamlit app with company logos: Home · Ask AI · Upload & Analyze · Compare · Company Dashboard · How it works · Monitoring |
 
 ---
 
@@ -207,6 +209,8 @@ SEC_USER_AGENT=FinSightAI your_email@example.com # SEC requires a real contact e
 OLLAMA_ENABLED=false                             # true if Ollama + llama3.2:3b are installed
 OLLAMA_MODEL=llama3.2:3b
 OLLAMA_URL=http://localhost:11434
+RATE_LIMIT_PER_MINUTE=20                         # questions per client per minute (HTTP 429 above)
+DAILY_LLM_CALL_LIMIT=400                         # stop calling Gemini before the 500/day free quota
 ```
 
 ## Run the ingestion (once)
@@ -263,10 +267,12 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 | GET / DELETE | `/uploads/{doc_id}` | Details / delete an upload |
 | POST | `/uploads/ask` | `{"question": "...", "doc_ids": ["..."]}` → answer from those files only |
 | POST | `/assistant/ask` | `{"question": "...", "doc_ids": []}` → the Orchestrator picks the Spreadsheet Agent, the Document Agent or both (empty `doc_ids` = all uploaded files) |
+| GET | `/observability/summary` | Requests, p50/p95 latency, cache hit rate, AI calls and tokens per model, fallbacks, guardrail actions, Gemini calls today vs the daily budget |
+| GET | `/observability/traces` | Recent request traces, newest first (`?limit=&request_id=&questions_only=`) |
 
 | Status | Meaning |
 |---|---|
-| 400 | Bad file (wrong type, too big, scanned PDF) |
+| 400 | Bad file (wrong type, too big, scanned PDF), or a question refused by a guardrail (the body names it in `guardrail`) |
 | 404 | Unknown document or company |
 | 422 | Invalid input, or a table question that can't be calculated |
 | 503 | LLM, vector store or financial data unavailable (with a fix-it message) |
@@ -313,7 +319,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**204 tests** cover:
+**237 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -325,6 +331,7 @@ python -m pytest tests -v
 - exact-spot links, full 10-K sections and audit-question retrieval
 - the Company Report: routing, Python figures and ratios, skipped sections, auditor and founding year
 - the Orchestrator and both agents (fake LLM): planner, rule fallback, plan validation, merged answers
+- guardrails (injection, advice, off-topic, PII redaction, rate limit, daily budget, output checks) and observability (request ids, traces, token counts, fallbacks, the Monitoring page)
 - every API endpoint and status code
 - every page of the Streamlit UI (headless)
 
@@ -361,6 +368,7 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 - The keyword-based router can miss unusual phrasings.
 - The free Gemini tier has daily limits and may use inputs for training, so only upload public or sample data.
 - XBRL comparisons use each company's own fiscal year, which isn't the same calendar period.
+- The guardrails are regex rules: cleverly worded attacks can slip past them, and a bare 10-digit number starting with 6-9 is redacted as a phone number. That's why there are several layers (system prompt, plan validation, no code execution, number guard).
 
 ## Future improvements
 
@@ -370,6 +378,7 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 - Charts of multi-year trends in the chat
 - Authentication and per-user upload storage
 - Docker deployment
+- OpenTelemetry export of the traces to a tool like Langfuse or Grafana, and a model-based safety classifier (e.g. Llama Guard) for subtler attacks than the rule-based guardrails catch
 
 ---
 
@@ -379,6 +388,7 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 finsight-ai/
 ├── backend/            FastAPI app, routes, schemas, services (RAG, LLM, financials, uploads, reports)
 │   ├── agents/         Level 12: orchestrator, spreadsheet_agent, document_agent
+│   ├── observability.py, guardrails.py   Level 13: traces + checks around every AI call
 ├── ingestion/          SEC download, HTML cleaning, chunking, vector store, XBRL facts
 ├── frontend/           Streamlit UI (talks only to the API)
 │   ├── app.py          entry: page config, theme, logo, navigation, API status
@@ -386,9 +396,9 @@ finsight-ai/
 │   ├── logos.py        FinSight + company logos (inline SVG, work offline)
 │   ├── api_client.py   HTTP calls to FastAPI
 │   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
-│   └── views/          home · ask · upload · compare · dashboard · how_it_works
+│   └── views/          home · ask · upload · compare · dashboard · how_it_works · monitoring
 ├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed
-├── tests/              pytest suite (204 tests)
+├── tests/              pytest suite (237 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)

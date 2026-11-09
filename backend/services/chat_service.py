@@ -9,6 +9,7 @@ plain summary written by Python, so the user always gets the facts.
 """
 import logging
 
+from backend import observability as obs
 from backend.companies import COMPANIES
 from backend.config import METRICS_PATH
 from backend.services import cache_service, number_guard
@@ -110,6 +111,8 @@ def answer_chat(question: str, ticker: str | None = None, use_cache: bool = True
     if not question:
         raise ValueError("Question is empty.")
     decision = route(question)
+    obs.set_field("route", decision["route"])
+    obs.event("route", route=decision["route"], metrics=decision["metrics"])
     if decision["route"] == "report":
         return company_report_answer(question, ticker, use_cache)
 
@@ -140,7 +143,8 @@ def answer_chat(question: str, ticker: str | None = None, use_cache: bool = True
             answer, model = generate_answer(FIGURES_PROMPT, f"FIGURES:\n{figures}\n\nQUESTION: {question}")
             evidence = figures
         else:   # both: exact figures + the 10-K text that explains them
-            hits = retrieve(question, tickers if len(tickers) < len(COMPANIES) else [])
+            with obs.span("retrieve", companies=",".join(tickers)):
+                hits = retrieve(question, tickers if len(tickers) < len(COMPANIES) else [])
             context = build_context(hits)
             prompt = (f"SOURCES:\n\n{context}\n\nVERIFIED FIGURES [F]:\n{figures}\n\n---\n"
                       f"QUESTION: {question}\n\nAnswer using only the sources and figures above.")

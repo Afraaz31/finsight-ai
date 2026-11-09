@@ -12,6 +12,7 @@ import json
 import logging
 import re
 
+from backend import observability as obs
 from backend.companies import COMPANIES
 from backend.config import METRICS_PATH, PROCESSED_DIR, RAW_DIR
 from backend.services import cache_service, number_guard
@@ -350,14 +351,16 @@ def build_report(ticker: str, fiscal_year: int | None = None, use_cache: bool = 
     now, hist = numbers_for_year(ticker, year)
 
     # AI part: one Gemini call for background, risks and outlook
-    hits = reading_hits(ticker, year)
+    with obs.span("report.retrieve", ticker=ticker, fiscal_year=year):
+        hits = reading_hits(ticker, year)
     ordered = [h for part in READING_PLAN for h in hits[part]]
     parts, model, sources, unverified = {}, None, [], []
     if ordered:
         context = build_context(ordered)
         try:
-            text, model = generate_answer(REPORT_PROMPT, f"SOURCES:\n\n{context}\n\n---\nWrite the three parts "
-                                                         f"for {COMPANIES[ticker]['name']} (Form 10-K FY{year}).")
+            with obs.span("report.write", chunks=len(ordered)):
+                text, model = generate_answer(REPORT_PROMPT, f"SOURCES:\n\n{context}\n\n---\nWrite the three "
+                                                             f"parts for {COMPANIES[ticker]['name']} (Form 10-K FY{year}).")
             text = number_guard.drop_unknown_citations(text, len(ordered))
             parts = split_parts(text)
             sources = format_sources(ordered, text)

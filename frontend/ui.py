@@ -436,6 +436,13 @@ def render_transparency(result: dict, kind: str) -> None:
         steps.append(("Cache", "hit - no quota used" if result.get("cached") else "fresh answer"))
         steps.append(("Number guard", "passed - every figure found in the evidence" if not unverified
                       else "flagged: " + ", ".join(unverified)))
+        if "guardrails" in result:     # Level 13
+            guards = [g for g in result.get("guardrails") or [] if g["action"] != "passed"]
+            steps.append(("Guardrails", "all passed (input checks, PII, advice, citations)" if not guards else
+                          "; ".join(f"{g['name'].replace('_', ' ')}: {g['action']}"
+                                    + (f" ({g['detail']})" if g.get("detail") else "") for g in guards)))
+        if result.get("request_id"):
+            steps.append(("Request id", f"{result['request_id']} (see the Monitoring page)"))
         for n, (name, value) in enumerate(steps, 1):
             st.markdown(f"<div class='fs-step'><div class='n'>{n}</div><div><b>{name}</b><br>"
                         f"<span class='fs-muted'>{html.escape(str(value))}</span></div></div>",

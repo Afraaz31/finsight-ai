@@ -3,6 +3,7 @@
 Run from the project root:   uvicorn backend.main:app --reload --port 8000
 Interactive docs:            http://127.0.0.1:8000/docs
 """
+import json
 import logging
 import time
 from contextlib import asynccontextmanager
@@ -10,7 +11,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 
-from backend.routes import assistant, chat, filings, financials, health, reports, uploads
+from backend import guardrails
+from backend import observability as obs
+from backend.routes import (assistant, chat, filings, financials, health, observability_routes, reports,
+                            uploads)
 from backend.services.filing_service import SectionNotFound
 from backend.services.financial_service import UnknownCompany
 from backend.services.llm_service import LLMError
@@ -50,21 +54,57 @@ app.include_router(financials.router)
 app.include_router(filings.router)
 app.include_router(reports.router)
 app.include_router(assistant.router)
+app.include_router(observability_routes.router)
 
 
-# ---------- request logging ----------
+# ---------- Level 13: observability + rate limit, for every request ----------
+EXPENSIVE = ("/chat", "/assistant/ask", "/uploads/ask", "/report/")   # these may call the AI
+NOT_TRACED = ("/health", "/docs", "/openapi.json", "/", "/favicon.ico")
+
+
 @app.middleware("http")
-async def log_requests(request: Request, call_next):
+async def observe(request: Request, call_next):
+    """Request id, a trace per request, timing, a structured log line, and the rate-limit guardrail."""
+    request_id = request.headers.get("X-Request-ID") or obs.new_request_id()
+    path = request.url.path
+    if path.startswith("/observability") or path in NOT_TRACED:
+        response = await call_next(request)          # don't trace the monitoring page itself
+        response.headers["X-Request-ID"] = request_id
+        return response
+    obs.start_trace(request_id, request.method, path)
+    client = request.client.host if request.client else "unknown"
+    if path.startswith(EXPENSIVE) and guardrails.rate_limited(client):
+        obs.record_guardrail("rate_limit", "blocked", f"more than {guardrails.RATE_LIMIT_PER_MINUTE}/min")
+        obs.set_field("route", "blocked")
+        obs.finish_trace(429)
+        return JSONResponse(status_code=429, headers={"X-Request-ID": request_id, "Retry-After": "60"},
+                            content={"detail": "Too many questions in one minute. Please wait a moment.",
+                                     "guardrail": "rate_limit"})
     start = time.perf_counter()
-    response = await call_next(request)
-    log.info("%s %s -> %d (%.0f ms)", request.method, request.url.path, response.status_code,
-             (time.perf_counter() - start) * 1000)
+    try:
+        response = await call_next(request)
+    except Exception as exc:                          # unhandled error: still finish (and keep) the trace
+        obs.finish_trace(500, f"{type(exc).__name__}: {exc}"[:300])
+        raise
+    trace = obs.finish_trace(response.status_code)
+    response.headers["X-Request-ID"] = request_id
+    log.info(json.dumps({"request_id": request_id, "method": request.method, "path": path,
+                         "status": response.status_code, "ms": round((time.perf_counter() - start) * 1000),
+                         "llm_calls": len(trace["llm_calls"]) if trace else 0,
+                         "guardrails": [f"{g['name']}:{g['action']}" for g in (trace or {}).get("guardrails", [])
+                                        if g["action"] != "passed"]}))
     return response
 
 
 # ---------- errors -> proper HTTP status codes ----------
 def _error(status_code: int, message: str) -> JSONResponse:
+    obs.set_field("error", message[:300])            # Level 13: visible in the request's trace
     return JSONResponse(status_code=status_code, content={"detail": message})
+
+
+@app.exception_handler(guardrails.GuardrailBlocked)
+async def guardrail_blocked(_request: Request, exc: guardrails.GuardrailBlocked):
+    return JSONResponse(status_code=400, content={"detail": str(exc), "guardrail": exc.name})
 
 
 @app.exception_handler(UploadNotFound)
@@ -111,6 +151,7 @@ async def not_ready(_request: Request, exc: RuntimeError):
 @app.exception_handler(Exception)
 async def unexpected(_request: Request, exc: Exception):
     log.exception("Unexpected error")          # full details go to the server log only
+    obs.set_field("error", f"{type(exc).__name__}: {exc}"[:300])
     return _error(500, "Internal server error. Check the server log.")
 
 

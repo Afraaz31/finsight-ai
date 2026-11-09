@@ -4,6 +4,7 @@ import math
 from fastapi import APIRouter, File, Response, UploadFile, status
 
 from backend.config import MAX_UPLOAD_MB
+from backend.routes import _guarded
 from backend.schemas.api_schemas import UploadAnswer, UploadAskRequest, UploadMeta
 from backend.services.document_qa_service import answer_upload_question
 from backend.services.upload_service import (UploadError, add_upload, delete_upload, get_upload,
@@ -46,9 +47,10 @@ def upload_details(doc_id: str) -> dict:
 @router.post("/ask", response_model=UploadAnswer)
 def ask(request: UploadAskRequest) -> dict:
     """Question about one table, or one or more text documents."""
+    _guarded.before(request.question)
     result = answer_upload_question(request.question, request.doc_ids, sheet=request.sheet,
                                     use_cache=request.use_cache)
-    return json_safe(result)
+    return json_safe(_guarded.after({**result, "route": "upload"}))
 
 
 @router.delete("/{doc_id}", status_code=status.HTTP_204_NO_CONTENT)

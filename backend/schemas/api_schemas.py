@@ -10,6 +10,13 @@ from pydantic import BaseModel, Field, field_validator
 from backend.companies import COMPANIES
 
 
+# ---------- Level 13: guardrails ----------
+class GuardrailResult(BaseModel):
+    name: str                     # e.g. input_checks, pii_redaction, investment_advice
+    action: str                   # passed | blocked | redacted | flagged | modified
+    detail: str = ""
+
+
 # ---------- health & companies ----------
 class HealthResponse(BaseModel):
     status: Literal["ok", "degraded"]
@@ -166,6 +173,8 @@ class ChatResponse(BaseModel):
     route: str = "narrative"                    # narrative | numbers | both | report  (Level 7, 11)
     financials: list[Comparison] | None = None  # exact SEC figures (Level 7)
     report: "CompanyReport | None" = None       # the 10-section Company Report (Level 11)
+    guardrails: list[GuardrailResult] = []      # Level 13: what the guardrails checked / changed
+    request_id: str | None = None               # Level 13: find this request on the Monitoring page
 
 
 # ---------- Level 11: Company Report ----------
@@ -198,6 +207,8 @@ class CompanyReport(BaseModel):
     cached: bool = False
     unverified_numbers: list[str] = []
     markdown: str = ""
+    guardrails: list[GuardrailResult] = []      # Level 13: what the guardrails checked / changed
+    request_id: str | None = None               # Level 13: find this request on the Monitoring page
 
 
 ChatResponse.model_rebuild()      # resolves the forward reference to CompanyReport
@@ -259,6 +270,8 @@ class UploadAnswer(BaseModel):
     cached: bool = False
     calculation: Calculation | None = None
     unverified_numbers: list[str] = []
+    guardrails: list[GuardrailResult] = []      # Level 13: what the guardrails checked / changed
+    request_id: str | None = None               # Level 13: find this request on the Monitoring page
 
 
 # ---------- Level 12: Orchestrator + 2 agents ----------
@@ -303,3 +316,5 @@ class AssistantAnswer(BaseModel):
     calculations: list[TableCalculation] = []
     unverified_numbers: list[str] = []
     orchestrator: OrchestratorTrace
+    guardrails: list[GuardrailResult] = []      # Level 13: what the guardrails checked / changed
+    request_id: str | None = None               # Level 13: find this request on the Monitoring page

@@ -49,6 +49,7 @@ pages = [
     st.Page("views/compare.py", title="Compare", icon=":material/compare_arrows:"),
     st.Page("views/dashboard.py", title="Company Dashboard", icon=":material/monitoring:"),
     st.Page("views/how_it_works.py", title="How it works", icon=":material/account_tree:"),
+    st.Page("views/monitoring.py", title="Monitoring", icon=":material/insights:"),
 ]
 page = st.navigation(pages)
 

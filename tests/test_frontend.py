@@ -305,3 +305,44 @@ def test_upload_answer_shows_orchestrator_and_both_agents(monkeypatch):
     assert any("Orchestrator · 2 agent(s) · decided by AI" in e.label for e in app.expander)
     text = all_markdown(app)
     assert "Spreadsheet Agent" in text and "Document Agent" in text and "[T1] Calculation" in text
+
+
+# ---------- Level 13: monitoring + guardrails in the UI ----------
+SUMMARY = {"requests": 3, "errors": 0, "blocked": 1, "avg_latency_ms": 1500.0, "p50_latency_ms": 1200.0,
+           "p95_latency_ms": 2900.0, "cache_hit_rate_pct": 50.0, "llm_calls": 4, "llm_failures": 1, "fallbacks": 1,
+           "llm_calls_today": 3, "prompt_tokens": 5000, "output_tokens": 600, "daily_llm_call_limit": 400,
+           "rate_limit_per_minute": 20, "unverified_number_answers": 0, "by_route": {"narrative": 2, "other": 1},
+           "by_model": {"gemini-3.5-flash-lite": {"calls": 3, "failed": 1, "prompt_tokens": 5000,
+                                                  "output_tokens": 600, "avg_latency_ms": 900.0}},
+           "guardrails": {"investment_advice:blocked": 1}}
+TRACES = [{"request_id": "abc123", "ts": "2026-11-09T10:00:00+00:00", "method": "POST", "endpoint": "/chat",
+           "status": 200, "latency_ms": 1200.0, "question": "What are NVIDIA's risks?", "route": "narrative",
+           "cached": False, "spans": [{"name": "retrieve", "ms": 80.0, "status": "ok"}],
+           "llm_calls": [{"model": "gemini-3.5-flash-lite", "ok": True, "latency_ms": 900.0}],
+           "guardrails": [{"name": "input_checks", "action": "passed", "detail": ""}], "events": [], "error": None}]
+
+
+def test_monitoring_page(monkeypatch):
+    monkeypatch.setattr(api_client, "observability_summary", lambda: SUMMARY)
+    monkeypatch.setattr(api_client, "observability_traces", lambda limit: TRACES)
+    app = open_page("views/monitoring.py")
+    assert not app.exception
+    text = all_markdown(app)
+    assert "3 / 400" in text and "Cache hit rate" in text and "Requests blocked" in text
+    assert any("abc123" in str(df.value) for df in app.dataframe)
+
+
+def test_answer_trail_shows_guardrails_and_request_id(monkeypatch):
+    answer = {**SEC_ANSWER, "request_id": "abc123",
+              "guardrails": [{"name": "input_checks", "action": "passed", "detail": ""},
+                             {"name": "pii_redaction", "action": "redacted", "detail": "email×1"}]}
+    monkeypatch.setattr(api_client, "chat", lambda q, t, c: answer)
+    app = open_page("views/ask.py")
+    app.chat_input[0].set_value("What are NVIDIA's risks?").run()
+    text = all_markdown(app)
+    assert "pii redaction: redacted (email×1)" in text and "abc123" in text
+
+
+def test_guardrail_refusal_is_shown_with_a_shield():
+    err = ApiError(400, "FinSight doesn't give investment advice.", "investment_advice")
+    assert err.message == "🛡️ FinSight doesn't give investment advice. (guardrail: investment advice)"

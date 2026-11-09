@@ -2,15 +2,20 @@
 
 Quota Shield: try GEMINI_MODEL first, then each model in GEMINI_FALLBACK_MODELS (each has its own
 free daily quota), then optionally a local Ollama model. Free tier only: never enables billing.
+
+Level 13: before any model is called, personal data is redacted (guardrail) and the daily budget is
+checked; every call is recorded in the request's trace with its latency and token counts.
 """
 import logging
+import time
 
 import requests
 from google import genai
 from google.genai import errors, types
 
-from backend.config import (GEMINI_API_KEY, GEMINI_FALLBACK_MODELS, GEMINI_MODEL, LLM_TEMPERATURE,
-                            LLM_TIMEOUT_SECONDS, OLLAMA_ENABLED, OLLAMA_MODEL,
+from backend import observability as obs
+from backend.config import (DAILY_LLM_CALL_LIMIT, GEMINI_API_KEY, GEMINI_FALLBACK_MODELS, GEMINI_MODEL,
+                            LLM_TEMPERATURE, LLM_TIMEOUT_SECONDS, OLLAMA_ENABLED, OLLAMA_MODEL,
                             OLLAMA_TIMEOUT_SECONDS, OLLAMA_URL, require)
 
 log = logging.getLogger(__name__)
@@ -71,8 +76,20 @@ def _call_gemini(model: str, system_prompt: str, user_prompt: str) -> str:
         contents = user_prompt
         config = types.GenerateContentConfig(system_instruction=system_prompt,
                                              temperature=LLM_TEMPERATURE)
-    response = get_client().models.generate_content(model=model, contents=contents, config=config)
+    t0 = time.perf_counter()
+    try:
+        response = get_client().models.generate_content(model=model, contents=contents, config=config)
+    except errors.APIError as exc:
+        obs.record_llm_call(model, False, (time.perf_counter() - t0) * 1000, error=f"HTTP {exc.code}")
+        raise
+    except Exception as exc:
+        obs.record_llm_call(model, False, (time.perf_counter() - t0) * 1000, error=type(exc).__name__)
+        raise
+    usage = getattr(response, "usage_metadata", None)            # token counts, for observability
     text = response.text
+    obs.record_llm_call(model, bool(text), (time.perf_counter() - t0) * 1000,
+                        getattr(usage, "prompt_token_count", None), getattr(usage, "candidates_token_count", None),
+                        None if text else "empty answer")
     if not text:
         raise LLMError("empty answer (possibly blocked by a safety filter)")
     return text.strip()
@@ -103,15 +120,37 @@ def _call_ollama(system_prompt: str, user_prompt: str) -> str:
     return text
 
 
+def _call_ollama_observed(system_prompt: str, user_prompt: str) -> str:
+    """_call_ollama, timed and recorded in the trace (no token counts from Ollama)."""
+    t0, model = time.perf_counter(), f"ollama:{OLLAMA_MODEL}"
+    try:
+        text = _call_ollama(system_prompt, user_prompt)
+    except LLMError as exc:
+        obs.record_llm_call(model, False, (time.perf_counter() - t0) * 1000, error=str(exc)[:120])
+        raise
+    obs.record_llm_call(model, True, (time.perf_counter() - t0) * 1000)
+    return text
+
+
 def generate_answer(system_prompt: str, user_prompt: str) -> tuple[str, str]:
     """Return (answer_text, model_used). Walks the Quota Shield chain until one model answers."""
+    from backend.guardrails import redact_pii      # local import: guardrails imports observability too
+    system_prompt, _ = redact_pii(system_prompt)
+    user_prompt, found = redact_pii(user_prompt)
+    if found:
+        obs.record_guardrail("pii_redaction", "redacted", ", ".join(f"{k}×{v}" for k, v in found.items()))
+
+    budget_left = obs.llm_calls_today() < DAILY_LLM_CALL_LIMIT
+    if not budget_left:
+        obs.record_guardrail("daily_ai_budget", "blocked", f"{DAILY_LLM_CALL_LIMIT} Gemini calls reached today")
     try:
         get_client()
     except RuntimeError as exc:  # missing or placeholder API key in .env
         raise LLMError(str(exc)) from exc
 
-    failures = []
-    for model in model_chain():
+    # keep the "<what>: <reason>" format: last_code below splits on ": "
+    failures = [] if budget_left else [f"daily budget: {DAILY_LLM_CALL_LIMIT} Gemini calls reached today"]
+    for model in (model_chain() if budget_left else []):
         try:
             text = _call_gemini(model, system_prompt, user_prompt)
             if failures:
@@ -132,11 +171,14 @@ def generate_answer(system_prompt: str, user_prompt: str) -> tuple[str, str]:
     if OLLAMA_ENABLED:
         log.warning("All Gemini models failed (%s). Using local Ollama model %s.",
                     "; ".join(failures), OLLAMA_MODEL)
-        return _call_ollama(system_prompt, user_prompt), f"ollama:{OLLAMA_MODEL}"
+        return _call_ollama_observed(system_prompt, user_prompt), f"ollama:{OLLAMA_MODEL}"
 
     last_code = next((int(f.rsplit(": ", 1)[1]) for f in reversed(failures)
                       if f.rsplit(": ", 1)[1].isdigit()), 0)
     hint = friendly_message(last_code) if last_code else "Check your internet connection."
+    if not budget_left:
+        raise LLMError(f"FinSight's daily budget of {DAILY_LLM_CALL_LIMIT} Gemini calls is used up, so Gemini "
+                       "was not called. It resets at midnight UTC. Saved answers and exact SEC figures still work.")
     raise LLMError(f"All models failed ({'; '.join(failures)}). {hint}")
 
 

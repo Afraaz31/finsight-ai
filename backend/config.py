@@ -66,3 +66,8 @@ SMALL_DOC_CHUNKS = 8                         # docs this small: send ALL chunks 
 # ---------- Structured financial data (Level 7) ----------
 METRICS_PATH = FINANCIAL_DIR / "metrics.csv"   # one row per company x metric x fiscal year
 FINANCIAL_YEARS_KEPT = 5                        # most recent fiscal years kept per metric
+
+# ---------- Level 13: observability + guardrails ----------
+OBS_DIR = DATA_DIR / "observability"          # traces.jsonl: one line per API request (gitignored)
+RATE_LIMIT_PER_MINUTE = int(os.getenv("RATE_LIMIT_PER_MINUTE", "20"))     # questions per client per minute
+DAILY_LLM_CALL_LIMIT = int(os.getenv("DAILY_LLM_CALL_LIMIT", "400"))     # stop before the free quota (500/day)

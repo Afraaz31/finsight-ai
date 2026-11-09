@@ -11,6 +11,7 @@
 import logging
 import re
 
+from backend import observability as obs
 from backend.companies import COMPANIES, COMPANY_ALIASES
 from backend.config import (MAX_CONTEXT_CHUNKS, MIN_RELEVANCE_SCORE, PROCESSED_DIR,
                             RAG_TOP_K, SEC_COLLECTION)
@@ -228,7 +229,9 @@ def answer_question(question: str, ticker: str | None = None, use_cache: bool = 
             log.info("Cache hit for %r (no LLM call)", question)
             return {**cached, "cached": True}
 
-    hits = retrieve(question, tickers)
+    with obs.span("retrieve", companies=",".join(tickers) or "all"):
+        hits = retrieve(question, tickers)
+    obs.event("retrieved", chunks=len(hits))
     log.info("Question: %r  companies=%s  chunks=%d", question, tickers or "all", len(hits))
 
     if not hits:   # nothing relevant -> honest answer, and no quota spent

@@ -1,4 +1,5 @@
 """How it works: the architecture and safeguards, explained on one page (great for the interview)."""
+import pandas as pd
 import streamlit as st
 
 from frontend import ui
@@ -78,7 +79,57 @@ card(c[1], "📗", "Spreadsheet Agent", ["Several spreadsheets at once, results 
 card(c[2], "📕", "Document Agent", ["Finds the passages in PDF / Word / TXT", "Cites file and page [1], [2]",
                                    "Both agents needed → the Orchestrator merges one cited answer"])
 
-st.markdown("<div class='fs-section'>5 · Safeguards</div>", unsafe_allow_html=True)
+st.markdown("<div class='fs-section'>5 · Observability and guardrails</div>", unsafe_allow_html=True)
+st.markdown("<div class='fs-muted'><b>Observability</b> = seeing what the system did, and why, for every request: "
+            "route, timed steps, which AI model answered, tokens, cache hits, failures and fallbacks. "
+            "<b>Guardrails</b> = checks around the AI that stop bad things going in or coming out.</div>",
+            unsafe_allow_html=True)
+st.code("""question
+   │
+   ▼
+[rate limit]  (too many per minute → 429)
+   │
+   ▼
+[INPUT guardrails]  injection / advice / off-topic → 400, no AI call
+   │
+   ▼
+service (chat / report / orchestrator)
+   │
+   ▼
+llm_service: [PII redaction] + [daily budget] ──► Gemini (fallback chain)
+   │
+   ▼
+number guard + [OUTPUT guardrails]  advice → disclaimer, leak → replaced,
+   │                                PII → redacted, no citations → flagged
+   ▼
+answer + guardrails + request_id
+
+Every step above is recorded in ONE TRACE per request
+  → data/observability/traces.jsonl → Monitoring page""", language=None)
+GUARDRAILS = [
+    ("1", "Prompt injection (“ignore previous instructions”, “reveal your prompt”, “you are now…”)", "input",
+     "blocked → HTTP 400"),
+    ("2", "Investment advice (“should I buy…”, “price target”, “will the stock go up”)", "input",
+     "blocked, with a helpful alternative"),
+    ("3", "Clearly off-topic (“write me a poem”, recipes, hacking)", "input", "blocked"),
+    ("4", "PII: emails, Indian/US phones, card numbers (Luhn-checked), Aadhaar, PAN, SSN", "every AI call",
+     "redacted before it leaves the laptop; financial figures untouched"),
+    ("5", "Daily AI budget (400 calls, under the 500/day free quota)", "every AI call",
+     "Gemini skipped → Ollama / Python-only answers still work"),
+    ("6", "Rate limit (20 questions per minute per client)", "API, AI endpoints", "HTTP 429 with Retry-After"),
+    ("7", "Advice language in the answer (“you should buy…”)", "output", "disclaimer added"),
+    ("8", "System-prompt leak (the answer repeats hidden rules)", "output", "answer replaced"),
+    ("9", "PII in the answer", "output", "redacted"),
+    ("10", "An answer that has sources but cites none", "output", "flagged"),
+    (r"\+", "Number guard (every figure checked), plan validation (Orchestrator)", "output",
+     "already existed; now visible in every trace"),
+]
+st.table(pd.DataFrame([{"#": n, "Guardrail": g, "Where": w, "Action": a}
+                       for n, g, w, a in GUARDRAILS]).set_index("#"))      # static: every row, wrapped text
+st.caption("Plain Python rules: instant, free, deterministic and tested. Every request's trace (and every guardrail "
+           "action) is on the Monitoring page; GET /observability/summary and /observability/traces serve the same data.")
+
+st.markdown("<div class='fs-section'>6 · Safeguards</div>", unsafe_allow_html=True)
 c = st.columns(4)
 card(c[0], "🧾", "Citations", ["Every claim tagged [n]", "Code checks that each cited source exists"])
 card(c[1], "🛡️", "Number guard", ["Every figure in an answer is checked against the evidence",
