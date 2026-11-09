@@ -6,7 +6,7 @@ FinSight AI reads the official SEC 10-K annual reports of **Apple, Microsoft, Am
 
 > Research and information only, not investment advice.
 
-![FinSight AI: exact SEC figures in the chat](docs/screenshots/numbers_answer.png)
+![FinSight AI home page: the five companies with their exact SEC figures](docs/screenshots/01_home.png)
 
 ---
 
@@ -49,13 +49,47 @@ Annual reports run to hundreds of pages, and comparing companies means digging t
 
 ## Screenshots
 
-| Home: the 5 companies with real SEC figures | Ask AI: exact figures + "How this answer was made" |
-|---|---|
-| ![Home page](docs/screenshots/home.png) | ![Exact-figures answer with its trail](docs/screenshots/numbers_answer.png) |
-| **Company Dashboard (Python-written insights)** | **Compare: 5-year trend, no AI on this page** |
-| ![Company dashboard](docs/screenshots/dashboard.png) | ![Revenue trend of all five companies](docs/screenshots/compare_trend.png) |
+All screenshots are from the running app. The answers come from the real SEC filings.
 
-More in [`docs/screenshots/`](docs/screenshots/).
+### 1. Ask AI: answers from the 10-K text, with cited sources
+"What are NVIDIA's major business risks?" Each claim is tagged [n]. Each source card shows the exact passage, a **Read the full section** popup, and an **Open at this exact spot** link that opens SEC.gov highlighted at that sentence.
+
+![Ask AI answer with numbered citations and source passages](docs/screenshots/02_ask_ai_cited_sources.png)
+
+### 2. Exact financial figures + "How this answer was made"
+"Compare Apple's revenue with Microsoft's." Python takes the figures from SEC XBRL data, ranks them and calculates the difference; the AI only explains them. The answer trail shows the route, model, cache, number-guard result, guardrails and the request id.
+
+![Exact-figures answer with the answer trail open](docs/screenshots/03_exact_figures_answer_trail.png)
+
+### 3. Company Report (10 sections)
+"Audit report of Apple" builds a full report: overview, background, financial information, balance sheet, income statement, ratios, business performance, risks, outlook, and data sources (including the auditor and its opinion). Every figure comes from Python, with an SEC link and the change from last year. Download it as Markdown.
+
+![Apple company report built from its 10-K](docs/screenshots/04_company_report.png)
+
+### 4. Upload & Analyze: the Orchestrator and 2 agents
+Upload your own PDF, Word, TXT, CSV or Excel files. The Orchestrator sends the question to the **Spreadsheet Agent** (exact Pandas calculations [T1], [T2]), the **Document Agent** (cited passages [1], [2]), or both, then merges one answer.
+
+![Orchestrator using the Spreadsheet and Document agents on uploaded files](docs/screenshots/05_upload_orchestrator_agents.png)
+
+### 5. Company Dashboard
+One company at a glance: 8 KPI cards with change from last year, net profit margin calculated by Python, a 5-year chart, and key insights written by Python (not the AI). One click opens the full company report.
+
+![Apple company dashboard](docs/screenshots/06_company_dashboard.png)
+
+### 6. Compare: rankings and 5-year trends (no AI)
+Any metric for any of the five companies: latest-year ranking, or a 5-year trend chart with the exact figures table. Each company keeps its own fiscal years.
+
+![Revenue trend of all five companies](docs/screenshots/07_compare_5_year_trend.png)
+
+### 7. Monitoring: observability
+Every request is traced: latency (p50/p95), AI calls per model, tokens, cache hit rate, fallbacks, today's free-tier budget, guardrail actions and each request's full trace.
+
+![Monitoring page with KPIs, charts and recent requests](docs/screenshots/08_monitoring_observability.png)
+
+### 8. Guardrails
+Investment advice, prompt injection and off-topic questions are refused **before any AI call** (HTTP 400, about 2 ms). Personal data is redacted, and a rate limit and a daily AI budget keep usage within the free tier.
+
+![A blocked investment-advice question](docs/screenshots/09_guardrail_refusal.png)
 
 ---
 
