@@ -1,8 +1,9 @@
 """Upload endpoints: add, list, ask, delete. Routes stay thin; the services do the work."""
 import math
 
-from fastapi import APIRouter, File, Response, UploadFile, status
+from fastapi import APIRouter, File, HTTPException, Response, UploadFile, status
 
+from backend import config
 from backend.config import MAX_UPLOAD_MB
 from backend.routes import _guarded
 from backend.schemas.api_schemas import UploadAnswer, UploadAskRequest, UploadMeta
@@ -24,9 +25,19 @@ def json_safe(value):
     return value
 
 
+PUBLIC_DEMO_MESSAGE = ("Uploading and deleting files is turned off in the public demo, because every visitor "
+                       "would see them. Ask about the 4 sample files, or run FinSight locally to use your own.")
+
+
+def refuse_in_public_demo() -> None:
+    if config.PUBLIC_DEMO:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, PUBLIC_DEMO_MESSAGE)
+
+
 @router.post("", response_model=UploadMeta, status_code=status.HTTP_201_CREATED)
 def upload(file: UploadFile = File(..., description="PDF, TXT, DOCX, CSV or XLSX, max 10 MB")) -> dict:
     """Upload one file. Returns its doc_id, which you use to ask questions about it."""
+    refuse_in_public_demo()
     data = file.file.read(MAX_UPLOAD_MB * 1024 * 1024 + 1)   # read at most limit+1 bytes
     if len(data) > MAX_UPLOAD_MB * 1024 * 1024:
         raise UploadError(f"The file is larger than {MAX_UPLOAD_MB} MB.")
@@ -55,5 +66,6 @@ def ask(request: UploadAskRequest) -> dict:
 
 @router.delete("/{doc_id}", status_code=status.HTTP_204_NO_CONTENT)
 def remove(doc_id: str) -> Response:
+    refuse_in_public_demo()
     delete_upload(doc_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

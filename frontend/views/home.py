@@ -1,7 +1,7 @@
 """Home: what FinSight is, the 5 companies at a glance, and quick ways in."""
 import streamlit as st
 
-from frontend import ui
+from frontend import api_client, ui
 from frontend.api_client import ApiError
 
 HOME_QUESTIONS = [
@@ -59,7 +59,8 @@ with left:
                     "<div style='font-weight:800;font-size:1.1rem;color:#EEF2FA'>Analyse your own financial documents</div>"
                     "<div class='fs-muted'>PDF · TXT · DOCX · CSV · XLSX · up to 10 MB. Text files are answered with "
                     "citations; spreadsheets are calculated exactly with Python.</div></div>", unsafe_allow_html=True)
-        if st.button("Upload or try a sample file", type="primary", width="stretch"):
+        label = "Try the sample files" if api_client.PUBLIC_DEMO else "Upload or try a sample file"
+        if st.button(label, type="primary", width="stretch"):
             st.switch_page("views/upload.py")
 with right:
     with st.container(border=True):

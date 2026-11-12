@@ -25,7 +25,7 @@ How to present, demo and defend the project. Read it twice, then practise the de
    - a Quota Shield (model fallback chain, answer cache, local Ollama)
    - honest refusals: scanned PDFs, unsupported companies, unreported metrics
 6. **Proof:**
-   - **237 automated tests**, using no API quota.
+   - **244 automated tests**, using no API quota.
    - Apple's FY2026 revenue (**$478.83B**) matches the 10-K exactly in both pipelines.
 
 ---
@@ -143,7 +143,7 @@ For a **narrative** question, steps 3–4 become: detect the company, topic sect
     - The first model allowed only 20 requests a day. I checked the real limits and switched to Flash Lite, which allows 500 a day.
     - I built a fallback chain across models with separate quotas, plus an answer cache and a local Ollama model. Overload errors move to the next model instead of retrying the same one.
 16. *How did you test without spending quota?*
-    - 237 pytest tests with fakes for the LLM, embeddings and network.
+    - 244 pytest tests with fakes for the LLM, embeddings and network.
     - TestClient for the API; Streamlit AppTest for the UI.
     - Live checks were run separately and verified against the real filings.
 17. *What would you change for production?*
@@ -179,7 +179,7 @@ Interviewers love these, so tell 2 or 3:
 | SEC chunks in ChromaDB | 4,593 |
 | Embedding size | 384 dimensions (all-MiniLM-L6-v2) |
 | Chunk size / overlap | 800 / 150 characters |
-| Automated tests | 237 |
+| Automated tests | 244 |
 | Main model free limit | gemini-3.5-flash-lite: 500 requests/day, 15/minute |
 | Apple revenue FY2026 | **$478.83B** (period ending 26 Sep 2026); same in the 10-K and XBRL |
 | Highest revenue (latest FY) | Amazon $716.92B (FY2025) |

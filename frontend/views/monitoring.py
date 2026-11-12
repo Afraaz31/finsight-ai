@@ -107,10 +107,13 @@ table = [{"time": local(t["ts"]).strftime("%H:%M:%S"), "request id": t["request_
           "guardrails": ", ".join(f"{g['name']}:{g['action']}" for g in t.get("guardrails", [])
                                   if g["action"] != "passed") or "ok",
           "question": t.get("question") or ""} for t in traces]
+if api_client.PUBLIC_DEMO:      # the API already removes them; drop the empty column too
+    table = [{k: v for k, v in row.items() if k != "question"} for row in table]
+    st.caption("🔒 Public demo: visitors' questions are not shown. Everything else is the live trace data.")
 if table:
     st.dataframe(pd.DataFrame(table), hide_index=True, width="stretch")
     pick = st.selectbox("Inspect one request (its full trace)", [t["request_id"] for t in traces],
-                        format_func=lambda rid: next(f"{x['time']} · {x['endpoint']} · {x['question'][:60]}"
+                        format_func=lambda rid: next(f"{x['time']} · {x['endpoint']} · {x.get('question', '')[:60]}"
                                                      for x in table if x["request id"] == rid))
     trace = next(t for t in traces if t["request_id"] == pick)
     a, b = st.columns(2)

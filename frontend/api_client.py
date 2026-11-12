@@ -7,6 +7,7 @@ import os
 import requests
 
 API_URL = os.getenv("FINSIGHT_API_URL", "http://127.0.0.1:8000").rstrip("/")
+PUBLIC_DEMO = os.getenv("PUBLIC_DEMO", "false").lower() == "true"   # the live demo: sample files only
 QUICK_TIMEOUT = 10        # health, lists
 ANSWER_TIMEOUT = 330      # a question may fall back to Ollama on CPU (up to ~300 s)
 

@@ -39,8 +39,15 @@ ui.page_header(ui.finsight_mark(44), "Upload & Analyze",
                "Ask about your own files in plain English. The Orchestrator sends Excel/CSV questions to the "
                "Spreadsheet Agent and PDF/Word/TXT questions to the Document Agent, or to both.")
 
-left, right = st.columns([3, 2], gap="large")
-with left:
+
+def public_demo_note() -> None:
+    """The live demo: everyone shares the same files, so uploading and deleting are turned off."""
+    st.info("**Public demo:** 4 fictional sample files are already loaded (an annual report PDF, a board memo, "
+            "a CSV and an Excel workbook). Ask anything about them below. Uploading your own files is turned off "
+            "here because every visitor would see them; it works when you run FinSight locally.", icon="🔒")
+
+
+def upload_area() -> None:
     uploaded = st.file_uploader("Drag & drop a file here, or click to browse",
                                 type=["pdf", "txt", "docx", "csv", "xlsx"],
                                 key=f"uploader_{st.session_state.uploader_key}",
@@ -63,6 +70,14 @@ with left:
                 do_upload(filename, path.read_bytes())
             st.rerun()
 
+
+left, right = st.columns([3, 2], gap="large")
+with left:
+    if api_client.PUBLIC_DEMO:
+        public_demo_note()
+    else:
+        upload_area()
+
 with right:
     try:
         uploads = api_client.list_uploads()
@@ -84,7 +99,7 @@ with right:
             checked = row[0].checkbox(f"{ICONS.get(u['extension'], '📄')} **{u['filename']}**  \n{detail} · "
                                       f"{max(u['size_bytes'] / 1024, 0.1):,.1f} KB", key=f"pick_{u['doc_id']}",
                                       value=u["doc_id"] in st.session_state.selected_docs)
-            if row[1].button("✕", key=f"del_{u['doc_id']}", help="Delete this file"):
+            if not api_client.PUBLIC_DEMO and row[1].button("✕", key=f"del_{u['doc_id']}", help="Delete this file"):
                 try:
                     api_client.delete_upload(u["doc_id"])
                     st.session_state.selected_docs.discard(u["doc_id"])

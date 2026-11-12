@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 
-from frontend import ui
+from frontend import api_client, ui
 
 ui.page_header(ui.finsight_mark(44), "How FinSight works",
                "Two data pipelines, a question router, and guards that keep every answer verifiable")
@@ -141,4 +141,5 @@ st.markdown("<div class='fs-section'>Tech stack</div>", unsafe_allow_html=True)
 st.markdown(" ".join(ui.pill(t) for t in ["Python 3.11", "FastAPI", "Pydantic", "Streamlit", "Gemini (free tier)",
                                           "Ollama", "Sentence Transformers", "ChromaDB", "Pandas", "BeautifulSoup",
                                           "pypdf", "SEC EDGAR", "SEC XBRL", "pytest"]), unsafe_allow_html=True)
-st.caption("API documentation: http://127.0.0.1:8000/docs")
+st.caption("API documentation: http://127.0.0.1:8000/docs" + (" (when you run FinSight locally)"
+                                                                if api_client.PUBLIC_DEMO else ""))

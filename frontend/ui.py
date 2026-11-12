@@ -215,6 +215,8 @@ def sidebar_status() -> dict | None:
         st.caption("Model chain: " + " → ".join(chain))
         for problem in h.get("problems", []):
             st.caption(f"⚠ {problem}")
+        if api_client.PUBLIC_DEMO:
+            st.caption("🌐 Public demo · sample files only · shared free AI quota (saved answers are instant)")
         st.caption("FinSight AI v1.0 · research only, not investment advice")
         return h
 

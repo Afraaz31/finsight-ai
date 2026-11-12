@@ -279,6 +279,30 @@ python -m scripts.preflight                 # checks keys, data, models, servers
 python -m scripts.prewarm                   # caches the demo questions' answers
 ```
 
+## Live demo deployment (Hugging Face Spaces)
+
+The public demo runs on a free **Hugging Face Space** (Docker, CPU). One container runs both parts: FastAPI on `127.0.0.1:8000` (internal only) and Streamlit on the public port `7860`. The files are in [`deploy/`](deploy/):
+
+| File | What it does |
+|---|---|
+| `deploy/Dockerfile` | Python 3.11 slim, CPU-only PyTorch, pinned packages, embedding model downloaded at build time, runs as a non-root user |
+| `deploy/start.sh` | starts the API, waits for `/health`, then starts the UI |
+| `deploy/requirements.txt` | the exact versions the tests pass with |
+| `deploy/SPACE_README.md` | the Space's page on Hugging Face |
+| `scripts/deploy_space.py` | `build` assembles the Space with the ready-made data (search index, SEC figures, saved answers, the 4 fictional sample files only) and scans every file for keys and private data; `publish` uploads it and stores the Gemini key as an encrypted Space secret |
+
+```bash
+python -m scripts.deploy_space build  ../finsight-space
+HF_TOKEN=hf_... python -m scripts.deploy_space publish ../finsight-space
+```
+
+**Public demo mode** (`PUBLIC_DEMO=true`, set in the Dockerfile) makes the app safe for strangers:
+- **Uploads:** uploading and deleting files are turned off in the API and the UI, so no visitor sees another visitor's files. The 4 sample files stay available.
+- **Monitoring:** the page doesn't show visitors' questions; the API removes them from the traces.
+- **Quota protection:** a smaller daily AI budget (150 Gemini calls) and the rate limit protect the shared free quota.
+- **Saved answers:** the demo questions are pre-saved, so they answer instantly with no quota. The saved answers are keyed on the SEC figures file's timestamp, so `start.sh` restores the original timestamp after Hugging Face's checkout.
+- **Ollama:** the local backup model is off, because a free Space can't run it.
+
 ---
 
 ## API endpoints
@@ -353,7 +377,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**237 tests** cover:
+**244 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -368,6 +392,7 @@ python -m pytest tests -v
 - guardrails (injection, advice, off-topic, PII redaction, rate limit, daily budget, output checks) and observability (request ids, traces, token counts, fallbacks, the Monitoring page)
 - every API endpoint and status code
 - every page of the Streamlit UI (headless)
+- public demo mode: uploads refused, visitors' questions hidden, the UI without upload or delete controls
 
 The LLM, the embedding model and the network are replaced with fakes where needed, so **tests use no API quota**.
 
@@ -403,6 +428,7 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 - The free Gemini tier has daily limits and may use inputs for training, so only upload public or sample data.
 - XBRL comparisons use each company's own fiscal year, which isn't the same calendar period.
 - The guardrails are regex rules: cleverly worded attacks can slip past them, and a bare 10-digit number starting with 6-9 is redacted as a phone number. That's why there are several layers (system prompt, plan validation, no code execution, number guard).
+- The live demo runs on a free Space: it sleeps when unused (the first visit takes 1–2 minutes), all visitors share one free AI quota and one per-minute rate limit (every request reaches the API from the same Streamlit server), and new questions fail once all three Gemini models are out of quota (saved answers and exact figures still work).
 
 ## Future improvements
 
@@ -410,8 +436,7 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 - OCR for scanned documents
 - Hybrid search (BM25 + embeddings) and re-ranking
 - Charts of multi-year trends in the chat
-- Authentication and per-user upload storage
-- Docker deployment
+- Authentication and per-user upload storage (so the public demo could allow uploads)
 - OpenTelemetry export of the traces to a tool like Langfuse or Grafana, and a model-based safety classifier (e.g. Llama Guard) for subtler attacks than the rule-based guardrails catch
 
 ---
@@ -431,8 +456,9 @@ finsight-ai/
 │   ├── api_client.py   HTTP calls to FastAPI
 │   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
 │   └── views/          home · ask · upload · compare · dashboard · how_it_works · monitoring
-├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed
-├── tests/              pytest suite (237 tests)
+├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed, deploy_space
+├── deploy/             live demo: Dockerfile, start.sh, pinned requirements, Hugging Face Space page
+├── tests/              pytest suite (244 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)

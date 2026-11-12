@@ -1,0 +1,121 @@
+"""Deploy FinSight AI to a free Hugging Face Space (Docker) as a public demo.
+
+    python -m scripts.deploy_space build  <folder>     assemble the Space in <folder> (nothing is uploaded)
+    python -m scripts.deploy_space publish <folder>    upload it (needs HF_TOKEN, a "write" token, in the env)
+
+The Space gets the code, the deploy/ files (Dockerfile, start.sh, pinned requirements, Space README) and the
+ready-made data: search index, SEC figures, 10-K sections, saved answers and ONLY the fictional "kestrel_"
+sample uploads. Never included: .env, traces (visitors' questions), raw downloads, other uploads.
+The Gemini key is stored as a Space secret (read from .env, never printed or written to the folder).
+"""
+import json
+import os
+import re
+import shutil
+import sys
+from pathlib import Path
+
+from backend.config import (CACHE_DIR, DATA_DIR, METRICS_PATH, PROCESSED_DIR, PROJECT_ROOT, UPLOAD_COLLECTION,
+                            UPLOAD_DIR, VECTORSTORE_DIR)
+
+SPACE_NAME = "finsight-ai"
+CODE_DIRS = ["backend", "frontend", "ingestion", "samples", ".streamlit"]
+DEPLOY_FILES = {"Dockerfile": "Dockerfile", "start.sh": "start.sh", "requirements.txt": "requirements.txt",
+                "SPACE_README.md": "README.md"}
+SAMPLE_PREFIX = "kestrel_"                      # the fictional sample files are the only uploads made public
+SKIP = shutil.ignore_patterns("__pycache__", "*.pyc", ".pytest_cache")
+SECRET_PATTERNS = [re.compile(r"AIza[0-9A-Za-z_\-]{20,}"), re.compile(r"hf_[A-Za-z0-9]{20,}")]
+
+
+def sample_uploads() -> tuple[list[str], list[str]]:
+    """(doc_ids to publish, doc_ids/filenames to keep private)."""
+    public, private = [], []
+    for meta_path in UPLOAD_DIR.glob("*/meta.json"):
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        if meta["filename"].startswith(SAMPLE_PREFIX):
+            public.append(meta["doc_id"])
+        else:
+            private += [meta["doc_id"], meta["filename"]]
+    return public, private
+
+
+def check_index(out: Path, allowed: list[str]) -> None:
+    """The uploads collection in the copied index must hold nothing but the sample files."""
+    import chromadb
+    col = chromadb.PersistentClient(path=str(out / "vectorstore")).get_collection(UPLOAD_COLLECTION)
+    found = {m.get("doc_id") for m in col.get(include=["metadatas"])["metadatas"]}
+    if not found <= set(allowed):
+        sys.exit(f"Stopped: the search index contains non-sample uploads {sorted(found - set(allowed))}")
+
+
+def scan_for_secrets(out: Path) -> None:
+    """Every file, binary ones too (the index database holds text): no API key, no token, no private email."""
+    emails = [w for w in (os.getenv("SEC_USER_AGENT") or "").split() if "@" in w]   # "Name email@x" -> email
+    for path in out.rglob("*"):
+        if path.is_file():
+            text = path.read_bytes().decode("latin-1")
+            if any(p.search(text) for p in SECRET_PATTERNS) or any(e in text for e in emails):
+                sys.exit(f"Stopped: {path.relative_to(out)} contains a key or a private email")
+
+
+def build(out: Path) -> None:
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True)
+    for name in CODE_DIRS:
+        shutil.copytree(PROJECT_ROOT / name, out / name, ignore=SKIP)
+    for src, dst in DEPLOY_FILES.items():
+        text = (PROJECT_ROOT / "deploy" / src).read_text(encoding="utf-8").replace("\r\n", "\n")
+        (out / dst).write_text(text, encoding="utf-8", newline="\n")
+
+    public, private = sample_uploads()
+    shutil.copytree(PROCESSED_DIR, out / "data" / "processed")
+    shutil.copytree(METRICS_PATH.parent, out / "data" / "financial")        # copy2 keeps the timestamps
+    shutil.copytree(DATA_DIR / "raw" / "submissions", out / "data" / "raw" / "submissions")   # company profiles
+    for doc_id in public:
+        shutil.copytree(UPLOAD_DIR / doc_id, out / "data" / "uploads" / doc_id)
+    answers = out / "data" / "cache" / "answers"
+    answers.mkdir(parents=True)
+    kept = dropped = 0
+    for path in CACHE_DIR.glob("*.json"):
+        text = path.read_text(encoding="utf-8")
+        if any(p and p in text for p in private):        # an answer about a private file stays private
+            dropped += 1
+            continue
+        shutil.copy2(path, answers / path.name)
+        kept += 1
+    shutil.copytree(VECTORSTORE_DIR, out / "vectorstore")
+    (out / "deploy_meta.json").write_text(json.dumps({"metrics_mtime_ns": METRICS_PATH.stat().st_mtime_ns}),
+                                          encoding="utf-8")
+    check_index(out, public)
+    scan_for_secrets(out)
+    size = sum(p.stat().st_size for p in out.rglob("*") if p.is_file()) / 1e6
+    print(f"Built {out}: {len(public)} sample uploads, {kept} saved answers ({dropped} private ones left out), "
+          f"{size:.1f} MB. No secrets found.")
+
+
+def publish(out: Path) -> None:
+    from dotenv import dotenv_values
+    from huggingface_hub import HfApi
+
+    token = os.environ.get("HF_TOKEN")
+    if not token:
+        sys.exit("Set HF_TOKEN (a Hugging Face 'write' token) first.")
+    api = HfApi(token=token)
+    user = api.whoami()["name"]
+    repo_id = f"{user}/{SPACE_NAME}"
+    api.create_repo(repo_id, repo_type="space", space_sdk="docker", exist_ok=True)
+    gemini_key = dotenv_values(PROJECT_ROOT / ".env").get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+    if gemini_key:
+        api.add_space_secret(repo_id, "GEMINI_API_KEY", gemini_key)     # stored encrypted by Hugging Face
+    api.upload_folder(folder_path=str(out), repo_id=repo_id, repo_type="space",
+                      commit_message="Deploy FinSight AI (public demo)", delete_patterns=["*"])
+    print(f"Space:    https://huggingface.co/spaces/{repo_id}")
+    print(f"Live app: https://{user.lower()}-{SPACE_NAME}.hf.space")
+    print(f"Gemini key secret: {'set' if gemini_key else 'MISSING - add GEMINI_API_KEY in the Space settings'}")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3 or sys.argv[1] not in {"build", "publish"}:
+        sys.exit(__doc__)
+    (build if sys.argv[1] == "build" else publish)(Path(sys.argv[2]).resolve())
