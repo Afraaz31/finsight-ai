@@ -82,6 +82,27 @@ def test_monitoring_hides_the_question_column(public_demo, monkeypatch):
     assert any("abc123" in str(df.value) for df in app.dataframe)
 
 
+# ---------- Streamlit Cloud: backend inside the Streamlit process ----------
+def test_local_runs_never_start_the_embedded_api(tmp_path, monkeypatch):
+    from frontend import embedded_api
+    monkeypatch.setattr(embedded_api, "DEPLOY_META", tmp_path / "missing.json")
+    assert embedded_api.deploy_settings() is None
+
+
+def test_live_settings_are_applied_and_the_timestamp_restored(tmp_path, monkeypatch):
+    from frontend import embedded_api
+    metrics = tmp_path / "data" / "financial" / "metrics.csv"
+    metrics.parent.mkdir(parents=True)
+    metrics.write_text("x", encoding="utf-8")
+    monkeypatch.setattr(embedded_api, "ROOT", tmp_path)
+    monkeypatch.delenv("FINSIGHT_TEST_SETTING", raising=False)
+    embedded_api.apply_settings({"metrics_mtime_ns": 1_700_000_000_123_456_700,
+                                 "env": {"FINSIGHT_TEST_SETTING": "on"}})
+    assert metrics.stat().st_mtime_ns == 1_700_000_000_123_456_700
+    assert __import__("os").environ["FINSIGHT_TEST_SETTING"] == "on"
+    monkeypatch.delenv("FINSIGHT_TEST_SETTING")
+
+
 def test_sidebar_says_public_demo(public_demo):
     app = open_page()
     assert any("Public demo" in c.value for c in app.sidebar.caption)

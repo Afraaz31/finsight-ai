@@ -279,29 +279,31 @@ python -m scripts.preflight                 # checks keys, data, models, servers
 python -m scripts.prewarm                   # caches the demo questions' answers
 ```
 
-## Live demo deployment (Hugging Face Spaces)
+## Live demo deployment (Streamlit Community Cloud, free)
 
-The public demo runs on a free **Hugging Face Space** (Docker, CPU). One container runs both parts: FastAPI on `127.0.0.1:8000` (internal only) and Streamlit on the public port `7860`. The files are in [`deploy/`](deploy/):
+Streamlit Cloud runs one program, so on the live demo the FastAPI backend runs **inside the Streamlit process**, in a background thread on `127.0.0.1:8000` ([`frontend/embedded_api.py`](frontend/embedded_api.py)). The UI talks to it over HTTP exactly as it does locally. A normal local run never starts it.
 
-| File | What it does |
-|---|---|
-| `deploy/Dockerfile` | Python 3.11 slim, CPU-only PyTorch, pinned packages, embedding model downloaded at build time, runs as a non-root user |
-| `deploy/start.sh` | starts the API, waits for `/health`, then starts the UI |
-| `deploy/requirements.txt` | the exact versions the tests pass with |
-| `deploy/SPACE_README.md` | the Space's page on Hugging Face |
-| `scripts/deploy_space.py` | `build` assembles the Space with the ready-made data (search index, SEC figures, saved answers, the 4 fictional sample files only) and scans every file for keys and private data; `publish` uploads it and stores the Gemini key as an encrypted Space secret |
+The demo is deployed from the **`live-demo` branch**, which is generated, not edited by hand:
 
 ```bash
-python -m scripts.deploy_space build  ../finsight-space
-HF_TOKEN=hf_... python -m scripts.deploy_space publish ../finsight-space
+python -m scripts.deploy_space build-streamlit ../finsight-live   # then push that folder as the live-demo branch
 ```
 
-**Public demo mode** (`PUBLIC_DEMO=true`, set in the Dockerfile) makes the app safe for strangers:
+The build copies the code plus the ready-made data, so the app needs no ingestion:
+- **Data:** the search index, SEC figures, 10-K sections and saved answers.
+- **Uploads:** only the 4 fictional sample files. The build checks that the search index holds nothing else.
+- **Safety:** it scans every file for API keys and private data before anything is published.
+
+It also writes `deploy_meta.json` (the public demo settings) and a `requirements.txt` with the exact package versions plus **CPU-only PyTorch**: about 200 MB instead of 2 GB of GPU libraries. On Streamlit Cloud: branch `live-demo`, main file `frontend/app.py`, Python 3.11, and `GEMINI_API_KEY` in **Secrets**. The first visit after the app has been asleep takes about 2 minutes, while it loads the index and the embedding model.
+
+**Public demo mode** (`PUBLIC_DEMO=true`) makes the app safe for strangers:
 - **Uploads:** uploading and deleting files are turned off in the API and the UI, so no visitor sees another visitor's files. The 4 sample files stay available.
 - **Monitoring:** the page doesn't show visitors' questions; the API removes them from the traces.
 - **Quota protection:** a smaller daily AI budget (150 Gemini calls) and the rate limit protect the shared free quota.
-- **Saved answers:** the demo questions are pre-saved, so they answer instantly with no quota. The saved answers are keyed on the SEC figures file's timestamp, so `start.sh` restores the original timestamp after Hugging Face's checkout.
-- **Ollama:** the local backup model is off, because a free Space can't run it.
+- **Saved answers:** the demo questions are pre-saved, so they answer instantly with no quota. The saved answers are keyed on the SEC figures file's timestamp, so the original timestamp is restored after the git checkout.
+- **Ollama:** the local backup model is off, because the cloud can't run it.
+
+**Docker alternative:** [`deploy/`](deploy/) has a Dockerfile and `start.sh` for one container with both parts (`build` + `publish` in `scripts/deploy_space.py`, for a Hugging Face Space). Hugging Face now requires a paid PRO plan for Docker Spaces, so the free demo uses Streamlit Cloud.
 
 ---
 
@@ -377,7 +379,7 @@ Interactive documentation: **http://127.0.0.1:8000/docs**
 python -m pytest tests -v
 ```
 
-**244 tests** cover:
+**246 tests** cover:
 - the ingestion traps (amendments, table of contents, hidden XBRL)
 - chunking and retrieval filters
 - RAG prompt building and citations
@@ -428,7 +430,7 @@ The LLM, the embedding model and the network are replaced with fakes where neede
 - The free Gemini tier has daily limits and may use inputs for training, so only upload public or sample data.
 - XBRL comparisons use each company's own fiscal year, which isn't the same calendar period.
 - The guardrails are regex rules: cleverly worded attacks can slip past them, and a bare 10-digit number starting with 6-9 is redacted as a phone number. That's why there are several layers (system prompt, plan validation, no code execution, number guard).
-- The live demo runs on a free Space: it sleeps when unused (the first visit takes 1–2 minutes), all visitors share one free AI quota and one per-minute rate limit (every request reaches the API from the same Streamlit server), and new questions fail once all three Gemini models are out of quota (saved answers and exact figures still work).
+- The live demo runs on free Streamlit Community Cloud: it sleeps when unused (the first visit takes about 2 minutes), all visitors share one free AI quota and one per-minute rate limit (every request reaches the API from the same Streamlit server), and new questions fail once all three Gemini models are out of quota (saved answers and exact figures still work).
 
 ## Future improvements
 
@@ -454,11 +456,12 @@ finsight-ai/
 │   ├── ui.py           shared design: CSS, cards, answer rendering, sources, trail, cached API data
 │   ├── logos.py        FinSight + company logos (inline SVG, work offline)
 │   ├── api_client.py   HTTP calls to FastAPI
+│   ├── embedded_api.py live demo only: runs the API inside the Streamlit process
 │   ├── assets/         finsight_logo.svg, finsight_mark.svg (generated from logos.py)
 │   └── views/          home · ask · upload · compare · dashboard · how_it_works · monitoring
 ├── scripts/            CLI tools: ask, upload_cli, search_test, preflight, prewarm, check_gemini, sec_test, inspect_processed, deploy_space
-├── deploy/             live demo: Dockerfile, start.sh, pinned requirements, Hugging Face Space page
-├── tests/              pytest suite (244 tests)
+├── deploy/             pinned requirements for the live demo; Docker alternative (Dockerfile, start.sh)
+├── tests/              pytest suite (246 tests)
 ├── samples/            fictional sample files for testing uploads
 ├── docs/               interview guide, screenshots
 ├── data/  vectorstore/ generated (git-ignored)

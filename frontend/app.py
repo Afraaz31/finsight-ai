@@ -5,6 +5,7 @@ Run from the project root, with the API already running in another terminal:
 
 The UI only talks to the FastAPI backend (frontend/api_client.py). All AI and data work happens there.
 """
+import os
 import sys
 from pathlib import Path
 
@@ -12,6 +13,19 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))   # so "frontend" imports work under `streamlit run`
 
 import streamlit as st  # noqa: E402
+
+from frontend import embedded_api  # noqa: E402
+
+# Live demo only (Streamlit Community Cloud): settings first, because the modules below read them on import
+_LIVE = embedded_api.deploy_settings()
+if _LIVE:
+    embedded_api.apply_settings(_LIVE)
+    try:      # the Gemini key is pasted into Streamlit Cloud's "Secrets" box; the backend reads env vars
+        for _key, _value in st.secrets.items():
+            if isinstance(_value, str):
+                os.environ.setdefault(_key, _value)
+    except Exception:  # no secrets configured: the app still runs (saved answers + exact figures)
+        pass
 
 from frontend import ui  # noqa: E402
 from frontend.logos import finsight_mark, finsight_wordmark_svg  # noqa: E402
@@ -36,8 +50,16 @@ def init_state() -> None:
         st.session_state.setdefault(key, value)
 
 
+@st.cache_resource(show_spinner="Starting FinSight (loading the search index and the AI model)…")
+def start_embedded_api() -> bool:
+    """Live demo: one backend for all visitors, started once per server process."""
+    return embedded_api.start_api()
+
+
 ensure_logo_files()
 st.set_page_config(page_title="FinSight AI", page_icon=str(MARK), layout="wide")
+if _LIVE:
+    start_embedded_api()
 ui.apply_theme()
 init_state()
 st.logo(str(LOGO), size="large", icon_image=str(MARK))
