@@ -2,6 +2,10 @@
 
 **An AI financial research assistant that answers questions about company annual reports with evidence, and never invents a number.**
 
+[![Live demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://finsight-ai-pjpdeab37yjpiachcbrnrj.streamlit.app/)
+
+**▶ Live demo: https://finsight-ai-pjpdeab37yjpiachcbrnrj.streamlit.app/** (free hosting: if it has been asleep, the first visit takes about 2 minutes to wake up. In the public demo, file uploads are turned off and 4 sample files are ready to try.)
+
 FinSight AI reads the official SEC 10-K annual reports of **Apple, Microsoft, Amazon, Alphabet and NVIDIA**, plus any financial file you upload (PDF, TXT, DOCX, CSV, XLSX). It answers in plain English with **citations to the source documents**. Every figure comes either from the documents themselves or from an **exact Python calculation**. The AI explains numbers, but it never produces them.
 
 > Research and information only, not investment advice.
