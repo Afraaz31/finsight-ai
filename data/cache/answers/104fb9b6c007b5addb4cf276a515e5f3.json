@@ -1,0 +1,56 @@
+{
+  "question": "How did revenue grow year by year?",
+  "saved_at": "2026-11-07 11:59:22",
+  "result": {
+    "answer": "According to the \"Income Statement\" sheet in `kestrel_statements.xlsx`, the revenue grew steadily over the period, going from 352.40 in 2023 to 441.20 in 2025 in the file's units. \n\nHere is the year-by-year breakdown:\n* **2023 to 2024:** Revenue increased by 46.30 (a 13.14% growth) to reach 398.70.\n* **2024 to 2025:** Revenue further increased by 42.50 (a 10.66% growth) to reach 441.20.\n\nOverall, the total growth across these two years was an increase of 88.80, or 25.20%.",
+    "unverified_numbers": [],
+    "calculation": {
+      "plan": {
+        "operation": "growth",
+        "column": "Value",
+        "order_by": "Period",
+        "filters": [
+          {
+            "column": "Line Item",
+            "op": "==",
+            "value": "Revenue"
+          }
+        ]
+      },
+      "summary": "'Value' went from 352.40 (2023) to 441.20 (2025): change +88.80 (+25.20%)",
+      "table": [
+        {
+          "Period": 2023,
+          "Value": 352.4,
+          "change": NaN,
+          "change_%": NaN
+        },
+        {
+          "Period": 2024,
+          "Value": 398.7,
+          "change": 46.30000000000001,
+          "change_%": 13.14
+        },
+        {
+          "Period": 2025,
+          "Value": 441.2,
+          "change": 42.5,
+          "change_%": 10.66
+        }
+      ]
+    },
+    "sources": [
+      {
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Income Statement",
+        "detail": "'Value' went from 352.40 (2023) to 441.20 (2025): change +88.80 (+25.20%)"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_statements.xlsx"
+    ],
+    "cached": false
+  }
+}

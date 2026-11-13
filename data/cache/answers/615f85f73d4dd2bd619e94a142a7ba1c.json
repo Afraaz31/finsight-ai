@@ -1,0 +1,22 @@
+{
+  "question": "What are the main risks?",
+  "saved_at": "2026-11-06 19:35:44",
+  "result": {
+    "answer": "The main risks for Kestrel Outdoor Gear Ltd include supplier concentration, seasonality and weather, currency risk, and competition [3].\n\n* **Supplier concentration:** Approximately 70% of the company's fabric comes from two suppliers in Vietnam, meaning a disruption at either supplier could delay production for several months [3].\n* **Seasonality and weather:** About 45% of annual sales occur between October and December, and a warm winter can significantly reduce jacket sales [3].\n* **Currency risk:** While most costs are in US dollars, 35% of revenue is earned in euros, so a weaker euro reduces reported revenue [3].\n* **Competition:** A large sportswear brand entered the premium tent market in 2025 with lower prices, which may put pressure on company margins [3].",
+    "sources": [
+      {
+        "number": 3,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 3,
+        "excerpt": "3. Risk Factors\nSupplier concentration: about 70% of our fabric comes from two suppliers in Vietnam. A disruption\nat either supplier could delay production for several months.\nSeasonality and weather: around 45% of annual sales happen between October and December. A\nwarm winter can significantly red",
+        "score": 1.0
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf"
+    ],
+    "cached": false
+  }
+}

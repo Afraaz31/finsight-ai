@@ -1,0 +1,50 @@
+{
+  "question": "apple 2026 was good or bad as compare to profits of 2025??",
+  "saved_at": "2026-11-08 11:42:18",
+  "result": {
+    "answer": "For fiscal year 2026 compared to 2025, Apple reported the following profit-related figures (gross margin and operating expenses):\n\n* **Products Gross Margin:** $139,659 million for 2026, compared to $112,887 million for 2025 (and $109,633 million for 2024) [1].\n* **Services Gross Margin:** $93,943 million for 2026, compared to $82,314 million for 2025 (and $71,050 million for 2024) [1]. The sources note that the Services gross margin percentage increased during 2026 compared to 2025 primarily due to a different mix of services, partially offset by higher costs [3].\n* **Research and Development (R&D) Expense:** $45,765 million (or 10% of total net sales) for 2026, representing a 32% change, compared to $34,550 million (or 8% of total net sales) for 2025, which was a 10% change from $31,370 million in 2024 [3]. R&D expense increased in 2026 primarily due to higher infrastructure-related costs (including investments in artificial intelligence) and headcount-related expenses [2].\n* **Selling, General and Administrative (SG&A) Expense:** $29,774 million (or 6% of total net sales) for 2026, representing an 8% change, compared to $27,601 million (or 7% of total net sales) for 2025, which was a 6% change from $26,097 million in 2024 [2][3]. SG&A increased in 2026 due to various factors, none of which were significant individually or in the aggregate [2].\n* **Total Operating Expenses:** $75,539 million (or 16% of total net sales) for 2026, representing a 22% change, compared to $62,151 million (or 15% of total net sales) for 2025, which was an 8% change from $57,467 million in 2024 [2].\n\nWhether 2026 was \"good or bad\" overall involves interpretation, as the sources do not provide a net income total or characterize the year as a whole, though gross margins and operating expenses increased.",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.666,
+        "excerpt": "iPhone\niPhone net sales increased during 2026 compared to 2025 due to higher net sales of Pro models.\nMac\nMac net sales increased during 2026 compared to 2025 due to higher net sales of laptops.\niPad\niPad net sales during 2026 compared to 2025 were relatively flat.\nWearables, Home and Accessories\nWe"
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.636,
+        "excerpt": "Selling, general and administrative | $29,774 | 8% | $27,601 | 6% | $26,097\nPercentage of total net sales | 6% | 7% | 7%\nTotal operating expenses | $75,539 | 22% | $62,151 | 8% | $57,467\nPercentage of total net sales | 16% | 15% | 15%\nResearch and Development\nR&D expense increased during 2026 compar"
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.634,
+        "excerpt": "Services gross margin percentage increased during 2026 compared to 2025 primarily due to a different mix of services, partially offset by higher costs.\nThe Company’s future gross margins can be impacted by a variety of factors, as discussed in Part I, Item 1A of this Form 10-K under the heading “Ris"
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "question": "What was Apple's revenue in its latest reported fiscal year?",
+  "saved_at": "2026-11-08 13:55:50",
+  "result": {
+    "answer": "In Apple Inc.'s latest reported fiscal year (FY2026, covering the period from 2025-09-28 to 2026-09-26), its revenue was $478.83B. \n\nFor comparison, in the previous fiscal year (FY2025, covering 2024-09-29 to 2025-09-27), Apple's revenue was $416.16B. This represents a rise of +$62.67B (+15.06%). \n\n*Disclaimer: This information is for educational purposes only and does not constitute investment advice.*",
+    "sources": [],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 0,
+    "unverified_numbers": [],
+    "route": "numbers",
+    "financials": [
+      {
+        "metric": "revenue",
+        "label": "Revenue",
+        "fiscal_year": null,
+        "mode": "trend",
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2025,
+            "period_start": "2024-09-29",
+            "period_end": "2025-09-27",
+            "value": 416161000000.0,
+            "unit": "USD",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-25-000079",
+            "filed": "2025-10-31",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/",
+            "value_display": "$416.16B",
+            "yoy_change": null,
+            "yoy_change_pct": null
+          },
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 478834000000.0,
+            "unit": "USD",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$478.83B",
+            "yoy_change": 62673000000.0,
+            "yoy_change_pct": 15.06
+          }
+        ],
+        "summary": "Apple Inc.'s revenue rose from $416.16B (FY2025) to $478.83B (FY2026): a change of +$62.67B (+15.06%).",
+        "notes": []
+      }
+    ]
+  }
+}

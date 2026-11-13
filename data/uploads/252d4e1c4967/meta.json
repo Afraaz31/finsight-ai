@@ -1,0 +1,32 @@
+{
+  "doc_id": "252d4e1c4967",
+  "filename": "kestrel_statements.xlsx",
+  "extension": ".xlsx",
+  "size_bytes": 6019,
+  "uploaded_at": "2026-11-06 19:35:01",
+  "kind": "table",
+  "tables": [
+    {
+      "sheet": "Income Statement",
+      "file": "table_0.csv",
+      "rows": 24,
+      "columns": [
+        "Line Item",
+        "Period",
+        "Value"
+      ],
+      "reshaped_to_long": true
+    },
+    {
+      "sheet": "Expenses",
+      "file": "table_1.csv",
+      "rows": 12,
+      "columns": [
+        "Category",
+        "Period",
+        "Value"
+      ],
+      "reshaped_to_long": true
+    }
+  ]
+}

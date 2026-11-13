@@ -1,0 +1,70 @@
+{
+  "question": "What are the main risks?",
+  "saved_at": "2026-11-07 11:58:03",
+  "result": {
+    "answer": "Based on the provided filings, the companies identify several main risk factors in their Item 1A Risk Factors sections:\n\n* **Microsoft Corporation (FY2025 and FY2026):** Highlights risks related to global pandemics (depending on duration, scope, governmental/individual actions, and economic impacts like recession or financial instability) and the unclear long-term effects of climate change, including environmental regulations and changes in energy and resource supply, demand, or availability [1][3].\n* **Alphabet Inc. (FY2025):** Reports that its systems are vulnerable to damage, interference, or interruption from various sources, including modifications/upgrades, terrorist or state-sponsored attacks, natural disasters or pandemics, geopolitical tensions, trade barriers, climate change effects, utility and telecommunications failures, software bugs, cyber attacks, and supply-chain attacks [2]. It also notes that some data centers are in areas prone to major earthquakes or natural disasters [2].\n* **Apple Inc. (FY2026):** Summarizes that various factors could have a material adverse effect on its business, reputation, results of operations, financial condition, and stock price, though the specific factors are not detailed beyond this summary [4].\n* **NVIDIA Corporation (FY2026):** Lists risks including domestic and international economic and political conditions, government lockdowns for health issues, legal and cultural differences, capital market disruptions, counter-inflation policies, currency fluctuations, natural disasters, war, terrorism, public health issues, international trade restrictions (such as tariffs and sanctions), and catastrophic events [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.445,
+        "excerpt": "The extent to which global pandemics impact our business going forward will depend on factors such as the duration and scope of the pandemic; governmental, business, and individuals' actions in response to the pandemic; and the impact on economic activity, including the possibility of recession or f"
+      },
+      {
+        "number": 2,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.43,
+        "excerpt": "Our systems are vulnerable to damage, interference, or interruption from modifications or upgrades, terrorist attacks, state-sponsored attacks, natural disasters or pandemics, geopolitical tensions or armed conflicts, export controls and sanctions, tariffs and non-tariff trade barriers, the effects "
+      },
+      {
+        "number": 3,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2025,
+        "period_end": "2025-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm",
+        "score": 0.428,
+        "excerpt": "The extent to which global pandemics impact our business going forward will depend on factors such as the duration and scope of the pandemic; governmental, business, and individuals' actions in response to the pandemic; and the impact on economic activity, including the possibility of recession or f"
+      },
+      {
+        "number": 4,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.425,
+        "excerpt": "Item 1A. Risk Factors\nThe following summarizes factors that could have a material adverse effect on the Company’s business, reputation, results of operations, financial condition and stock price. The Company may not be able to accurately predict, control or mitigate these risks. Statements in this s"
+      },
+      {
+        "number": 5,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.424,
+        "excerpt": "These include domestic and international economic and political conditions in countries in which we and our suppliers and manufacturers do business, government lockdowns to control case spread of global or local health issues, differing legal standards with respect to protection of IP and employment"
+      }
+    ],
+    "companies": [],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

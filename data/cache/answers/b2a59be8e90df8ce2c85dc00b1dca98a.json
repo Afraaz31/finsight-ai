@@ -1,0 +1,14 @@
+{
+  "question": "Who is the CEO?",
+  "saved_at": "2026-11-06 19:36:25",
+  "result": {
+    "answer": "The uploaded document doesn't contain enough information to answer this.",
+    "sources": [],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf"
+    ],
+    "cached": false
+  }
+}

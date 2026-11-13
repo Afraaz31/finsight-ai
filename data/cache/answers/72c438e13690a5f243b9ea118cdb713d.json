@@ -1,0 +1,72 @@
+{
+  "question": "audit report of apple",
+  "saved_at": "2026-11-08 11:44:02",
+  "result": {
+    "answer": "Apple’s independent registered public accounting firm, Ernst & Young LLP, issued audit reports on the company's financial statements and internal control over financial reporting for fiscal year 2026 [3][5]. \n\n* **Internal Control over Financial Reporting:** Ernst & Young LLP audited Apple's internal control over financial reporting as of September 26, 2026, and expressed an unqualified opinion on it in their report dated November 3, 2026 [3]. \n* **Management and Auditor Responsibilities:** Apple's management is responsible for the financial statements, maintaining effective internal control over financial reporting, and assessing its effectiveness [2][3]. The auditors' responsibility is to express an opinion on the financial statements and internal control over financial reporting based on their audits [2][3].\n* **Audit Standards:** The audits were conducted in accordance with the standards of the Public Company Accounting Oversight Board (United States) (PCAOB) [3][4]. The audits included procedures to assess risks of material misstatement (due to error or fraud), examining evidence on a test basis, evaluating accounting principles and management estimates, and evaluating overall financial statement presentation [1].\n* **Independence and Registration:** The auditing firm is registered with the PCAOB and is required to be independent with respect to Apple under U.S. federal securities laws and the applicable rules and regulations of the SEC and the PCAOB [2][4].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.766,
+        "excerpt": "Our audits included performing procedures to assess the risks of material misstatement of the financial statements, whether due to error or fraud, and performing procedures that respond to those risks. Such procedures included examining, on a test basis, evidence regarding the amounts and disclosure"
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.709,
+        "excerpt": "Basis for Opinion\nThe Company’s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting included in the accompanying Management’s Annual Report on Internal Control over Fina"
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.706,
+        "excerpt": "We also have audited, in accordance with the standards of the Public Company Accounting Oversight Board (United States) (“PCAOB”), the Company’s internal control over financial reporting as of September 26, 2026, based on criteria established in Internal Control – Integrated Framework issued by the "
+      },
+      {
+        "number": 4,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.689,
+        "excerpt": "Our responsibility is to express an opinion on the Company’s financial statements based on our audits. We are a public accounting firm registered with the PCAOB and are required to be independent with respect to the Company in accordance with the U.S. federal securities laws and the applicable rules"
+      },
+      {
+        "number": 5,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 9A. Controls and Procedures",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.683,
+        "excerpt": "The Company’s independent registered public accounting firm, Ernst & Young LLP, has issued an audit report on the Company’s internal control over financial reporting, which appears in Part II, Item 8 of this Form 10-K.\nChanges in Internal Control over Financial Reporting\nThere were no changes in the"
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

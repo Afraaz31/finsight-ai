@@ -1,0 +1,87 @@
+{
+  "question": "What are NVIDIA's major business risks?",
+  "saved_at": "2026-11-08 12:49:59",
+  "result": {
+    "answer": "According to NVIDIA's Form 10-K for FY2026 (period ending 2026-01-25), the company discloses several major business risks related to disruptions, product liability, economic conditions, geographical concentration, and security incidents.\n\n* **Business Disruptions:** Operations could be harmed, revenues could decline, and costs could increase due to natural disasters, extreme weather, power or water shortages, infrastructure or telecommunications failures, supplier disruptions, terrorist attacks, acts of violence, political or civil unrest, acts of war, epidemics or pandemics, and abrupt regulatory changes [1].\n* **Product Liability Claims:** Defending against product liability claims—even if caused by third parties like those in the supply chain—could be significant, divert technical and management personnel, and harm the business [2]. Additionally, business liability insurance may be inadequate or future coverage unavailable [2].\n* **Adverse Economic and Global Conditions:** Domestic and international economic and political conditions, government lockdowns, differing legal and business standards, capital market disruptions, counter-inflation policies, currency fluctuations, and international trade restrictions (such as tariffs, sanctions, and export/import controls) can harm the business [3].\n* **Geographical Concentration:** The location and consolidation of NVIDIA, its third-party foundries, and other suppliers in certain geographical areas presents unknown risks if a disaster, war, or catastrophic event occurs, potentially leading to revenue declines, increased expenses, and lengthy recovery times [4].\n* **Security Incidents:** Past or perceived security incidents can lead to government enforcement actions, reporting requirements, data processing restrictions, litigation, reputational harm, financial loss, data loss, and disruptions in systems, operations, and the supply chain [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.809,
+        "excerpt": "Business disruptions could harm our operations, lead to a decline in revenue and increase our costs.\nFactors that have caused and/or could in the future cause disruptions to our worldwide operations include: natural disasters, extreme weather conditions, power or water shortages, critical infrastruc",
+        "text": "Business disruptions could harm our operations, lead to a decline in revenue and increase our costs.\nFactors that have caused and/or could in the future cause disruptions to our worldwide operations include: natural disasters, extreme weather conditions, power or water shortages, critical infrastructure failures, telecommunications failures, supplier disruptions, terrorist attacks, acts of violence, political and/or civil unrest, acts of war or other military\nactions, epidemics or pandemics, abrupt regulatory changes, and other natural or man-made disasters and catastrophic events.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Business%20disruptions%20could%20harm%20our,and%20increase%20our%20costs."
+      },
+      {
+        "number": 2,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.803,
+        "excerpt": "In general, if a product liability claim regarding any of our products is brought against us, even if the alleged damage is due to the actions or inactions of a third party, such as within our supply chain, the cost of defending the claim could be significant and would divert the efforts of our tech",
+        "text": "In general, if a product liability claim regarding any of our products is brought against us, even if the alleged damage is due to the actions or inactions of a third party, such as within our supply chain, the cost of defending the claim could be significant and would divert the efforts of our technical and management personnel and harm our business. Further, our business liability insurance may be inadequate or future coverage may be unavailable on acceptable terms, which could adversely impact our financial results.\nRisks Related to Our Global Operating Business\nAdverse economic conditions may harm our business.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=In%20general%2C%20if%20a%20product,and%20harm%20our%20business."
+      },
+      {
+        "number": 3,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.796,
+        "excerpt": "These include domestic and international economic and political conditions in countries in which we and our suppliers and manufacturers do business, government lockdowns to control case spread of global or local health issues, differing legal standards with respect to protection of IP and employment",
+        "text": "These include domestic and international economic and political conditions in countries in which we and our suppliers and manufacturers do business, government lockdowns to control case spread of global or local health issues, differing legal standards with respect to protection of IP and employment practices, different domestic and international business and cultural practices, disruptions to capital markets, counter-inflation policies, currency fluctuations, natural disasters, acts of war or other military actions, terrorism, public health issues, restrictions on international trade, such as tariffs, sanctions, and other controls on imports or exports, and catastrophic events.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=These%20include%20domestic%20and%20international,exports%2C%20and%20catastrophic%20events."
+      },
+      {
+        "number": 4,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.791,
+        "excerpt": "The ultimate impact on us, our third-party foundries and other suppliers of being located and consolidated in certain geographical areas is unknown. In the event a disaster, war, or catastrophic event affects us, the third-party systems on which we rely, or our customers, our business could be harme",
+        "text": "The ultimate impact on us, our third-party foundries and other suppliers of being located and consolidated in certain geographical areas is unknown. In the event a disaster, war, or catastrophic event affects us, the third-party systems on which we rely, or our customers, our business could be harmed as a result of declines in revenue, increases in expenses, and substantial expenditures and time spent to fully resume operations. Our business continuity and disaster recovery planning may not be sufficient for all eventualities. All of these risks and conditions could materially adversely affect our future sales and operating results.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=The%20ultimate%20impact%20on%20us%2C,geographical%20areas%20is%20unknown."
+      },
+      {
+        "number": 5,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.79,
+        "excerpt": "If we or a third party we rely on experience a security incident, which has occurred in the past, or are perceived to have experienced a security incident, we may experience adverse consequences, including government enforcement actions, additional reporting requirements and/or oversight, restrictio",
+        "text": "If we or a third party we rely on experience a security incident, which has occurred in the past, or are perceived to have experienced a security incident, we may experience adverse consequences, including government enforcement actions, additional reporting requirements and/or oversight, restrictions on processing data, litigation, indemnification obligations, reputational harm, diversion of funds, diversion of management attention, financial loss, loss of data, material disruptions in our systems and operations, supply chain, and ability to produce, sell and distribute our goods and services, and other similar harms.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=If%20we%20or%20a%20third,and%20other%20similar%20harms."
+      }
+    ],
+    "companies": [
+      "NVDA"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

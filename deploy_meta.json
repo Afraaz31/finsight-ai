@@ -1,0 +1,9 @@
+{
+  "metrics_mtime_ns": 1794125733088487300,
+  "env": {
+    "PUBLIC_DEMO": "true",
+    "OLLAMA_ENABLED": "false",
+    "RATE_LIMIT_PER_MINUTE": "20",
+    "DAILY_LLM_CALL_LIMIT": "150"
+  }
+}

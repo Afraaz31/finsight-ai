@@ -1,0 +1,72 @@
+{
+  "question": "What are the main risks?",
+  "saved_at": "2026-11-07 11:58:35",
+  "result": {
+    "answer": "According to Apple Inc.’s Form 10-K for FY2026 (period ending September 26, 2026), the company's business, reputation, results of operations, financial condition, and stock price are subject to various risks and uncertainties [1]. \n\n* **Public Health Issues:** Major public health issues, including pandemics, can adversely affect the global economy, consumer demand, and the company's operations, supply chain, and sales channels [2].\n* **External Disruptions:** Political events, trade and international disputes, geopolitical tensions, conflict, terrorism, natural disasters, industrial accidents, and other business interruptions can materially affect the company and its partners (such as suppliers, developers, employees, and distributors) [3].\n* **Regulatory and Legal Obligations:** Changing laws, regulations, and legal obligations can lead to complex compliance measures, operational disruptions, heightened privacy and data security risks, increased costs, penalties, fines, and legal liability [4].\n* **Financial Volatility:** The company's net sales, gross margins, and results of operations are subject to volatility and downward pressure from various factors [4].\n* **Product and Service Quality Issues:** Defects in components or products can create safety risks, including property damage and personal injury, particularly as products enter specialized applications like health and financial services [5]. Additionally, service offerings and software can experience outages, slowdowns, errors, or performance issues [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.425,
+        "excerpt": "Item 1A. Risk Factors\nThe following summarizes factors that could have a material adverse effect on the Company’s business, reputation, results of operations, financial condition and stock price. The Company may not be able to accurately predict, control or mitigate these risks. Statements in this s"
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.397,
+        "excerpt": "Major public health issues, including pandemics, have adversely affected, and could in the future materially adversely affect, the Company due to their impact on the global economy and demand for consumer products; the imposition of protective public safety measures, such as stringent employee trave"
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.397,
+        "excerpt": "These and other impacts can materially adversely affect the Company’s business, results of operations, financial condition and stock price.\nThe Company’s business can be impacted by political events, trade and other international disputes, geopolitical tensions, conflict, terrorism, natural disaster"
+      },
+      {
+        "number": 4,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.394,
+        "excerpt": "These obligations can increase regulatory risks by requiring complex compliance measures and significant modifications to the Company’s products, services and operations, and may lead to operational disruptions, heightened privacy and data security risks, and increased costs, all of which could have"
+      },
+      {
+        "number": 5,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.394,
+        "excerpt": "Defects can exist in components and products designed by the Company or that the Company purchases from third parties. Defects could make the Company’s products unsafe and create a risk of environmental or property damage and personal injury. These risks may increase as the Company’s products are in"
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

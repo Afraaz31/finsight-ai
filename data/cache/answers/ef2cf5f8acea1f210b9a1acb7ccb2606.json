@@ -1,0 +1,78 @@
+{
+  "question": "Compare Apple's revenue with Microsoft's",
+  "saved_at": "2026-11-08 12:50:01",
+  "result": {
+    "answer": "Apple Inc.’s revenue for its fiscal year 2026 (ended September 26, 2026) was $478.83B. Microsoft Corporation’s revenue for its fiscal year 2026 (ended June 30, 2026) was $331.84B. \n\nApple's revenue is $147.00B higher than Microsoft's, which is 44.30% higher. \n\nNote: The fiscal years end on different dates, meaning these figures represent each company's own latest full fiscal year rather than the exact same calendar period. No investment advice is provided.",
+    "sources": [],
+    "companies": [
+      "AAPL",
+      "MSFT"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 0,
+    "unverified_numbers": [],
+    "route": "numbers",
+    "financials": [
+      {
+        "metric": "revenue",
+        "label": "Revenue",
+        "fiscal_year": null,
+        "mode": "compare",
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 478834000000.0,
+            "unit": "USD",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$478.83B",
+            "yoy_change": 62673000000.0,
+            "yoy_change_pct": 15.06,
+            "rank": 1,
+            "difference_vs_leader": 0.0,
+            "share_of_leader_pct": 100.0
+          },
+          {
+            "ticker": "MSFT",
+            "company": "Microsoft Corporation",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2026,
+            "period_start": "2025-07-01",
+            "period_end": "2026-06-30",
+            "value": 331839000000.0,
+            "unit": "USD",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0001193125-26-323660",
+            "filed": "2026-07-29",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/",
+            "value_display": "$331.84B",
+            "yoy_change": 50115000000.0,
+            "yoy_change_pct": 17.79,
+            "rank": 2,
+            "difference_vs_leader": -146995000000.0,
+            "share_of_leader_pct": 69.3
+          }
+        ],
+        "summary": "Apple Inc.'s revenue ($478.83B, FY2026) is $147.00B higher than Microsoft Corporation's ($331.84B, FY2026), or 44.30% higher.",
+        "notes": [
+          "Fiscal years end on different dates (AAPL 2026-09-26, MSFT 2026-06-30). Each figure is that company's own latest full fiscal year, not the same calendar period."
+        ]
+      }
+    ]
+  }
+}

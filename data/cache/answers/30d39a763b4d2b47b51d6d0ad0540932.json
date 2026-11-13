@@ -1,0 +1,126 @@
+{
+  "question": "Explain Amazon's operating income",
+  "saved_at": "2026-11-08 13:59:23",
+  "result": {
+    "answer": "Amazon.com, Inc.'s operating income rose from $68.59B (FY2024) to $79.97B (FY2025): a change of +$11.38B (+16.59%) [F]. \n\nThis suggests improving financial performance overall across the company's segments.\n\n* **Consolidated Operating Income:** Total operating income was $68,593 million in 2024 and $79,975 million in 2025 [1].\n* **Operating Income by Segment:**\n  * **North America:** $24,967 million in 2024 and $29,619 million in 2025 [1]. The increase in 2025 was primarily driven by increased unit sales and increased advertising sales, which were partially offset by higher fulfillment, technology and infrastructure, shipping, and other operating costs [2]. Foreign exchange rates had a negative impact of $204 million on operating income in 2025 [2].\n  * **International:** $3,792 million in 2024 and $4,750 million in 2025 (prior to 2024, the International segment reported an operating loss of $(2,656) million) [3].\n  * **AWS:** $39,834 million in 2024 and $45,606 million in 2025 (prior to 2024, AWS operating income was $24,631 million) [3].\n* **Drivers of Operating Income Increases:** Company management states that increases in operating income primarily result from higher sales of products and services along with efficient management of operating costs, though these are partially offset by investments in longer-term strategic initiatives, such as capital expenditures to improve the customer experience [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.768,
+        "excerpt": "General and Administrative\nGeneral and administrative costs in 2025 did not significantly change compared to the prior year.\nOther Operating Expense (Income), Net\nOther operating expense (income), net was $763 million and $4.6 billion during 2024 and 2025. The increase in 2025 was primarily related ",
+        "text": "General and Administrative\nGeneral and administrative costs in 2025 did not significantly change compared to the prior year.\nOther Operating Expense (Income), Net\nOther operating expense (income), net was $763 million and $4.6 billion during 2024 and 2025. The increase in 2025 was primarily related to the settlement of a lawsuit with the Federal Trade Commission (the “FTC”) in Q3 2025, and also included the resolution of tax disputes associated with our stores business in Italy, and physical stores and other asset impairments.\nOperating Income\nOperating income by segment is as follows (in millions):\n2024 | 2025\nOperating Income\nNorth America | $24,967 | $29,619\nInternational | 3,792 | 4,750\nAWS | 39,834 | 45,606\nConsolidated | $68,593 | $79,975",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=General%20and%20administrative%20costs%20in,to%20the%20prior%20year."
+      },
+      {
+        "number": 2,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.748,
+        "excerpt": "For more information on the operating expenses that impact segment operating income, see “Operating Expenses” and the descriptions of operating expense line item changes on pages 25 to 27, and “Note 10 — Segment Information” on page 67.\nThe increase in North America operating income in 2025, compare",
+        "text": "For more information on the operating expenses that impact segment operating income, see “Operating Expenses” and the descriptions of operating expense line item changes on pages 25 to 27, and “Note 10 — Segment Information” on page 67.\nThe increase in North America operating income in 2025, compared to the prior year, is primarily due to increased unit sales and increased advertising sales, partially offset by increased fulfillment, technology and infrastructure, shipping, and other operating costs. Changes in foreign exchange rates negatively impacted operating income by $204 million in 2025.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=The%20increase%20in%20North%20America,and%20other%20operating%20costs."
+      },
+      {
+        "number": 3,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.702,
+        "excerpt": "AWS\nThe AWS segment consists of amounts earned from global sales of compute, storage, database, and other services for start-ups, enterprises, government agencies, and academic institutions.\nInformation on reportable segments and reconciliation to consolidated net income is as follows (in millions):",
+        "text": "AWS\nThe AWS segment consists of amounts earned from global sales of compute, storage, database, and other services for start-ups, enterprises, government agencies, and academic institutions.\nInformation on reportable segments and reconciliation to consolidated net income is as follows (in millions):\nNorth America\nNet sales | $352,828 | $387,497 | $426,305\nOperating expenses | 337,951 | 362,530 | 396,686\nOperating income | $14,877 | $24,967 | $29,619\nInternational\nNet sales | $131,200 | $142,906 | $161,894\nOperating expenses | 133,856 | 139,114 | 157,144\nOperating income (loss) | $( 2,656 ) | $3,792 | $4,750\nAWS\nNet sales | $90,757 | $107,556 | $128,725\nOperating expenses | 66,126 | 67,722 | 83,119\nOperating income | $24,631 | $39,834 | $45,606\nConsolidated",
+        "section_id": "8",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=The%20AWS%20segment%20consists%20of,agencies%2C%20and%20academic%20institutions."
+      },
+      {
+        "number": 5,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.699,
+        "excerpt": "Increases in operating income primarily result from increases in sales of products and services and efficiently managing our operating costs, partially offset by investments we make in longer-term strategic initiatives, including capital expenditures focused on improving the customer experience. To ",
+        "text": "Increases in operating income primarily result from increases in sales of products and services and efficiently managing our operating costs, partially offset by investments we make in longer-term strategic initiatives, including capital expenditures focused on improving the customer experience. To increase sales of products and services, we focus on improving all aspects of the customer experience, including lowering prices, improving availability, offering faster delivery and performance times, increasing selection, producing original content, increasing product categories and service offerings, expanding product information, improving ease of use, improving reliability, and earning customer trust.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Increases%20in%20operating%20income%20primarily,improving%20the%20customer%20experience."
+      }
+    ],
+    "companies": [
+      "AMZN"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": [],
+    "route": "both",
+    "financials": [
+      {
+        "metric": "operating_income",
+        "label": "Operating income",
+        "fiscal_year": null,
+        "mode": "trend",
+        "rows": [
+          {
+            "ticker": "AMZN",
+            "company": "Amazon.com, Inc.",
+            "metric": "operating_income",
+            "label": "Operating income",
+            "fiscal_year": 2024,
+            "period_start": "2024-01-01",
+            "period_end": "2024-12-31",
+            "value": 68593000000.0,
+            "unit": "USD",
+            "tag": "OperatingIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0001018724-25-000004",
+            "filed": "2025-02-07",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872425000004/",
+            "value_display": "$68.59B",
+            "yoy_change": null,
+            "yoy_change_pct": null
+          },
+          {
+            "ticker": "AMZN",
+            "company": "Amazon.com, Inc.",
+            "metric": "operating_income",
+            "label": "Operating income",
+            "fiscal_year": 2025,
+            "period_start": "2025-01-01",
+            "period_end": "2025-12-31",
+            "value": 79975000000.0,
+            "unit": "USD",
+            "tag": "OperatingIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0001018724-26-000004",
+            "filed": "2026-02-06",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/",
+            "value_display": "$79.97B",
+            "yoy_change": 11382000000.0,
+            "yoy_change_pct": 16.59
+          }
+        ],
+        "summary": "Amazon.com, Inc.'s operating income rose from $68.59B (FY2024) to $79.97B (FY2025): a change of +$11.38B (+16.59%).",
+        "notes": []
+      }
+    ]
+  }
+}

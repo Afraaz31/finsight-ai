@@ -1,0 +1,129 @@
+{
+  "question": "Does the revenue in the spreadsheet match the annual report?",
+  "saved_at": "2026-11-08 18:37:19",
+  "result": {
+    "answer": "Yes, the revenue figures in the spreadsheets match the annual report for the overlapping years. \n\n* **2022:** Revenue is recorded as $310.00 million in `kestrel_financials.csv` [T1]. (This year is not mentioned in the annual report).\n* **2023:** Revenue is $352.40 million in both `kestrel_financials.csv` [T1] and `kestrel_statements.xlsx` [T2]. (This year is not explicitly detailed in the annual report text, though historical growth is discussed).\n* **2024:** Revenue is $398.70 million in `kestrel_financials.csv` [T1], `kestrel_statements.xlsx` [T2], and `kestrel_annual_report.pdf` (page 2) [2].\n* **2025:** Revenue is $441.20 million in `kestrel_financials.csv` [T1], `kestrel_statements.xlsx` [T2], and `kestrel_annual_report.pdf` (page 2) [2].",
+    "sources": [
+      {
+        "number": 2,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 2,
+        "excerpt": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expen",
+        "text": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expenses were $112.4 million, up from $101.6 million, driven by higher marketing spend\nfor the new Summit tent range. Net income was $61.9 million, compared with $52.3 million in fiscal\n2024.\nUSD millions\nFY2024\nFY2025\nRevenue\n398.7\n441.2\nGross Profit\n173.8\n198.2\nOperating Expenses\n101.6\n112.4\nNet Income\n52.3\n61.9\nCash and cash equivalents at year end were $87.4 million. The company has no long-term debt.",
+        "score": 1.0
+      },
+      {
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "detail": "4 matching rows",
+        "ref": "T1"
+      },
+      {
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Income Statement",
+        "detail": "3 matching rows",
+        "ref": "T2"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf",
+      "kestrel_financials.csv",
+      "kestrel_statements.xlsx"
+    ],
+    "cached": false,
+    "calculation": null,
+    "calculations": [
+      {
+        "ref": "T1",
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "plan": {
+          "operation": "lookup",
+          "columns": [
+            "Year",
+            "Revenue"
+          ]
+        },
+        "summary": "4 matching rows",
+        "table": [
+          {
+            "Year": 2022,
+            "Revenue": 310.0
+          },
+          {
+            "Year": 2023,
+            "Revenue": 352.4
+          },
+          {
+            "Year": 2024,
+            "Revenue": 398.7
+          },
+          {
+            "Year": 2025,
+            "Revenue": 441.2
+          }
+        ]
+      },
+      {
+        "ref": "T2",
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Income Statement",
+        "plan": {
+          "operation": "lookup",
+          "columns": [
+            "Period",
+            "Value"
+          ],
+          "filters": [
+            {
+              "column": "Line Item",
+              "op": "==",
+              "value": "Revenue"
+            }
+          ]
+        },
+        "summary": "3 matching rows",
+        "table": [
+          {
+            "Period": 2023,
+            "Value": 352.4
+          },
+          {
+            "Period": 2024,
+            "Value": 398.7
+          },
+          {
+            "Period": 2025,
+            "Value": 441.2
+          }
+        ]
+      }
+    ],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "Comparing revenue between the spreadsheets and the annual report requires both spreadsheet calculations and document reading.",
+      "agents": [
+        {
+          "agent": "Spreadsheet Agent",
+          "task": "What are the revenue values across the periods/years?",
+          "files": [
+            "kestrel_financials.csv",
+            "kestrel_statements.xlsx"
+          ],
+          "status": "done"
+        },
+        {
+          "agent": "Document Agent",
+          "task": "What are the revenue figures reported in the annual report?",
+          "files": [
+            "kestrel_annual_report.pdf"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  }
+}

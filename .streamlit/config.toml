@@ -1,0 +1,17 @@
+# FinSight AI - Streamlit settings (read automatically when you run streamlit from the project root)
+[theme]
+base = "dark"
+primaryColor = "#3B82F6"              # FinSight blue: buttons, links, active items
+backgroundColor = "#060A14"           # deep navy page
+secondaryBackgroundColor = "#111A2E"  # inputs, expanders
+textColor = "#EEF2FA"
+font = "sans serif"
+
+[server]
+maxUploadSize = 10                    # MB - same limit as the API
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"               # hide the "Deploy" button

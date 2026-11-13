@@ -1,0 +1,71 @@
+{
+  "question": "What are Apple's main business risks?",
+  "saved_at": "2026-11-06 12:41:02",
+  "result": {
+    "answer": "According to Apple Inc.’s FY2026 Form 10-K, the company faces several significant business risks that could adversely affect its financial condition, results of operations, and stock price:\n\n*   **Operational and Supply Chain Risks:** The company faces risks related to manufacturing and delivery delays, supply chain inefficiencies, and service outages [3]. It is also vulnerable to industrial accidents at supplier or contract manufacturer facilities, which could disrupt business and harm its reputation [3].\n*   **Market and Product Concentration:** Apple generates a significant portion of its net sales from a single product category [2]. A decline in demand for this product or its services—including third-party licensing arrangements—could significantly impact net sales and gross margins [2].\n*   **Geopolitical and Regional Risks:** Apple may be required to suspend or exit operations in specific countries or regions with little warning, a risk that is heightened in areas where the company has a high concentration of customers, employees, or manufacturing [1].\n*   **Economic and Financial Risks:** Adverse economic conditions may lead to reduced liquidity, credit and collectibility risks, and the potential insolvency of counterparties [5].\n*   **Reseller and Consumer Behavior:** Changes in consumer purchasing preferences, the weakening of reseller financial conditions, or the decision by resellers to stop distributing Apple products could negatively impact the business [4].\n*   **Other Factors:** The company is also exposed to risks from information technology system failures, network disruptions, and potential liabilities or reputational harm arising from varied stakeholder expectations regarding social issues [1][4].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.795,
+        "excerpt": "Such actions could require the Company to suspend or exit operations, or limit the Company’s ability to offer certain products, services and technologies, in an affected country or region with little advance warning. These risks are heightened in regions where the Company has a concentration of cust"
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.792,
+        "excerpt": "fit margins. These and other factors could have a material adverse effect on the Company’s business, results of operations, financial condition and stock price. Further, the Company generates a significant portion of its net sales from a single product category and certain of the Company’s services,"
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.779,
+        "excerpt": "Such events can make it difficult or impossible for the Company to manufacture and deliver products, create delays and inefficiencies in the Company’s supply and manufacturing chain, result in slowdowns and outages to the Company’s service offerings, increase costs, and negatively impact consumer sp"
+      },
+      {
+        "number": 4,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.759,
+        "excerpt": "These programs can require a substantial investment while not assuring return or incremental sales. For example, the purchasing preferences and behaviors of consumers may change, the financial condition of resellers could weaken, resellers could stop distributing the Company’s products, or uncertain"
+      },
+      {
+        "number": 5,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.758,
+        "excerpt": "Potential outcomes include financial instability, inability to obtain credit, and insolvency.\nAdverse economic conditions can also lead to increased credit and collectibility risk on the Company’s trade receivables; the failure of derivative counterparties and other financial institutions; limitatio"
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.1-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5
+  }
+}

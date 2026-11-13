@@ -1,0 +1,33 @@
+{
+  "question": "What are the main risks mentioned?",
+  "saved_at": "2026-11-08 18:42:42",
+  "result": {
+    "answer": "The documents mention several main risks relating to suppliers, seasonality, currency, and competition.\n\n* **Supplier concentration:** About 70% of fabric comes from two suppliers in Vietnam, meaning a disruption at either supplier could delay production for several months [kestrel_annual_report.pdf].\n* **Seasonality and weather:** Around 45% of annual sales occur between October and December, and a warm winter can significantly reduce jacket sales [kestrel_annual_report.pdf]. Additionally, inventory of waterproof jackets is 25% above target after the season [kestrel_board_memo.txt].\n* **Currency risk:** Most costs are in US dollars, but 35% of revenue is earned in euros [kestrel_annual_report.pdf]. A weaker euro reduces reported revenue, as seen in December when it reduced reported revenue by about $3.1 million in Q4 [kestrel_board_memo.txt, kestrel_annual_report.pdf].\n* **Competition:** A large sportswear brand entered the premium tent market in 2025 with lower prices, which may put pressure on margins [kestrel_annual_report.pdf].\n* **Shipping and costs:** Shipping costs rose 19% in 2025 because of longer sea routes [kestrel_board_memo.txt].\n\n*Interpretation: These factors highlight vulnerabilities in Kestrel's supply chain, reliance on specific weather conditions and currency stability, and rising competitive and shipping pressures.*",
+    "sources": [],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf",
+      "kestrel_board_memo.txt"
+    ],
+    "cached": false,
+    "calculation": null,
+    "calculations": [],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "The question asks for qualitative information (risks) contained in the document files.",
+      "agents": [
+        {
+          "agent": "Document Agent",
+          "task": "What are the main risks mentioned in the documents?",
+          "files": [
+            "kestrel_board_memo.txt",
+            "kestrel_annual_report.pdf"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  }
+}

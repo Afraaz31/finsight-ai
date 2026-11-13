@@ -1,0 +1,120 @@
+{
+  "question": "Does the revenue in the spreadsheet match the annual report?",
+  "saved_at": "2026-11-08 18:41:32",
+  "result": {
+    "answer": "Yes, the revenue figures in the spreadsheets generally match the annual report, though the two spreadsheet files contain different row counts.\n\n* Kestrel Outdoor Gear Ltd's annual report states that fiscal year 2025 revenue was 441.2 million and fiscal year 2024 revenue was 398.7 million [2].\n* `kestrel_financials.csv` lists four matching rows for revenue: 310.00, 352.40, 398.70, and 441.20 [T1]. The latter two values match the annual report [2].\n* `kestrel_statements.xlsx` lists three matching rows for value: 352.40, 398.70, and 441.20 [T2]. The latter two values also match the annual report [2].",
+    "sources": [
+      {
+        "number": 2,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 2,
+        "excerpt": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expen",
+        "text": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expenses were $112.4 million, up from $101.6 million, driven by higher marketing spend\nfor the new Summit tent range. Net income was $61.9 million, compared with $52.3 million in fiscal\n2024.\nUSD millions\nFY2024\nFY2025\nRevenue\n398.7\n441.2\nGross Profit\n173.8\n198.2\nOperating Expenses\n101.6\n112.4\nNet Income\n52.3\n61.9\nCash and cash equivalents at year end were $87.4 million. The company has no long-term debt.",
+        "score": 1.0
+      },
+      {
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "detail": "4 matching rows",
+        "ref": "T1"
+      },
+      {
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Income Statement",
+        "detail": "3 matching rows",
+        "ref": "T2"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf",
+      "kestrel_financials.csv",
+      "kestrel_statements.xlsx"
+    ],
+    "cached": false,
+    "calculation": null,
+    "calculations": [
+      {
+        "ref": "T1",
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "plan": {
+          "operation": "lookup",
+          "columns": [
+            "Revenue"
+          ]
+        },
+        "summary": "4 matching rows",
+        "table": [
+          {
+            "Revenue": 310.0
+          },
+          {
+            "Revenue": 352.4
+          },
+          {
+            "Revenue": 398.7
+          },
+          {
+            "Revenue": 441.2
+          }
+        ]
+      },
+      {
+        "ref": "T2",
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Income Statement",
+        "plan": {
+          "operation": "lookup",
+          "columns": [
+            "Value"
+          ],
+          "filters": [
+            {
+              "column": "Line Item",
+              "op": "==",
+              "value": "Revenue"
+            }
+          ]
+        },
+        "summary": "3 matching rows",
+        "table": [
+          {
+            "Value": 352.4
+          },
+          {
+            "Value": 398.7
+          },
+          {
+            "Value": 441.2
+          }
+        ]
+      }
+    ],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "Comparing revenue between the spreadsheet and the annual report requires checking data from both spreadsheet files and the PDF annual report.",
+      "agents": [
+        {
+          "agent": "Spreadsheet Agent",
+          "task": "What is the revenue value in the spreadsheet?",
+          "files": [
+            "kestrel_financials.csv",
+            "kestrel_statements.xlsx"
+          ],
+          "status": "done"
+        },
+        {
+          "agent": "Document Agent",
+          "task": "What is the revenue figure stated in the annual report?",
+          "files": [
+            "kestrel_annual_report.pdf"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  }
+}

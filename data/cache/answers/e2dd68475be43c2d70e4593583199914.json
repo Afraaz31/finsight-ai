@@ -1,0 +1,22 @@
+{
+  "question": "What was revenue in fiscal 2025 and how much did it grow?",
+  "saved_at": "2026-11-06 19:35:34",
+  "result": {
+    "answer": "Kestrel Outdoor Gear Ltd's revenue for fiscal 2025 was $441.2 million, which represents an increase of 10.7% from the previous fiscal year [2].\n\n* **Fiscal 2025 Revenue:** $441.2 million [2].\n* **Fiscal 2024 Revenue:** $398.7 million [2].\n* **Growth:** An increase of 10.7% (or an absolute increase of $42.5 million) [2].",
+    "sources": [
+      {
+        "number": 2,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 2,
+        "excerpt": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expen",
+        "score": 1.0
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf"
+    ],
+    "cached": false
+  }
+}

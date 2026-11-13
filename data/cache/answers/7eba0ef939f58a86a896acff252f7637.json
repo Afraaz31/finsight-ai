@@ -1,0 +1,69 @@
+{
+  "question": "profit and loss of apple",
+  "saved_at": "2026-11-08 12:56:13",
+  "result": {
+    "answer": "For Apple Inc., looking at the profit and loss through net income: in FY2025 (period ending September 27, 2025), Apple reported a net income of $112.01B. In FY2026 (period ending September 26, 2026), net income rose to $132.18B. \n\nThis represents an increase of +$20.16B, or +18.00%. If someone were to call FY2026 a \"good\" year based solely on this metric, the figures show that profitability improved significantly. This suggests strong earnings growth over the period, though a complete profit and loss assessment would also require reviewing revenue and operating expenses. \n\n*No investment advice given.*",
+    "sources": [],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 0,
+    "unverified_numbers": [],
+    "route": "numbers",
+    "financials": [
+      {
+        "metric": "net_income",
+        "label": "Net income",
+        "fiscal_year": null,
+        "mode": "trend",
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2025,
+            "period_start": "2024-09-29",
+            "period_end": "2025-09-27",
+            "value": 112010000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-25-000079",
+            "filed": "2025-10-31",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/",
+            "value_display": "$112.01B",
+            "yoy_change": null,
+            "yoy_change_pct": null
+          },
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 132175000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$132.18B",
+            "yoy_change": 20165000000.0,
+            "yoy_change_pct": 18.0
+          }
+        ],
+        "summary": "Apple Inc.'s net income rose from $112.01B (FY2025) to $132.18B (FY2026): a change of +$20.16B (+18.00%).",
+        "notes": []
+      }
+    ]
+  }
+}

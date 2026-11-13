@@ -1,0 +1,59 @@
+{
+  "question": "Show me Microsoft's annual report",
+  "saved_at": "2026-11-08 12:42:32",
+  "result": {
+    "answer": "Microsoft operates its business and reports financial performance using three operating segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing [1]. \n\nFor the fiscal year 2026 compared with fiscal year 2025 (periods ending June 30, 2026), Microsoft reported the following financial details:\n\n* **Total Revenue:** $331,839 million in fiscal year 2026 compared to $281,724 million in fiscal year 2025, an increase of 18% [3].\n* **Total Cost of Revenue:** $106,374 million in fiscal year 2026 compared to $87,831 million in fiscal year 2025, an increase of 21% [3].\n* **Total Operating Expenses:** $70,228 million in fiscal year 2026 compared to $65,365 million in fiscal year 2025, an increase of 7% [3].\n* **Total Operating Income:** $155,237 million in fiscal year 2026 compared to $128,528 million in fiscal year 2025, an increase of 21% [3].\n* **Productivity and Business Processes Segment:** Revenue increased by $19.2 billion or 16% [3]. Microsoft 365 Commercial products and cloud services revenue increased by $14.2 billion or 16%, with Microsoft 365 Commercial cloud revenue growing 17% [3].\n* **More Personal Computing Segment:** Revenue was $54,052 million in fiscal year 2026 compared to $54,649 million in fiscal year 2025 ((1)% change); cost of revenue was $23,481 million compared to $25,238 million ((7)% change); operating expenses were $16,185 million compared to $15,245 million (6% change); and operating income was $14,386 million compared to $14,166 million (2% change) [3].\n* **Sales and Marketing Expenses:** Increased by $1.1 billion or 4%, driven by investments in commercial sales and higher Copilot advertising expenses [4].\n* **General and Administrative Expenses:** $7,956 million (2% of revenue) in fiscal year 2026 compared to $7,223 million (3% of revenue) in fiscal year 2025, representing a 10% increase [4].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.622,
+        "excerpt": "More information about our progress toward these goals can be found in our annual Environmental Sustainability Report.\nOPERATING SEGMENTS\nWe operate our business and report our financial performance using three segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Compu",
+        "text": "More information about our progress toward these goals can be found in our annual Environmental Sustainability Report.\nOPERATING SEGMENTS\nWe operate our business and report our financial performance using three segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing. Our segments provide management with a comprehensive financial view of our key businesses. The segments enable the alignment of strategies and objectives across the development, sales, marketing, and services organizations, and they provide a framework for timely and rational allocation of resources within businesses.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=More%20information%20about%20our%20progress,annual%20Environmental%20Sustainability%20Report."
+      },
+      {
+        "number": 3,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.641,
+        "excerpt": "Operating income | $56,972 | $44,589 | 28%\nMore Personal Computing\nRevenue | $54,052 | $54,649 | (1)%\nCost of revenue | 23,481 | 25,238 | (7)%\nOperating expenses | 16,185 | 15,245 | 6%\nOperating income | $14,386 | $14,166 | 2%\nTotal\nRevenue | $331,839 | $281,724 | 18%\nCost of revenue | 106,374 | 87,",
+        "text": "Operating income | $56,972 | $44,589 | 28%\nMore Personal Computing\nRevenue | $54,052 | $54,649 | (1)%\nCost of revenue | 23,481 | 25,238 | (7)%\nOperating expenses | 16,185 | 15,245 | 6%\nOperating income | $14,386 | $14,166 | 2%\nTotal\nRevenue | $331,839 | $281,724 | 18%\nCost of revenue | 106,374 | 87,831 | 21%\nOperating expenses | 70,228 | 65,365 | 7%\nOperating income | $155,237 | $128,528 | 21%\nReportable Segments\nFiscal Year 2026 Compared with Fiscal Year 2025\nProductivity and Business Processes\nRevenue increased $19.2 billion or 16%.\nMicrosoft 365 Commercial products and cloud services revenue increased $14.2 billion or 16%. Microsoft 365 Commercial cloud revenue grew 17% with growth in revenue per user driven by Microsoft 365 Copilot and Microsoft 365 E5.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=Fiscal%20Year%202026%20Compared%20with,with%20Fiscal%20Year%202025"
+      },
+      {
+        "number": 4,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.633,
+        "excerpt": "Fiscal Year 2026 Compared with Fiscal Year 2025\nSales and marketing expenses increased $1.1 billion or 4% driven by investments in commercial sales and higher Copilot advertising expenses.\nGeneral and Administrative\n(In millions, except percentages) | 2026 | 2025 | Percentage Change\nGeneral and admi",
+        "text": "Fiscal Year 2026 Compared with Fiscal Year 2025\nSales and marketing expenses increased $1.1 billion or 4% driven by investments in commercial sales and higher Copilot advertising expenses.\nGeneral and Administrative\n(In millions, except percentages) | 2026 | 2025 | Percentage Change\nGeneral and administrative | $7,956 | $7,223 | 10%\nAs a percent of revenue | 2% | 3% | (1)ppt\nGeneral and administrative expenses include payroll, employee benefits, stock-based compensation expense, and other headcount-related expenses associated with finance, legal, facilities, certain human resources and other administrative personnel, certain taxes, and legal and other administrative fees.\nFiscal Year 2026 Compared with Fiscal Year 2025",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=Fiscal%20Year%202026%20Compared%20with,with%20Fiscal%20Year%202025"
+      }
+    ],
+    "companies": [
+      "MSFT"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 6,
+    "unverified_numbers": []
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "question": "What are the main risks mentioned?",
+  "saved_at": "2026-11-08 18:49:09",
+  "result": {
+    "answer": "The main risks mentioned in the documents relate to supplier concentration, seasonality and weather, currency fluctuations, and market competition [3][5].\n\n* **Supplier concentration:** About 70% of the company's fabric comes from two suppliers in Vietnam, and a disruption at either could delay production for several months [5].\n* **Seasonality and weather:** Around 45% of annual sales occur between October and December, and a warm winter can significantly reduce jacket sales [5].\n* **Currency risk:** Most costs are in US dollars, but 35% of revenue is earned in euros, meaning a weaker euro reduces reported revenue [5]. The euro also weakened against the dollar in December, reducing reported revenue by about $3.1 million in Q4 [1][2].\n* **Competition:** A large sportswear brand entered the premium tent market in 2025 with lower prices, which may put pressure on margins [5].\n* **Additional operational concerns:** The CFO raised concerns that shipping costs rose 19% in 2025 due to longer sea routes, and inventory of waterproof jackets is 25% above target after the season [1]. \n\n*This is a factual summary of the provided documents; no investment advice is given.*",
+    "sources": [
+      {
+        "number": 1,
+        "filename": "kestrel_board_memo.txt",
+        "page": 1,
+        "excerpt": "BOARD MEMO - Kestrel Outdoor Gear Ltd - 14 January 2026\nFICTIONAL SAMPLE DATA - created for testing FinSight AI. Kestrel Outdoor Gear Ltd is not a real company.\nSubject: Preliminary Q4 2025 results and 2026 priorities\nQ4 2025 revenue was $168.3 million, the strongest quarter in the company's history",
+        "text": "BOARD MEMO - Kestrel Outdoor Gear Ltd - 14 January 2026\nFICTIONAL SAMPLE DATA - created for testing FinSight AI. Kestrel Outdoor Gear Ltd is not a real company.\nSubject: Preliminary Q4 2025 results and 2026 priorities\nQ4 2025 revenue was $168.3 million, the strongest quarter in the company's history, helped by early winter weather in Europe.\nOnline sales grew 18% year on year in Q4, while partner-store sales grew 6%.\nMain concerns raised by the CFO:\n- Shipping costs rose 19% in 2025 because of longer sea routes.\n- Inventory of waterproof jackets is 25% above target after the season.\n- The euro weakened against the dollar in December, reducing reported revenue by about $3.1 million in Q4.",
+        "score": 1.0
+      },
+      {
+        "number": 2,
+        "filename": "kestrel_board_memo.txt",
+        "page": 1,
+        "excerpt": "- The euro weakened against the dollar in December, reducing reported revenue by about $3.1 million in Q4.\n2026 priorities: sign the Portugal fabric supplier by March, reduce jacket inventory by 20% before June, and launch the Summit tent range in 12 new markets.",
+        "text": "- The euro weakened against the dollar in December, reducing reported revenue by about $3.1 million in Q4.\n2026 priorities: sign the Portugal fabric supplier by March, reduce jacket inventory by 20% before June, and launch the Summit tent range in 12 new markets.",
+        "score": 1.0
+      },
+      {
+        "number": 3,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 1,
+        "excerpt": "Kestrel Outdoor Gear Ltd\nAnnual Report - Fiscal Year 2025 (year ended 31 December 2025)\nFICTIONAL SAMPLE DATA - created for testing FinSight AI. Kestrel Outdoor Gear Ltd is not a real\ncompany.\n1. Business Overview\nKestrel Outdoor Gear Ltd designs and sells hiking backpacks, tents and waterproof jack",
+        "text": "Kestrel Outdoor Gear Ltd\nAnnual Report - Fiscal Year 2025 (year ended 31 December 2025)\nFICTIONAL SAMPLE DATA - created for testing FinSight AI. Kestrel Outdoor Gear Ltd is not a real\ncompany.\n1. Business Overview\nKestrel Outdoor Gear Ltd designs and sells hiking backpacks, tents and waterproof jackets. The\ncompany sells through its own website (58% of revenue in fiscal 2025) and through 240 partner\nretail stores in Europe and North America (42% of revenue).\nThe company has two segments: Outdoor Equipment (backpacks and tents) and Apparel (jackets\nand base layers). Outdoor Equipment generated $263.5 million of revenue in fiscal 2025 and\nApparel generated $177.7 million.",
+        "score": 1.0
+      },
+      {
+        "number": 5,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 3,
+        "excerpt": "3. Risk Factors\nSupplier concentration: about 70% of our fabric comes from two suppliers in Vietnam. A disruption\nat either supplier could delay production for several months.\nSeasonality and weather: around 45% of annual sales happen between October and December. A\nwarm winter can significantly red",
+        "text": "3. Risk Factors\nSupplier concentration: about 70% of our fabric comes from two suppliers in Vietnam. A disruption\nat either supplier could delay production for several months.\nSeasonality and weather: around 45% of annual sales happen between October and December. A\nwarm winter can significantly reduce jacket sales.\nCurrency risk: most costs are in US dollars, but 35% of revenue is earned in euros. A weaker euro\nreduces reported revenue.\nCompetition: a large sportswear brand entered the premium tent market in 2025 with lower prices,\nwhich may put pressure on our margins.\n4. Outlook\nFor fiscal 2026, management expects revenue growth of 7% to 9% and plans to add a third fabric\nsupplier in Portugal to reduce supplier concentration risk.",
+        "score": 1.0
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf",
+      "kestrel_board_memo.txt"
+    ],
+    "cached": false,
+    "calculation": null,
+    "calculations": [],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "The question asks for qualitative information (risks) contained within the text documents.",
+      "agents": [
+        {
+          "agent": "Document Agent",
+          "task": "What are the main risks mentioned in the documents?",
+          "files": [
+            "kestrel_board_memo.txt",
+            "kestrel_annual_report.pdf"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  }
+}

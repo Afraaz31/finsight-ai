@@ -1,0 +1,126 @@
+{
+  "question": "Was Apple's 2026 profit better than 2025?",
+  "saved_at": "2026-11-08 12:50:15",
+  "result": {
+    "answer": "Apple Inc.'s net income rose from $112.01B (FY2025) to $132.18B (FY2026), representing a change of +$20.16B (+18.00%) [F]. Based on these figures, this suggests that Apple's profit was better in fiscal year 2026 compared to fiscal year 2025 (this is an interpretation of the figures).\n\nHere are additional details regarding Apple's financial performance and expenses for FY2026 compared to FY2025:\n* **Gross Margin:** Products gross margin was $139,659 million in 2026, $112,887 million in 2025, and $109,633 million in 2024 [1]. Services gross margin was $93,943 million in 2026, $82,314 million in 2025, and $71,050 million in 2024 [1].\n* **Research and Development (R&D) Expense:** R&D expenses were $45,765 million (representing 10% of total net sales with a 32% change) in 2026, $34,550 million (8% of total net sales, 10% change) in 2025, and $31,370 million (8% of total net sales) in 2024 [2][3]. The increase in 2026 was primarily due to higher infrastructure-related costs (including artificial intelligence investments) and headcount-related expenses [3].\n* **Selling, General and Administrative (SG&A) Expense:** SG&A expenses were $29,774 million (6% of total net sales, 8% change) in 2026, $27,601 million (7% of total net sales, 6% change) in 2025, and $26,097 million (7% of total net sales) in 2024 [2][3]. \n* **Total Operating Expenses:** Total operating expenses were $75,539 million (16% of total net sales, 22% change) in 2026, $62,151 million (15% of total net sales, 8% change) in 2025, and $57,467 million (15% of total net sales) in 2024 [2][3].\n* **Provision for Income Taxes:** The provision for income taxes was $27,062 million in 2026, $20,719 million in 2025, and $29,749 million in 2024 [5]. The effective tax rate was 17.0% in 2026, 15.6% in 2025, and 24.1% in 2024 [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.695,
+        "excerpt": "iPhone\niPhone net sales increased during 2026 compared to 2025 due to higher net sales of Pro models.\nMac\nMac net sales increased during 2026 compared to 2025 due to higher net sales of laptops.\niPad\niPad net sales during 2026 compared to 2025 were relatively flat.\nWearables, Home and Accessories\nWe",
+        "text": "iPhone\niPhone net sales increased during 2026 compared to 2025 due to higher net sales of Pro models.\nMac\nMac net sales increased during 2026 compared to 2025 due to higher net sales of laptops.\niPad\niPad net sales during 2026 compared to 2025 were relatively flat.\nWearables, Home and Accessories\nWearables, Home and Accessories net sales during 2026 compared to 2025 were relatively flat.\nServices\nServices net sales increased during 2026 compared to 2025 primarily due to higher net sales from advertising and cloud services.\nGross Margin\nProducts and Services gross margin and gross margin percentage for 2026, 2025 and 2024 were as follows (dollars in millions):\n2026 | 2025 | 2024\nGross margin:\nProducts | $139,659 | $112,887 | $109,633\nServices | 93,943 | 82,314 | 71,050",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=iPhone%20net%20sales%20increased%20during,sales%20of%20Pro%20models."
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.673,
+        "excerpt": "Services gross margin percentage increased during 2026 compared to 2025 primarily due to a different mix of services, partially offset by higher costs.\nThe Company’s future gross margins can be impacted by a variety of factors, as discussed in Part I, Item 1A of this Form 10-K under the heading “Ris",
+        "text": "Services gross margin percentage increased during 2026 compared to 2025 primarily due to a different mix of services, partially offset by higher costs.\nThe Company’s future gross margins can be impacted by a variety of factors, as discussed in Part I, Item 1A of this Form 10-K under the heading “Risk Factors.” As a result, the Company believes, in general, gross margins will be subject to volatility and downward pressure.\nOperating Expenses\nOperating expenses for 2026, 2025 and 2024 were as follows (dollars in millions):\n2026 | Change | 2025 | Change | 2024\nResearch and development | $45,765 | 32% | $34,550 | 10% | $31,370\nPercentage of total net sales | 10% | 8% | 8%\nSelling, general and administrative | $29,774 | 8% | $27,601 | 6% | $26,097\nPercentage of total net sales | 6% | 7% | 7%",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=Services%20gross%20margin%20percentage%20increased,offset%20by%20higher%20costs."
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.664,
+        "excerpt": "Selling, general and administrative | $29,774 | 8% | $27,601 | 6% | $26,097\nPercentage of total net sales | 6% | 7% | 7%\nTotal operating expenses | $75,539 | 22% | $62,151 | 8% | $57,467\nPercentage of total net sales | 16% | 15% | 15%\nResearch and Development\nR&D expense increased during 2026 compar",
+        "text": "Selling, general and administrative | $29,774 | 8% | $27,601 | 6% | $26,097\nPercentage of total net sales | 6% | 7% | 7%\nTotal operating expenses | $75,539 | 22% | $62,151 | 8% | $57,467\nPercentage of total net sales | 16% | 15% | 15%\nResearch and Development\nR&D expense increased during 2026 compared to 2025 primarily due to higher infrastructure-related costs, including investments in artificial intelligence, and headcount-related expenses.\nSelling, General and Administrative\nSelling, general and administrative expense increased during 2026 compared to 2025. The increase was driven by various factors, none of which were significant individually or in the aggregate.\nProvision for Income Taxes",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=R%26D%20expense%20increased%20during%202026,intelligence%2C%20and%20headcount%2Drelated%20expenses."
+      },
+      {
+        "number": 5,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.638,
+        "excerpt": "The increase was driven by various factors, none of which were significant individually or in the aggregate.\nProvision for Income Taxes\nProvision for income taxes and effective tax rate for 2026, 2025 and 2024 were as follows (dollars in millions):\n2026 | 2025 | 2024\nProvision for income taxes | $27",
+        "text": "The increase was driven by various factors, none of which were significant individually or in the aggregate.\nProvision for Income Taxes\nProvision for income taxes and effective tax rate for 2026, 2025 and 2024 were as follows (dollars in millions):\n2026 | 2025 | 2024\nProvision for income taxes | $27,062 | $20,719 | $29,749\nEffective tax rate | 17.0% | 15.6% | 24.1%\nThe Company’s effective tax rate for 2026 was higher compared to 2025 primarily due to a higher effective tax rate on foreign earnings, the impact of foreign currency loss regulations issued by the U.S.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=The%20increase%20was%20driven%20by,or%20in%20the%20aggregate."
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": [],
+    "route": "both",
+    "financials": [
+      {
+        "metric": "net_income",
+        "label": "Net income",
+        "fiscal_year": null,
+        "mode": "trend",
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2025,
+            "period_start": "2024-09-29",
+            "period_end": "2025-09-27",
+            "value": 112010000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-25-000079",
+            "filed": "2025-10-31",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/",
+            "value_display": "$112.01B",
+            "yoy_change": null,
+            "yoy_change_pct": null
+          },
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 132175000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$132.18B",
+            "yoy_change": 20165000000.0,
+            "yoy_change_pct": 18.0
+          }
+        ],
+        "summary": "Apple Inc.'s net income rose from $112.01B (FY2025) to $132.18B (FY2026): a change of +$20.16B (+18.00%).",
+        "notes": []
+      }
+    ]
+  }
+}

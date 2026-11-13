@@ -1,0 +1,50 @@
+{
+  "question": "Explain the business segments of Alphabet",
+  "saved_at": "2026-11-07 19:34:24",
+  "result": {
+    "answer": "Alphabet reports its operations across two segments and a collective grouping of non-Google businesses, along with centralized activities [1]. \n\n* **Google Services and Google Cloud:** Alphabet reports Google in these two segments [1].\n* **Other Bets:** All non-Google businesses are reported collectively as Other Bets [1]. These operate as independent companies—some with their own boards featuring independent members and outside investors—and are in various stages of development from research and development (such as X, a moonshot factory) to scaling commercialization (such as Waymo, which expands domestically and internationally) [2][5]. Their revenues are generated primarily from selling autonomous transportation and internet services [2].\n* **Alphabet-level activities:** Supporting these businesses, Alphabet-level activities report centralized AI-related research and development focused on advanced research and developing frontier models that serve Alphabet's businesses [1].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.666,
+        "excerpt": "We report Google in two segments, Google Services and Google Cloud, and all non-Google businesses collectively as Other Bets. Supporting these businesses, we have centralized certain AI-related research and development focused on advanced research in AI and developing the frontier models that serve "
+      },
+      {
+        "number": 2,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.634,
+        "excerpt": "Other Bets operate as independent companies and some of them have their own boards with independent members and outside investors. While these early-stage businesses naturally come with considerable uncertainty, some of them are already generating revenue and making important strides in their indust"
+      },
+      {
+        "number": 5,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.621,
+        "excerpt": "Other Bets\nAcross Alphabet, we are also using technology to try to solve big problems that affect a wide variety of industries, including transportation and health technology. Alphabet’s investment in the portfolio of Other Bets includes businesses that are at various stages of development, ranging "
+      }
+    ],
+    "companies": [
+      "GOOGL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

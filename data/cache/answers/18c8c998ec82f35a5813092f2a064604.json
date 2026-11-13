@@ -1,0 +1,28 @@
+{
+  "question": "What were total expenses?",
+  "saved_at": "2026-11-06 19:39:12",
+  "result": {
+    "answer": "Based on your **my_budget.csv** file (sheet: **csv**), the total expenses across 4 rows came to **7,555.75** in the file's units.",
+    "calculation": {
+      "plan": {
+        "operation": "sum",
+        "column": "Expenses"
+      },
+      "summary": "sum of 'Expenses' = 7,555.75 (4 rows used)",
+      "table": null
+    },
+    "sources": [
+      {
+        "filename": "my_budget.csv",
+        "sheet": "csv",
+        "detail": "sum of 'Expenses' = 7,555.75 (4 rows used)"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "my_budget.csv"
+    ],
+    "cached": false
+  }
+}

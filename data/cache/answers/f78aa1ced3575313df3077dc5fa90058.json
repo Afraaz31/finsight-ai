@@ -1,0 +1,87 @@
+{
+  "question": "What are Amazon's major risks?",
+  "saved_at": "2026-11-08 12:38:41",
+  "result": {
+    "answer": "Based on Amazon's Form 10-K for the fiscal year ended 2025-12-31, the company faces several major risks described in its risk factors:\n\n* **System and Operations Interruptions:** Computer and communications systems and operations could be damaged or interrupted by natural or human-caused disasters (including public health crises), extreme weather (including climate change), geopolitical events, security issues (like terrorist attacks and armed hostilities), computer viruses, physical or electronic break-ins, and operational failures such as energy shortages [1]. These events can cause system interruptions, delays, data loss, and prevent customer order fulfillment [1].\n* **Supply Chain and Inventory Disruptions:** Amazon's ability to efficiently receive inbound inventory and ship completed orders to customers can be negatively affected by natural or human-caused disasters, extreme weather, geopolitical events, security issues, labor or trade disputes, and tariff policy changes [3].\n* **Global and Geopolitical Factors:** Global economic and geopolitical conditions, political conflicts (including those involving China), labor or trade disputes (including restrictive governmental actions impacting Amazon, customers, third-party sellers, and suppliers in China or foreign countries), and tariff policy changes (such as U.S. and foreign tariffs and retaliatory actions) can give rise to or amplify risks [2][4]. \n* **Impact on Customers and Third-Party Sellers:** Many of these risks also impact Amazon's customers and third-party sellers, which could indirectly cause a material adverse effect on the company [2].\n* **Competition:** Amazon faces intense competition in its business and industry [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.78,
+        "excerpt": "Our computer and communications systems and operations in the past have been, or in the future could be, damaged or interrupted due to events such as natural or human-caused disasters (including public health crises) or extreme weather (including as a result of climate change), geopolitical events a",
+        "text": "Our computer and communications systems and operations in the past have been, or in the future could be, damaged or interrupted due to events such as natural or human-caused disasters (including public health crises) or extreme weather (including as a result of climate change), geopolitical events and security issues (including terrorist attacks and armed hostilities), computer viruses, physical or electronic break-ins, operational failures (including from energy shortages), and similar events or disruptions. Any of these events could cause system interruption, delays, and loss of critical data, and could prevent us from accepting and fulfilling customer orders and providing services, which could make our product and service offerings less attractive and subject us to liability.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Our%20computer%20and%20communications%20systems,similar%20events%20or%20disruptions."
+      },
+      {
+        "number": 2,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.775,
+        "excerpt": "In addition to the factors discussed in Item 7 of Part II, “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” and in the risk factors below, global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give ",
+        "text": "In addition to the factors discussed in Item 7 of Part II, “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” and in the risk factors below, global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give rise to or amplify many of the risks discussed below. Many of the risks discussed below also impact our customers, including third-party sellers, which could indirectly have a material adverse effect on us. The disclosures in this section reflect our beliefs and opinions as to factors that could materially and adversely affect us in the future.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=In%20addition%20to%20the%20factors,the%20risks%20discussed%20below."
+      },
+      {
+        "number": 3,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.765,
+        "excerpt": "In addition, our ability to receive inbound inventory efficiently and ship completed orders to customers also may be negatively affected by natural or human-caused disasters (including public health crises) or extreme weather (including as a result of climate change), geopolitical events and securit",
+        "text": "In addition, our ability to receive inbound inventory efficiently and ship completed orders to customers also may be negatively affected by natural or human-caused disasters (including public health crises) or extreme weather (including as a result of climate change), geopolitical events and security issues, labor or trade disputes, tariff policy changes, and similar events.\nWe Could Be Harmed by Data Loss or Other Security Incidents",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=In%20addition%2C%20our%20ability%20to,changes%2C%20and%20similar%20events."
+      },
+      {
+        "number": 4,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.758,
+        "excerpt": "•disruptions from natural or human-caused disasters (including public health crises) or extreme weather (including as a result of climate change), geopolitical events and security issues (including terrorist attacks, armed hostilities, and political conflicts, including those involving China), labor",
+        "text": "•disruptions from natural or human-caused disasters (including public health crises) or extreme weather (including as a result of climate change), geopolitical events and security issues (including terrorist attacks, armed hostilities, and political conflicts, including those involving China), labor or trade disputes (including restrictive governmental actions impacting us, our customers, and our third-party sellers and suppliers in China or other foreign countries), tariff policy changes (such as tariffs proposed or implemented by the U.S. and other countries and any retaliatory actions), and similar events; and",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=disruptions%20from%20natural%20or%20human%2Dcaused,implemented%20by%20the%20U.S."
+      },
+      {
+        "number": 5,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.742,
+        "excerpt": "The disclosures in this section reflect our beliefs and opinions as to factors that could materially and adversely affect us in the future. References to past events are provided by way of example only and are not intended to be a complete listing or a representation as to whether or not such factor",
+        "text": "The disclosures in this section reflect our beliefs and opinions as to factors that could materially and adversely affect us in the future. References to past events are provided by way of example only and are not intended to be a complete listing or a representation as to whether or not such factors have occurred in the past.\nBusiness and Industry Risks\nWe Face Intense Competition",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=The%20disclosures%20in%20this%20section,us%20in%20the%20future."
+      }
+    ],
+    "companies": [
+      "AMZN"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "doc_id": "7de5e77218e5",
+  "filename": "kestrel_financials.csv",
+  "extension": ".csv",
+  "size_bytes": 172,
+  "uploaded_at": "2026-11-06 19:34:54",
+  "kind": "table",
+  "tables": [
+    {
+      "sheet": "csv",
+      "file": "table_0.csv",
+      "rows": 4,
+      "columns": [
+        "Year",
+        "Revenue",
+        "Cost of Goods Sold",
+        "Operating Expenses",
+        "Net Income"
+      ],
+      "reshaped_to_long": false
+    }
+  ]
+}

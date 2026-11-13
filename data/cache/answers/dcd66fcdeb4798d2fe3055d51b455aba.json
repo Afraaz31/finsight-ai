@@ -1,0 +1,112 @@
+{
+  "question": "Explain NVIDIA's revenue growth",
+  "saved_at": "2026-11-09 18:17:33",
+  "result": {
+    "answer": "NVIDIA Corporation's revenue rose from $130.50B (FY2025) to $215.94B (FY2026): a change of +$85.44B (+65.47%) [F]. \n\n* NVIDIA reported total revenue of $215,938 million for fiscal year 2026 compared to $130,497 million for fiscal year 2025, representing an increase of 65% [3].\n* Data Center computing revenue grew 59%, which was driven by demand for the Blackwell computing platform [4].\n* Data Center networking revenue grew 142%, driven by the introduction and continued ramp of the NVLink compute fabric for GB200 and GB300 systems, along with the growth of Ethernet and InfiniBand platforms [4].\n* Graphics revenue increased year-over-year, which was driven by sales of the Blackwell architecture [4].\n* Revenue is derived primarily from product sales, including hardware and systems [1].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 15. Exhibits and Financial Statement Schedules",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.724,
+        "excerpt": "Actual results could differ materially from our estimates. On an on-going basis, we evaluate our estimates, including those related to accounts receivable, cash equivalents and marketable securities, goodwill, income taxes, inventories and product purchase commitments, investigation and settlement c",
+        "text": "Actual results could differ materially from our estimates. On an on-going basis, we evaluate our estimates, including those related to accounts receivable, cash equivalents and marketable securities, goodwill, income taxes, inventories and product purchase commitments, investigation and settlement costs, litigation, non-marketable equity securities, other contingencies, property, plant, and equipment, revenue recognition, and stock-based compensation. These estimates are based on historical facts and various other assumptions that we believe are reasonable.\nRevenue Recognition\nWe derive our revenue primarily from product sales including hardware and systems.",
+        "section_id": "15",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Actual%20results%20could%20differ%20materially,materially%20from%20our%20estimates."
+      },
+      {
+        "number": 3,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.709,
+        "excerpt": "While difficult to isolate and quantify, these macroeconomic factors impact our supply chain and manufacturing costs, employee wages, costs for capital equipment, the value of our investments, revenue and competitive position. Our product and solution pricing generally does not fluctuate with short-",
+        "text": "While difficult to isolate and quantify, these macroeconomic factors impact our supply chain and manufacturing costs, employee wages, costs for capital equipment, the value of our investments, revenue and competitive position. Our product and solution pricing generally does not fluctuate with short-term changes in our costs. Within our supply chain, we continuously manage product availability and costs with our vendors.\nRefer to “Item 1A. Risk Factors – Risks Related to Regulatory, Legal, Our Stock and Other Matters” for a further discussion of the potential impact of these factors on our business.\nFiscal Year 2026 Summary\nJan 25, 2026 | Jan 26, 2025 | Change\n($ in millions, except per share data)\nRevenue | $215,938 | $130,497 | Up 65%\nGross margin | 71.1% | 75.0% | -3.9 pts",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=While%20difficult%20to%20isolate%20and,revenue%20and%20competitive%20position."
+      },
+      {
+        "number": 4,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.707,
+        "excerpt": "Revenue from Data Center computing grew 59% driven by demand for our Blackwell computing platform. Revenue from Data Center networking grew 142% driven by the introduction and continued ramp of NVLink compute fabric for GB200 and GB300 systems and the growth of Ethernet and InfiniBand platforms.\nGra",
+        "text": "Revenue from Data Center computing grew 59% driven by demand for our Blackwell computing platform. Revenue from Data Center networking grew 142% driven by the introduction and continued ramp of NVLink compute fabric for GB200 and GB300 systems and the growth of Ethernet and InfiniBand platforms.\nGraphics revenue – The year over year increase was driven by sales of our Blackwell architecture.\nReportable segment operating income – The year over year increase in Compute & Networking segment operating income was driven by growth in revenue, partially offset by a $4.5 billion charge associated with H20 excess inventory and purchase obligations in the first quarter of fiscal year 2026. The year over year increase in Graphics segment operating income was driven by the growth in revenue.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Revenue%20from%20Data%20Center%20computing,our%20Blackwell%20computing%20platform."
+      }
+    ],
+    "companies": [
+      "NVDA"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": [],
+    "route": "both",
+    "financials": [
+      {
+        "metric": "revenue",
+        "label": "Revenue",
+        "fiscal_year": null,
+        "mode": "trend",
+        "rows": [
+          {
+            "ticker": "NVDA",
+            "company": "NVIDIA Corporation",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2025,
+            "period_start": "2024-01-29",
+            "period_end": "2025-01-26",
+            "value": 130497000000.0,
+            "unit": "USD",
+            "tag": "Revenues",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0001045810-25-000023",
+            "filed": "2025-02-26",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/",
+            "value_display": "$130.50B",
+            "yoy_change": null,
+            "yoy_change_pct": null
+          },
+          {
+            "ticker": "NVDA",
+            "company": "NVIDIA Corporation",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2026,
+            "period_start": "2025-01-27",
+            "period_end": "2026-01-25",
+            "value": 215938000000.0,
+            "unit": "USD",
+            "tag": "Revenues",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0001045810-26-000021",
+            "filed": "2026-02-25",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/",
+            "value_display": "$215.94B",
+            "yoy_change": 85441000000.0,
+            "yoy_change_pct": 65.47
+          }
+        ],
+        "summary": "NVIDIA Corporation's revenue rose from $130.50B (FY2025) to $215.94B (FY2026): a change of +$85.44B (+65.47%).",
+        "notes": []
+      }
+    ]
+  }
+}

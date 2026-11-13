@@ -1,0 +1,51 @@
+{
+  "question": "What was Apple's revenue in its latest reported fiscal year?",
+  "saved_at": "2026-11-07 19:33:54",
+  "result": {
+    "answer": "For the fiscal year 2026, covering the period from September 28, 2025, to September 26, 2026, Apple Inc. (AAPL) reported a revenue of $478.83B (USD 478,834,000,000). \n\n*(Note: This information is for educational purposes only and does not constitute investment advice.)*",
+    "sources": [],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 0,
+    "unverified_numbers": [],
+    "route": "numbers",
+    "financials": [
+      {
+        "metric": "revenue",
+        "label": "Revenue",
+        "fiscal_year": null,
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "revenue",
+            "label": "Revenue",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 478834000000.0,
+            "unit": "USD",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$478.83B",
+            "yoy_change": 62673000000.0,
+            "yoy_change_pct": 15.06,
+            "rank": 1,
+            "difference_vs_leader": 0.0,
+            "share_of_leader_pct": 100.0
+          }
+        ],
+        "summary": null,
+        "notes": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "question": "What is the net profit margin for each year?",
+  "saved_at": "2026-11-08 18:42:40",
+  "result": {
+    "answer": "Based on the file `kestrel_financials.csv`, here is the net profit margin (calculated as net income divided by revenue, in the file's units) for each year:\n\n* **2022:** 10.48% (from 32.50 net income out of 310.00 revenue)\n* **2023:** 11.86% (from 41.80 net income out of 352.40 revenue)\n* **2024:** 13.12% (from 52.30 net income out of 398.70 revenue)\n* **2025:** 14.03% (from 61.90 net income out of 441.20 revenue)",
+    "sources": [
+      {
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "detail": "ratio = numerator / denominator x 100, per group",
+        "ref": "T1"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_financials.csv"
+    ],
+    "cached": false,
+    "calculation": {
+      "ref": "T1",
+      "filename": "kestrel_financials.csv",
+      "sheet": "csv",
+      "plan": {
+        "operation": "ratio",
+        "numerator": {
+          "column": "Net Income"
+        },
+        "denominator": {
+          "column": "Revenue"
+        },
+        "group_by": "Year"
+      },
+      "summary": "ratio = numerator / denominator x 100, per group",
+      "table": [
+        {
+          "Year": 2022,
+          "numerator": 32.5,
+          "denominator": 310.0,
+          "ratio_%": 10.48
+        },
+        {
+          "Year": 2023,
+          "numerator": 41.8,
+          "denominator": 352.4,
+          "ratio_%": 11.86
+        },
+        {
+          "Year": 2024,
+          "numerator": 52.3,
+          "denominator": 398.7,
+          "ratio_%": 13.12
+        },
+        {
+          "Year": 2025,
+          "numerator": 61.9,
+          "denominator": 441.2,
+          "ratio_%": 14.03
+        }
+      ]
+    },
+    "calculations": [
+      {
+        "ref": "T1",
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "plan": {
+          "operation": "ratio",
+          "numerator": {
+            "column": "Net Income"
+          },
+          "denominator": {
+            "column": "Revenue"
+          },
+          "group_by": "Year"
+        },
+        "summary": "ratio = numerator / denominator x 100, per group",
+        "table": [
+          {
+            "Year": 2022,
+            "numerator": 32.5,
+            "denominator": 310.0,
+            "ratio_%": 10.48
+          },
+          {
+            "Year": 2023,
+            "numerator": 41.8,
+            "denominator": 352.4,
+            "ratio_%": 11.86
+          },
+          {
+            "Year": 2024,
+            "numerator": 52.3,
+            "denominator": 398.7,
+            "ratio_%": 13.12
+          },
+          {
+            "Year": 2025,
+            "numerator": 61.9,
+            "denominator": 441.2,
+            "ratio_%": 14.03
+          }
+        ]
+      }
+    ],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "Net profit margin requires financial figures (Net Income and Revenue) which are found in the spreadsheet.",
+      "agents": [
+        {
+          "agent": "Spreadsheet Agent",
+          "task": "Calculate the net profit margin for each year by dividing Net Income by Revenue.",
+          "files": [
+            "kestrel_financials.csv"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  }
+}

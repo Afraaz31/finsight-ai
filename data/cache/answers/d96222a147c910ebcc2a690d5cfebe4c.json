@@ -1,0 +1,87 @@
+{
+  "question": "Summarize the management discussion in Apple's annual report",
+  "saved_at": "2026-11-08 12:50:10",
+  "result": {
+    "answer": "Apple's Management's Discussion and Analysis (MD&A) for fiscal year 2026 covers financial conditions, results of operations, critical accounting estimates, and recent product announcements [1][2][3][4]. \n\n* **Macroeconomic Conditions & Supply Constraints:** Macroeconomic conditions—such as inflation, interest rates, currency fluctuations, component pricing, and supply constraints—have directly and indirectly impacted, and could materially impact, Apple's business, revenue, costs, gross margin, results of operations, and financial condition [3]. Apple is experiencing rising costs and supply constraints driven by industry-wide supply-demand imbalances for key components like advanced semiconductors, memory, and storage, and expects these trends to intensify for memory and storage components [3].\n* **Critical Accounting Estimates:** Preparing financial statements under U.S. GAAP requires management to make judgments, assumptions, and estimates that affect reported amounts [2]. For example, Apple records a liability for legal matters when a loss is probable and reasonably estimable, which requires significant judgment [1]. Resolving legal matters inconsistently with management's expectations could materially impact operations and financial condition [1].\n* **Accounting Standards:** Apple plans to adopt ASU 2024-03 in the fourth quarter of 2028 using a prospective transition method [2][5]. This standard will require disclosures regarding inventory purchases, employee compensation, depreciation, intangible asset amortization, and selling expenses [5].\n* **Product Announcements:** The report notes product, service, and software announcements including the iPhone Duo, iPhone 18 Pro Max, iPhone 18 Pro, Apple Watch Series 12, Apple Watch Ultra 4, and AirPods 5 [3].\n* **Scope of Discussion:** The Item generally discusses items and year-to-year comparisons between fiscal years 2026 and 2025 (with the period ending September 26, 2026) [4].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.628,
+        "excerpt": "The Company records a liability when it is probable a loss has been incurred and the amount is reasonably estimable, the determination of which requires significant judgment. Resolution of legal matters in a manner inconsistent with management’s expectations could have a material impact on the Compa",
+        "text": "The Company records a liability when it is probable a loss has been incurred and the amount is reasonably estimable, the determination of which requires significant judgment. Resolution of legal matters in a manner inconsistent with management’s expectations could have a material impact on the Company’s results of operations and financial condition.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=The%20Company%20records%20a%20liability,which%20requires%20significant%20judgment."
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.613,
+        "excerpt": "The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method.\nCritical Accounting Estimates\nThe preparation of financial statements and related disclosures in conformity with U.S. generally accepted accounting principles (“GAAP”) and the Company’s discussion",
+        "text": "The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method.\nCritical Accounting Estimates\nThe preparation of financial statements and related disclosures in conformity with U.S. generally accepted accounting principles (“GAAP”) and the Company’s discussion and analysis of its financial condition and results of operations require the Company’s management to make judgments, assumptions and estimates that affect the amounts reported. Note 1, “Summary of Significant Accounting Policies” of the Notes to Consolidated Financial Statements in Part II, Item 8 of this Form 10-K describes the significant accounting policies and methods used in the preparation of the Company’s consolidated financial statements.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=The%20Company%20will%20adopt%20ASU,a%20prospective%20transition%20method."
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.61,
+        "excerpt": "•iPhone Duo, iPhone 18 Pro Max and iPhone 18 Pro\n•Apple Watch Series 12 and Apple Watch Ultra 4\n•AirPods 5\nMacroeconomic Conditions\nMacroeconomic conditions, including inflation, interest rates, component pricing, supply constraints and currency fluctuations, have directly and indirectly impacted, a",
+        "text": "•iPhone Duo, iPhone 18 Pro Max and iPhone 18 Pro\n•Apple Watch Series 12 and Apple Watch Ultra 4\n•AirPods 5\nMacroeconomic Conditions\nMacroeconomic conditions, including inflation, interest rates, component pricing, supply constraints and currency fluctuations, have directly and indirectly impacted, and could in the future materially impact, the Company’s business, revenue, costs, gross margin, results of operations and financial condition.\nThe Company is experiencing supply constraints and rising costs driven by industry-wide supply-demand imbalances for key components, including advanced semiconductors, memory and storage. The Company expects these trends to intensify for memory and storage components.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=Macroeconomic%20conditions%2C%20including%20inflation%2C%20interest,operations%20and%20financial%20condition."
+      },
+      {
+        "number": 4,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.608,
+        "excerpt": "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nThe following discussion should be read in conjunction with the consolidated financial statements and accompanying notes included in Part II, Item 8 of this Form 10-K. This Item generally discusses 2026 and",
+        "text": "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nThe following discussion should be read in conjunction with the consolidated financial statements and accompanying notes included in Part II, Item 8 of this Form 10-K. This Item generally discusses 2026 and 2025 items and year-to-year comparisons between 2026 and 2025. Discussions of 2024 items and year-to-year comparisons between 2025 and 2024 are not included, and can be found in “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II, Item 7 of the Company’s Annual Report on Form 10-K for the fiscal year ended September 27, 2025.\nProduct, Service and Software Announcements",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=Management%E2%80%99s%20Discussion%20and%20Analysis%20of,and%20Results%20of%20Operations"
+      },
+      {
+        "number": 5,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.598,
+        "excerpt": "ASU 2024-03 will require the Company to disclose the amounts of purchases of inventory, employee compensation, depreciation and intangible asset amortization, as applicable, included in certain expense captions in the Consolidated Statements of Operations, as well as qualitatively describe remaining",
+        "text": "ASU 2024-03 will require the Company to disclose the amounts of purchases of inventory, employee compensation, depreciation and intangible asset amortization, as applicable, included in certain expense captions in the Consolidated Statements of Operations, as well as qualitatively describe remaining amounts included in those captions. ASU 2024-03 will also require the Company to disclose both the amount and the Company’s definition of selling expenses. The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method.\nCritical Accounting Estimates",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=The%20Company%20will%20adopt%20ASU,a%20prospective%20transition%20method."
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

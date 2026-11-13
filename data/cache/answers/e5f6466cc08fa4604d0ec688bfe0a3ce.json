@@ -1,0 +1,145 @@
+{
+  "question": "Calculate revenue growth and explain what the report says caused it",
+  "saved_at": "2026-11-08 18:44:25",
+  "result": {
+    "answer": "Kestrel Outdoor Gear Ltd's revenue grew from 310.00 in 2022 to 441.20 in 2025 [T1], representing an increase of $441.2 million in fiscal 2025, which is up 10.7% from $398.7 million in fiscal 2024 [2]. \n\n* **Revenue Growth Rate:** According to the spreadsheet, revenue increased by 131.20 (+42.32%) overall from 2022 to 2025 [T1]. Year-over-year growth was 13.68% in 2023, 13.14% in 2024, and 10.66% in 2025 [T1]. The annual report states fiscal 2025 revenue grew by 10.7% [2].\n* **Sales Channels:** In fiscal 2025, 58% of revenue came from the company's own website and 42% came through 240 partner retail stores in Europe and North America [1].\n* **Segment Breakdown:** Outdoor Equipment generated $263.5 million of revenue in fiscal 2025, and Apparel generated $177.7 million [1].\n* **Causes of Growth:** The report does not explicitly detail the exact drivers of the multi-year revenue growth, but notes that fiscal 2025 performance was supported by strong sales across its Outdoor Equipment and Apparel segments [1], and management expects further revenue growth of 7% to 9% for fiscal 2026 [3].",
+    "sources": [
+      {
+        "number": 1,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 1,
+        "excerpt": "Kestrel Outdoor Gear Ltd\nAnnual Report - Fiscal Year 2025 (year ended 31 December 2025)\nFICTIONAL SAMPLE DATA - created for testing FinSight AI. Kestrel Outdoor Gear Ltd is not a real\ncompany.\n1. Business Overview\nKestrel Outdoor Gear Ltd designs and sells hiking backpacks, tents and waterproof jack",
+        "text": "Kestrel Outdoor Gear Ltd\nAnnual Report - Fiscal Year 2025 (year ended 31 December 2025)\nFICTIONAL SAMPLE DATA - created for testing FinSight AI. Kestrel Outdoor Gear Ltd is not a real\ncompany.\n1. Business Overview\nKestrel Outdoor Gear Ltd designs and sells hiking backpacks, tents and waterproof jackets. The\ncompany sells through its own website (58% of revenue in fiscal 2025) and through 240 partner\nretail stores in Europe and North America (42% of revenue).\nThe company has two segments: Outdoor Equipment (backpacks and tents) and Apparel (jackets\nand base layers). Outdoor Equipment generated $263.5 million of revenue in fiscal 2025 and\nApparel generated $177.7 million.",
+        "score": 1.0
+      },
+      {
+        "number": 2,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 2,
+        "excerpt": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expen",
+        "text": "2. Financial Highlights\nRevenue for fiscal 2025 was $441.2 million, an increase of 10.7% from $398.7 million in fiscal 2024.\nGross profit rose to $198.2 million, and the gross margin improved to 44.9% from 43.6%, mainly\nbecause raw-material prices fell in the second half of the year.\nOperating expenses were $112.4 million, up from $101.6 million, driven by higher marketing spend\nfor the new Summit tent range. Net income was $61.9 million, compared with $52.3 million in fiscal\n2024.\nUSD millions\nFY2024\nFY2025\nRevenue\n398.7\n441.2\nGross Profit\n173.8\n198.2\nOperating Expenses\n101.6\n112.4\nNet Income\n52.3\n61.9\nCash and cash equivalents at year end were $87.4 million. The company has no long-term debt.",
+        "score": 1.0
+      },
+      {
+        "number": 3,
+        "filename": "kestrel_annual_report.pdf",
+        "page": 3,
+        "excerpt": "3. Risk Factors\nSupplier concentration: about 70% of our fabric comes from two suppliers in Vietnam. A disruption\nat either supplier could delay production for several months.\nSeasonality and weather: around 45% of annual sales happen between October and December. A\nwarm winter can significantly red",
+        "text": "3. Risk Factors\nSupplier concentration: about 70% of our fabric comes from two suppliers in Vietnam. A disruption\nat either supplier could delay production for several months.\nSeasonality and weather: around 45% of annual sales happen between October and December. A\nwarm winter can significantly reduce jacket sales.\nCurrency risk: most costs are in US dollars, but 35% of revenue is earned in euros. A weaker euro\nreduces reported revenue.\nCompetition: a large sportswear brand entered the premium tent market in 2025 with lower prices,\nwhich may put pressure on our margins.\n4. Outlook\nFor fiscal 2026, management expects revenue growth of 7% to 9% and plans to add a third fabric\nsupplier in Portugal to reduce supplier concentration risk.",
+        "score": 1.0
+      },
+      {
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "detail": "'Revenue' went from 310.00 (2022) to 441.20 (2025): change +131.20 (+42.32%)",
+        "ref": "T1"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_annual_report.pdf",
+      "kestrel_financials.csv"
+    ],
+    "cached": false,
+    "calculation": {
+      "ref": "T1",
+      "filename": "kestrel_financials.csv",
+      "sheet": "csv",
+      "plan": {
+        "operation": "growth",
+        "column": "Revenue",
+        "order_by": "Year"
+      },
+      "summary": "'Revenue' went from 310.00 (2022) to 441.20 (2025): change +131.20 (+42.32%)",
+      "table": [
+        {
+          "Year": 2022,
+          "Revenue": 310.0,
+          "change": NaN,
+          "change_%": NaN
+        },
+        {
+          "Year": 2023,
+          "Revenue": 352.4,
+          "change": 42.39999999999998,
+          "change_%": 13.68
+        },
+        {
+          "Year": 2024,
+          "Revenue": 398.7,
+          "change": 46.30000000000001,
+          "change_%": 13.14
+        },
+        {
+          "Year": 2025,
+          "Revenue": 441.2,
+          "change": 42.5,
+          "change_%": 10.66
+        }
+      ]
+    },
+    "calculations": [
+      {
+        "ref": "T1",
+        "filename": "kestrel_financials.csv",
+        "sheet": "csv",
+        "plan": {
+          "operation": "growth",
+          "column": "Revenue",
+          "order_by": "Year"
+        },
+        "summary": "'Revenue' went from 310.00 (2022) to 441.20 (2025): change +131.20 (+42.32%)",
+        "table": [
+          {
+            "Year": 2022,
+            "Revenue": 310.0,
+            "change": NaN,
+            "change_%": NaN
+          },
+          {
+            "Year": 2023,
+            "Revenue": 352.4,
+            "change": 42.39999999999998,
+            "change_%": 13.68
+          },
+          {
+            "Year": 2024,
+            "Revenue": 398.7,
+            "change": 46.30000000000001,
+            "change_%": 13.14
+          },
+          {
+            "Year": 2025,
+            "Revenue": 441.2,
+            "change": 42.5,
+            "change_%": 10.66
+          }
+        ]
+      }
+    ],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "We need the spreadsheet agent to calculate revenue growth and the document agent to find the qualitative explanation in the annual report.",
+      "agents": [
+        {
+          "agent": "Spreadsheet Agent",
+          "task": "Calculate the revenue growth across the years in the dataset.",
+          "files": [
+            "kestrel_financials.csv"
+          ],
+          "status": "done"
+        },
+        {
+          "agent": "Document Agent",
+          "task": "Find the explanation in the report for what caused the revenue growth.",
+          "files": [
+            "kestrel_annual_report.pdf"
+          ],
+          "status": "done"
+        }
+      ]
+    }
+  }
+}

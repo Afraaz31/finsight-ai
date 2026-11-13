@@ -1,0 +1,132 @@
+{
+  "question": "What were the biggest expenses in 2025?",
+  "saved_at": "2026-11-08 18:37:23",
+  "result": {
+    "answer": "Based on the \"Expenses\" sheet in the file **kestrel_statements.xlsx**, here are your highest expenses for 2025 in the file's units:\n\n* **Raw materials:** 151.80\n* **Factory wages:** 62.40\n* **Marketing:** 47.90\n* **Shipping:** 28.80\n* **Office rent:** 10.10\n\nRaw materials were by far your largest cost this year, coming in more than double the second-highest expense of factory wages.",
+    "sources": [
+      {
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Expenses",
+        "detail": "highest 5 rows by 'Value'",
+        "ref": "T1"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_financials.csv",
+      "kestrel_statements.xlsx"
+    ],
+    "cached": false,
+    "calculation": {
+      "ref": "T1",
+      "filename": "kestrel_statements.xlsx",
+      "sheet": "Expenses",
+      "plan": {
+        "operation": "top",
+        "column": "Value",
+        "filters": [
+          {
+            "column": "Period",
+            "op": "==",
+            "value": 2025
+          }
+        ],
+        "n": 5,
+        "ascending": false
+      },
+      "summary": "highest 5 rows by 'Value'",
+      "table": [
+        {
+          "Category": "Raw materials",
+          "Period": 2025,
+          "Value": 151.8
+        },
+        {
+          "Category": "Factory wages",
+          "Period": 2025,
+          "Value": 62.4
+        },
+        {
+          "Category": "Marketing",
+          "Period": 2025,
+          "Value": 47.9
+        },
+        {
+          "Category": "Shipping",
+          "Period": 2025,
+          "Value": 28.8
+        },
+        {
+          "Category": "Office rent",
+          "Period": 2025,
+          "Value": 10.1
+        }
+      ]
+    },
+    "calculations": [
+      {
+        "ref": "T1",
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Expenses",
+        "plan": {
+          "operation": "top",
+          "column": "Value",
+          "filters": [
+            {
+              "column": "Period",
+              "op": "==",
+              "value": 2025
+            }
+          ],
+          "n": 5,
+          "ascending": false
+        },
+        "summary": "highest 5 rows by 'Value'",
+        "table": [
+          {
+            "Category": "Raw materials",
+            "Period": 2025,
+            "Value": 151.8
+          },
+          {
+            "Category": "Factory wages",
+            "Period": 2025,
+            "Value": 62.4
+          },
+          {
+            "Category": "Marketing",
+            "Period": 2025,
+            "Value": 47.9
+          },
+          {
+            "Category": "Shipping",
+            "Period": 2025,
+            "Value": 28.8
+          },
+          {
+            "Category": "Office rent",
+            "Period": 2025,
+            "Value": 10.1
+          }
+        ]
+      }
+    ],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "The question asks for specific financial expense figures which are stored in the spreadsheet files.",
+      "agents": [
+        {
+          "agent": "Spreadsheet Agent",
+          "task": "What were the biggest expenses in 2025 based on the statements and financials?",
+          "files": [
+            "kestrel_statements.xlsx",
+            "kestrel_financials.csv"
+          ],
+          "status": "kestrel_financials.csv: The data table does not contain information for the year 2025."
+        }
+      ]
+    }
+  }
+}

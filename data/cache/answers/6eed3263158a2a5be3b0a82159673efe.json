@@ -1,0 +1,496 @@
+{
+  "question": "report AMZN FY2025",
+  "saved_at": "2026-11-08 13:51:38",
+  "result": {
+    "ticker": "AMZN",
+    "company": "Amazon.com, Inc.",
+    "fiscal_year": 2025,
+    "period_end": "2025-12-31",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "1. Company Overview",
+        "facts": [
+          {
+            "label": "Company name",
+            "value": "AMAZON COM INC",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Ticker / CIK",
+            "value": "AMZN · 0001018724",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Industry",
+            "value": "Retail-Catalog & Mail-Order Houses",
+            "note": "SEC industry classification (SIC)",
+            "link": null
+          },
+          {
+            "label": "Headquarters",
+            "value": "Seattle, WA",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "State of incorporation",
+            "value": "DE",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Listed on",
+            "value": "Nasdaq",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Established",
+            "value": "1994",
+            "note": "10-K: \"founded Amazon.com in 1994\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+          },
+          {
+            "label": "Fiscal year end",
+            "value": "December (this report: period ending 2025-12-31)",
+            "note": null,
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "background",
+        "title": "2. Company Background",
+        "facts": [],
+        "table": null,
+        "text": "* The company's mission is to be Earth's most customer-centric company [4].\n* Operations are organized into three segments: North America, International, and Amazon Web Services (\"AWS\") [1].\n* The company serves primary customer sets consisting of consumers, sellers, developers, enterprises, content creators, advertisers, and employees [1].\n* Consumers are served through online and physical stores with a focus on selection, price, and convenience, enabling hundreds of millions of unique products to be sold by the company and by third parties across dozens of product categories [1].\n* As of December 31, 2025, the company employed approximately 1,576,000 full-time and part-time employees, and also uses independent contractors and temporary personnel [4].",
+        "note": null
+      },
+      {
+        "id": "financials",
+        "title": "3. Financial Information",
+        "facts": [
+          {
+            "label": "Revenue",
+            "value": "$716.92B",
+            "note": "+12.38% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Total costs and expenses",
+            "value": "$636.95B",
+            "note": "revenue − operating income, calculated by Python",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Net income (profit)",
+            "value": "$77.67B",
+            "note": "+31.09% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Operating cash flow",
+            "value": "$139.51B",
+            "note": "+20.40% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Cash and cash equivalents",
+            "value": "$86.81B",
+            "note": "+10.19% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "balance_sheet",
+        "title": "4. Balance Sheet",
+        "facts": [
+          {
+            "label": "Total assets",
+            "value": "$818.04B",
+            "note": "+30.91% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Current assets",
+            "value": "$229.08B",
+            "note": "+20.02% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Total liabilities",
+            "value": "$406.98B",
+            "note": "+20.08% vs FY2024 · derived by Python",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Current liabilities",
+            "value": "$218.00B",
+            "note": "+21.50% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Shareholders' equity",
+            "value": "$411.06B",
+            "note": "+43.74% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "income_statement",
+        "title": "5. Income Statement",
+        "facts": [
+          {
+            "label": "Sales (revenue)",
+            "value": "$716.92B",
+            "note": "+12.38% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Operating income",
+            "value": "$79.97B",
+            "note": "+16.59% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          },
+          {
+            "label": "Net income",
+            "value": "$77.67B",
+            "note": "+31.09% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "ratios",
+        "title": "6. Financial Ratios",
+        "facts": [
+          {
+            "label": "Operating margin",
+            "value": "11.16%",
+            "note": "operating income ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Net profit margin",
+            "value": "10.83%",
+            "note": "net income ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Current ratio",
+            "value": "1.05",
+            "note": "current assets ÷ current liabilities",
+            "link": null
+          },
+          {
+            "label": "Debt-to-equity (total liabilities basis)",
+            "value": "0.99",
+            "note": "total liabilities ÷ shareholders' equity (includes all liabilities, not only borrowings)",
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "performance",
+        "title": "7. Business Performance",
+        "facts": [
+          {
+            "label": "Revenue growth FY2021 → FY2025",
+            "value": "+52.59%",
+            "note": "$469.82B → $716.92B",
+            "link": null
+          },
+          {
+            "label": "Rank by revenue (of 5 FinSight companies)",
+            "value": "#1",
+            "note": "each company's latest fiscal year; fiscal years end in different months",
+            "link": null
+          },
+          {
+            "label": "Rank by net income (of 5 FinSight companies)",
+            "value": "#5",
+            "note": "each company's latest fiscal year; fiscal years end in different months",
+            "link": null
+          }
+        ],
+        "table": [
+          {
+            "Fiscal year": "FY2021",
+            "Revenue": "$469.82B",
+            "Revenue growth": "—",
+            "Net income": "$33.36B",
+            "Net income growth": "—"
+          },
+          {
+            "Fiscal year": "FY2022",
+            "Revenue": "$513.98B",
+            "Revenue growth": "+9.40%",
+            "Net income": "-$2.72B",
+            "Net income growth": "-108.16%"
+          },
+          {
+            "Fiscal year": "FY2023",
+            "Revenue": "$574.78B",
+            "Revenue growth": "+11.83%",
+            "Net income": "$30.43B",
+            "Net income growth": "-1217.74%"
+          },
+          {
+            "Fiscal year": "FY2024",
+            "Revenue": "$637.96B",
+            "Revenue growth": "+10.99%",
+            "Net income": "$59.25B",
+            "Net income growth": "+94.73%"
+          },
+          {
+            "Fiscal year": "FY2025",
+            "Revenue": "$716.92B",
+            "Revenue growth": "+12.38%",
+            "Net income": "$77.67B",
+            "Net income growth": "+31.09%"
+          }
+        ],
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "risks",
+        "title": "8. Risk Analysis",
+        "facts": [
+          {
+            "label": "Declining revenue?",
+            "value": "No",
+            "note": "+12.38% vs FY2024",
+            "link": null
+          },
+          {
+            "label": "Declining net income?",
+            "value": "No",
+            "note": "+31.09% vs FY2024",
+            "link": null
+          },
+          {
+            "label": "Net loss?",
+            "value": "No",
+            "note": "net income $77.67B",
+            "link": null
+          },
+          {
+            "label": "Negative operating cash flow?",
+            "value": "No",
+            "note": "$139.51B",
+            "link": null
+          },
+          {
+            "label": "Current ratio below 1?",
+            "value": "No",
+            "note": "1.05 (below 1 = short-term liabilities exceed short-term assets)",
+            "link": null
+          },
+          {
+            "label": "High leverage (liabilities > 2× equity)?",
+            "value": "No",
+            "note": "0.99",
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": "* Each of the company's businesses is subject to rapid change, the development of new business models, and the entry of new and well-funded competitors, alongside other companies entering business combinations or alliances [2].\n* The company has a rapidly evolving business model and its stock price is highly volatile [9].\n* Global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give rise to or amplify many risks, which can also impact customers and third-party sellers [8].\n* Results are inherently unpredictable and may be materially affected by factors such as foreign exchange rate fluctuations, energy prices, tariff and trade policies, resource and supply volatility (including memory chips), customer demand and spending, inflation, interest rates, regional labor market constraints, and world events [12].",
+        "note": "Simple checks done by Python on the SEC figures (signals, not a verdict: e.g. large share buybacks lower equity and raise the liabilities ratio), then the company's own risk factors from 10-K Item 1A."
+      },
+      {
+        "id": "outlook",
+        "title": "9. Future Outlook",
+        "facts": [],
+        "table": null,
+        "text": "* Management expects cash capital expenditures to increase in 2026, which primarily reflect investments in technology infrastructure (the majority of which supports AWS business growth) and in additional capacity to support the fulfillment network [13].\n* Management notes that currency volatilities may continue, which may significantly impact reported results and consolidated trends and comparisons [14].",
+        "note": "What management says (10-K Item 7). FinSight does not make its own forecasts."
+      },
+      {
+        "id": "sources",
+        "title": "10. Data Sources",
+        "facts": [
+          {
+            "label": "Auditor",
+            "value": "Ernst & Young LLP",
+            "note": "auditor since 1996",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=We%20analyzed%20the%20appropriateness%20of,tax%20benefits%20to%20recognize."
+          },
+          {
+            "label": "Audit opinion: financial statements",
+            "value": "Unqualified (clean) opinion",
+            "note": "\"present fairly, in all material respects\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=e%20three%20years%20in%20the,the%20%E2%80%9Cconsolidated%20financial%20statements%E2%80%9D%29."
+          },
+          {
+            "label": "Audit opinion: internal control",
+            "value": "Effective",
+            "note": "\"maintained, in all material respects, effective internal control\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=ternal%20Control%2DIntegrated%20Framework%20issued%20by,framework%29%20%28the%20COSO%20criteria%29."
+          },
+          {
+            "label": "Annual report",
+            "value": "Form 10-K, FY2025 (period ending 2025-12-31)",
+            "note": "filed 2026-02-06 · accession 0001018724-26-000004",
+            "link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm"
+          },
+          {
+            "label": "Financial figures",
+            "value": "SEC XBRL Company Facts (as originally reported in the 10-K)",
+            "note": null,
+            "link": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
+          },
+          {
+            "label": "Company data",
+            "value": "SEC EDGAR company profile",
+            "note": null,
+            "link": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1018724&type=10-K"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      }
+    ],
+    "skipped": [],
+    "sources": [
+      {
+        "number": 1,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.308,
+        "excerpt": "In each of our segments, we serve our primary customer sets, consisting of consumers, sellers, developers, enterprises, content creators, advertisers, and employees.\nWe have organized our operations into three segments: North America, International, and Amazon Web Services (“AWS”). These segments re",
+        "text": "In each of our segments, we serve our primary customer sets, consisting of consumers, sellers, developers, enterprises, content creators, advertisers, and employees.\nWe have organized our operations into three segments: North America, International, and Amazon Web Services (“AWS”). These segments reflect the way the Company evaluates its business performance and manages its operations. Information on our net sales is contained in Item 8 of Part II, “Financial Statements and Supplementary Data — Note 10 — Segment Information.”\nConsumers\nWe serve consumers through our online and physical stores and focus on selection, price, and convenience. We design our stores to enable hundreds of millions of unique products to be sold by us and by third parties across dozens of product categories.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=In%20each%20of%20our%20segments%2C,creators%2C%20advertisers%2C%20and%20employees."
+      },
+      {
+        "number": 2,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.251,
+        "excerpt": "Each of our businesses is also subject to rapid change and the development of new business models and the entry of new and well-funded competitors. Other companies also may enter into business combinations or alliances that strengthen their competitive positions.\nIntellectual Property\nWe regard our ",
+        "text": "Each of our businesses is also subject to rapid change and the development of new business models and the entry of new and well-funded competitors. Other companies also may enter into business combinations or alliances that strengthen their competitive positions.\nIntellectual Property\nWe regard our trademarks, service marks, copyrights, patents, domain names, trade dress, trade secrets, proprietary technologies, and similar intellectual property as critical to our success, and we rely on trademark, copyright, and patent law, trade-secret protection, and confidentiality and/or license agreements with our employees, customers, partners, and others to protect our proprietary rights.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Each%20of%20our%20businesses%20is,new%20and%20well%2Dfunded%20competitors."
+      },
+      {
+        "number": 4,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.227,
+        "excerpt": "We have registered, or applied for the registration of, a number of U.S. and international domain names, trademarks, service marks, and copyrights. Additionally, we have filed U.S. and international patent applications covering certain of our proprietary technology.\nSeasonality\nOur business is affec",
+        "text": "We have registered, or applied for the registration of, a number of U.S. and international domain names, trademarks, service marks, and copyrights. Additionally, we have filed U.S. and international patent applications covering certain of our proprietary technology.\nSeasonality\nOur business is affected by seasonality, which historically has resulted in higher sales volume during our fourth quarter, which ends December 31.\nHuman Capital\nOur employees are critical to our mission of being Earth’s most customer-centric company. As of December 31, 2025, we employed approximately 1,576,000 full-time and part-time employees. Additionally, we use independent contractors and temporary personnel to supplement our workforce.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=We%20have%20registered%2C%20or%20applied,a%20number%20of%20U.S."
+      },
+      {
+        "number": 8,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.522,
+        "excerpt": "In addition to the factors discussed in Item 7 of Part II, “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” and in the risk factors below, global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give ",
+        "text": "In addition to the factors discussed in Item 7 of Part II, “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” and in the risk factors below, global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give rise to or amplify many of the risks discussed below. Many of the risks discussed below also impact our customers, including third-party sellers, which could indirectly have a material adverse effect on us. The disclosures in this section reflect our beliefs and opinions as to factors that could materially and adversely affect us in the future.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=In%20addition%20to%20the%20factors,the%20risks%20discussed%20below."
+      },
+      {
+        "number": 9,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.514,
+        "excerpt": "We Have a Rapidly Evolving Business Model and Our Stock Price Is Highly Volatile\nWe have a rapidly evolving business model. The trading price of our common stock fluctuates significantly in response to, among other risks, the risks described elsewhere in this Item 1A, as well as:\n•changes in interes",
+        "text": "We Have a Rapidly Evolving Business Model and Our Stock Price Is Highly Volatile\nWe have a rapidly evolving business model. The trading price of our common stock fluctuates significantly in response to, among other risks, the risks described elsewhere in this Item 1A, as well as:\n•changes in interest rates;\n•conditions or trends in the internet, other technologies including artificial intelligence, and the industry segments we operate in;\n•quarterly variations in operating results;\n•fluctuations in the stock market in general and market prices for technology-related companies in particular;\n•changes in financial estimates by us or decisions to increase or decrease future spending or investment levels;\n•changes in financial estimates and recommendations by securities analysts;",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=We%20Have%20a%20Rapidly%20Evolving,Price%20Is%20Highly%20Volatile"
+      },
+      {
+        "number": 12,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.409,
+        "excerpt": "These forward-looking statements reflect Amazon.com’s expectations as of February 5, 2026, and are subject to substantial uncertainty. Our results are inherently unpredictable and may be materially affected by many factors, such as fluctuations in foreign exchange rates and energy prices, changes in",
+        "text": "These forward-looking statements reflect Amazon.com’s expectations as of February 5, 2026, and are subject to substantial uncertainty. Our results are inherently unpredictable and may be materially affected by many factors, such as fluctuations in foreign exchange rates and energy prices, changes in global economic and geopolitical conditions, tariff and trade policies, resource and supply volatility, including for memory chips, and customer demand and spending (including the impact of recessionary fears), inflation, interest rates, regional labor market constraints, world events, the rate of growth of the internet, online commerce, cloud services, and new and emerging technologies, as well as those outlined in Item 1A of Part I, “Risk Factors.”\nFirst Quarter 2026 Guidance",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=These%20forward%2Dlooking%20statements%20reflect%20Amazon.com%E2%80%99s,subject%20to%20substantial%20uncertainty."
+      },
+      {
+        "number": 13,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.397,
+        "excerpt": "Cash provided by (used in) investing activities was $(94.3) billion and $(142.5) billion in 2024 and 2025, with the variability caused primarily by purchases, sales, and maturities of marketable securities and cash capital expenditures. Cash capital expenditures were $77.7 billion, and $128.3 billio",
+        "text": "Cash provided by (used in) investing activities was $(94.3) billion and $(142.5) billion in 2024 and 2025, with the variability caused primarily by purchases, sales, and maturities of marketable securities and cash capital expenditures. Cash capital expenditures were $77.7 billion, and $128.3 billion in 2024 and 2025, which primarily reflect investments in technology infrastructure (the majority of which is to support AWS business growth) and in additional capacity to support our fulfillment network, both of which we expect to increase in 2026.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Cash%20provided%20by%20%28used%20in%29,and%20cash%20capital%20expenditures."
+      },
+      {
+        "number": 14,
+        "company": "Amazon.com, Inc.",
+        "ticker": "AMZN",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm",
+        "score": 0.372,
+        "excerpt": "Currency volatilities may continue, which may significantly impact (either positively or negatively) our reported results and consolidated trends and comparisons.\nFor additional information about each line item addressed above, refer to Item 8 of Part II, “Financial Statements and Supplementary Data",
+        "text": "Currency volatilities may continue, which may significantly impact (either positively or negatively) our reported results and consolidated trends and comparisons.\nFor additional information about each line item addressed above, refer to Item 8 of Part II, “Financial Statements and Supplementary Data — Note 1 — Description of Business, Accounting Policies, and Supplemental Disclosures.”\nOur Annual Report on Form 10-K for the year ended December 31, 2024 includes a discussion and analysis of our financial condition and results of operations for the year ended December 31, 2023 in Item 7 of Part II, “Management’s Discussion and Analysis of Financial Condition and Results of Operations.”\nCritical Accounting Estimates",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Currency%20volatilities%20may%20continue%2C%20which,consolidated%20trends%20and%20comparisons."
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "cached": false,
+    "unverified_numbers": [],
+    "markdown": "# Amazon.com, Inc. (AMZN): Company Report\nForm 10-K, fiscal year 2025 (period ending 2025-12-31). Generated by FinSight AI from official SEC filings. Not investment advice.\n\n## 1. Company Overview\n- **Company name:** AMAZON COM INC\n- **Ticker / CIK:** AMZN · 0001018724\n- **Industry:** Retail-Catalog & Mail-Order Houses (SEC industry classification (SIC))\n- **Headquarters:** Seattle, WA\n- **State of incorporation:** DE\n- **Listed on:** Nasdaq\n- **Established:** 1994 (10-K: \"founded Amazon.com in 1994\")\n- **Fiscal year end:** December (this report: period ending 2025-12-31)\n\n## 2. Company Background\n* The company's mission is to be Earth's most customer-centric company [4].\n* Operations are organized into three segments: North America, International, and Amazon Web Services (\"AWS\") [1].\n* The company serves primary customer sets consisting of consumers, sellers, developers, enterprises, content creators, advertisers, and employees [1].\n* Consumers are served through online and physical stores with a focus on selection, price, and convenience, enabling hundreds of millions of unique products to be sold by the company and by third parties across dozens of product categories [1].\n* As of December 31, 2025, the company employed approximately 1,576,000 full-time and part-time employees, and also uses independent contractors and temporary personnel [4].\n\n## 3. Financial Information\n- **Revenue:** $716.92B (+12.38% vs FY2024)\n- **Total costs and expenses:** $636.95B (revenue − operating income, calculated by Python)\n- **Net income (profit):** $77.67B (+31.09% vs FY2024)\n- **Operating cash flow:** $139.51B (+20.40% vs FY2024)\n- **Cash and cash equivalents:** $86.81B (+10.19% vs FY2024)\n\n## 4. Balance Sheet\n- **Total assets:** $818.04B (+30.91% vs FY2024)\n- **Current assets:** $229.08B (+20.02% vs FY2024)\n- **Total liabilities:** $406.98B (+20.08% vs FY2024 · derived by Python)\n- **Current liabilities:** $218.00B (+21.50% vs FY2024)\n- **Shareholders' equity:** $411.06B (+43.74% vs FY2024)\n\n## 5. Income Statement\n- **Sales (revenue):** $716.92B (+12.38% vs FY2024)\n- **Operating income:** $79.97B (+16.59% vs FY2024)\n- **Net income:** $77.67B (+31.09% vs FY2024)\n\n## 6. Financial Ratios\n- **Operating margin:** 11.16% (operating income ÷ revenue)\n- **Net profit margin:** 10.83% (net income ÷ revenue)\n- **Current ratio:** 1.05 (current assets ÷ current liabilities)\n- **Debt-to-equity (total liabilities basis):** 0.99 (total liabilities ÷ shareholders' equity (includes all liabilities, not only borrowings))\n\n## 7. Business Performance\n- **Revenue growth FY2021 → FY2025:** +52.59% ($469.82B → $716.92B)\n- **Rank by revenue (of 5 FinSight companies):** #1 (each company's latest fiscal year; fiscal years end in different months)\n- **Rank by net income (of 5 FinSight companies):** #5 (each company's latest fiscal year; fiscal years end in different months)\n| Fiscal year | Revenue | Revenue growth | Net income | Net income growth |\n|---|---|---|---|---|\n| FY2021 | $469.82B | — | $33.36B | — |\n| FY2022 | $513.98B | +9.40% | -$2.72B | -108.16% |\n| FY2023 | $574.78B | +11.83% | $30.43B | -1217.74% |\n| FY2024 | $637.96B | +10.99% | $59.25B | +94.73% |\n| FY2025 | $716.92B | +12.38% | $77.67B | +31.09% |\n\n## 8. Risk Analysis\n_Simple checks done by Python on the SEC figures (signals, not a verdict: e.g. large share buybacks lower equity and raise the liabilities ratio), then the company's own risk factors from 10-K Item 1A._\n- **Declining revenue?:** No (+12.38% vs FY2024)\n- **Declining net income?:** No (+31.09% vs FY2024)\n- **Net loss?:** No (net income $77.67B)\n- **Negative operating cash flow?:** No ($139.51B)\n- **Current ratio below 1?:** No (1.05 (below 1 = short-term liabilities exceed short-term assets))\n- **High leverage (liabilities > 2× equity)?:** No (0.99)\n* Each of the company's businesses is subject to rapid change, the development of new business models, and the entry of new and well-funded competitors, alongside other companies entering business combinations or alliances [2].\n* The company has a rapidly evolving business model and its stock price is highly volatile [9].\n* Global economic and geopolitical conditions and additional or unforeseen circumstances, developments, or events may give rise to or amplify many risks, which can also impact customers and third-party sellers [8].\n* Results are inherently unpredictable and may be materially affected by factors such as foreign exchange rate fluctuations, energy prices, tariff and trade policies, resource and supply volatility (including memory chips), customer demand and spending, inflation, interest rates, regional labor market constraints, and world events [12].\n\n## 9. Future Outlook\n_What management says (10-K Item 7). FinSight does not make its own forecasts._\n* Management expects cash capital expenditures to increase in 2026, which primarily reflect investments in technology infrastructure (the majority of which supports AWS business growth) and in additional capacity to support the fulfillment network [13].\n* Management notes that currency volatilities may continue, which may significantly impact reported results and consolidated trends and comparisons [14].\n\n## 10. Data Sources\n- **Auditor:** Ernst & Young LLP (auditor since 1996)\n- **Audit opinion: financial statements:** Unqualified (clean) opinion (\"present fairly, in all material respects\")\n- **Audit opinion: internal control:** Effective (\"maintained, in all material respects, effective internal control\")\n- **Annual report:** Form 10-K, FY2025 (period ending 2025-12-31) (filed 2026-02-06 · accession 0001018724-26-000004)\n- **Financial figures:** SEC XBRL Company Facts (as originally reported in the 10-K)\n- **Company data:** SEC EDGAR company profile\n\n## Cited passages\n- [1] Amazon.com, Inc. FY2025, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=In%20each%20of%20our%20segments%2C,creators%2C%20advertisers%2C%20and%20employees.\n- [2] Amazon.com, Inc. FY2025, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Each%20of%20our%20businesses%20is,new%20and%20well%2Dfunded%20competitors.\n- [4] Amazon.com, Inc. FY2025, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=We%20have%20registered%2C%20or%20applied,a%20number%20of%20U.S.\n- [8] Amazon.com, Inc. FY2025, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=In%20addition%20to%20the%20factors,the%20risks%20discussed%20below.\n- [9] Amazon.com, Inc. FY2025, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=We%20Have%20a%20Rapidly%20Evolving,Price%20Is%20Highly%20Volatile\n- [12] Amazon.com, Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=These%20forward%2Dlooking%20statements%20reflect%20Amazon.com%E2%80%99s,subject%20to%20substantial%20uncertainty.\n- [13] Amazon.com, Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Cash%20provided%20by%20%28used%20in%29,and%20cash%20capital%20expenditures.\n- [14] Amazon.com, Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm#:~:text=Currency%20volatilities%20may%20continue%2C%20which,consolidated%20trends%20and%20comparisons."
+  }
+}

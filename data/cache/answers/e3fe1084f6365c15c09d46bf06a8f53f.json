@@ -1,0 +1,59 @@
+{
+  "question": "Explain the business segments of Alphabet",
+  "saved_at": "2026-11-08 12:50:08",
+  "result": {
+    "answer": "Alphabet reports its business in two segments—Google Services and Google Cloud—along with all non-Google businesses collectively referred to as Other Bets [1]. Additionally, Alphabet-level activities report centralized AI-related research and development focused on advanced AI research and developing frontier models that serve the businesses [1].\n\n* **Google Services and Google Cloud:** Reported as Alphabet's two main segments [1].\n* **Other Bets:** Comprises all non-Google businesses collectively, which operate as independent companies (with some having their own boards with independent members and outside investors) and are at various stages of development from research and development (such as X, a moonshot factory) to scaling commercialization (such as Waymo) [1][2][5]. Revenues from Other Bets are primarily generated from the sale of autonomous transportation and internet services [2].\n* **Alphabet-level activities:** Supports the businesses by centralizing certain AI-related research and development focused on advanced research and developing frontier models [1].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.666,
+        "excerpt": "We report Google in two segments, Google Services and Google Cloud, and all non-Google businesses collectively as Other Bets. Supporting these businesses, we have centralized certain AI-related research and development focused on advanced research in AI and developing the frontier models that serve ",
+        "text": "We report Google in two segments, Google Services and Google Cloud, and all non-Google businesses collectively as Other Bets. Supporting these businesses, we have centralized certain AI-related research and development focused on advanced research in AI and developing the frontier models that serve our businesses, which is reported in Alphabet-level activities. Alphabet's structure is about helping each of our businesses prosper through strong leaders and independence.\nAccess and Technology for Everyone\nThe Internet is one of the world’s most powerful equalizers; it propels ideas, people, and businesses large and small. Our mission to organize the world’s information and make it universally accessible and useful is as relevant today as it was when we were founded in 1998.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=We%20report%20Google%20in%20two,collectively%20as%20Other%20Bets."
+      },
+      {
+        "number": 2,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.634,
+        "excerpt": "Other Bets operate as independent companies and some of them have their own boards with independent members and outside investors. While these early-stage businesses naturally come with considerable uncertainty, some of them are already generating revenue and making important strides in their indust",
+        "text": "Other Bets operate as independent companies and some of them have their own boards with independent members and outside investors. While these early-stage businesses naturally come with considerable uncertainty, some of them are already generating revenue and making important strides in their industries. Revenues from Other Bets are generated primarily from the sale of autonomous transportation and internet services.\nCompetition\nOur business is characterized by rapid change as well as new and disruptive technologies. We face formidable competition in every aspect of our business, including but not limited to, from:\n•general purpose search engines and information services;",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Other%20Bets%20operate%20as%20independent,members%20and%20outside%20investors."
+      },
+      {
+        "number": 5,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.621,
+        "excerpt": "Other Bets\nAcross Alphabet, we are also using technology to try to solve big problems that affect a wide variety of industries, including transportation and health technology. Alphabet’s investment in the portfolio of Other Bets includes businesses that are at various stages of development, ranging ",
+        "text": "Other Bets\nAcross Alphabet, we are also using technology to try to solve big problems that affect a wide variety of industries, including transportation and health technology. Alphabet’s investment in the portfolio of Other Bets includes businesses that are at various stages of development, ranging from those in the research and development phase, such as X, our moonshot factory focused on developing breakthrough technologies, to those that are scaling commercialization, such as Waymo, which is expanding to more cities domestically, entering international markets, and further scaling operations.\nOther Bets operate as independent companies and some of them have their own boards with independent members and outside investors.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Across%20Alphabet%2C%20we%20are%20also,transportation%20and%20health%20technology."
+      }
+    ],
+    "companies": [
+      "GOOGL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

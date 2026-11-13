@@ -1,0 +1,45 @@
+{
+  "question": "Who is Apple's auditor?",
+  "saved_at": "2026-11-08 13:54:57",
+  "result": {
+    "answer": "Apple’s independent auditor is Ernst & Young LLP [1]. \n\n* Ernst & Young LLP has served as Apple's auditor since 2009 [1].\n* Their report on Apple Inc.'s internal control over financial reporting and financial statements is dated November 3, 2026, from San Jose, California [1][3].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.655,
+        "excerpt": "In addition, we evaluated the Company’s disclosure in relation to these matters included in Note 8 to the financial statements.\n/s/ Ernst & Young LLP\nWe have served as the Company’s auditor since 2009.\nSan Jose, California\nNovember 3, 2026\nReport of Independent Registered Public Accounting Firm\nTo t",
+        "text": "In addition, we evaluated the Company’s disclosure in relation to these matters included in Note 8 to the financial statements.\n/s/ Ernst & Young LLP\nWe have served as the Company’s auditor since 2009.\nSan Jose, California\nNovember 3, 2026\nReport of Independent Registered Public Accounting Firm\nTo the Shareholders and the Board of Directors of Apple Inc.\nOpinion on Internal Control Over Financial Reporting\nWe have audited Apple Inc.’s internal control over financial reporting as of September 26, 2026, based on criteria established in Internal Control – Integrated Framework issued by the Committee of Sponsoring Organizations of the Treadway Commission (2013 framework) (the “COSO criteria”). In our opinion, Apple Inc.",
+        "section_id": "8",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=In%20addition%2C%20we%20evaluated%20the,to%20the%20financial%20statements."
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 8. Financial Statements and Supplementary Data",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.629,
+        "excerpt": "We also have audited, in accordance with the standards of the Public Company Accounting Oversight Board (United States) (“PCAOB”), the Company’s internal control over financial reporting as of September 26, 2026, based on criteria established in Internal Control – Integrated Framework issued by the ",
+        "text": "We also have audited, in accordance with the standards of the Public Company Accounting Oversight Board (United States) (“PCAOB”), the Company’s internal control over financial reporting as of September 26, 2026, based on criteria established in Internal Control – Integrated Framework issued by the Committee of Sponsoring Organizations of the Treadway Commission (2013 framework) and our report dated November 3, 2026 expressed an unqualified opinion thereon.\nBasis for Opinion\nThese financial statements are the responsibility of the Company’s management. Our responsibility is to express an opinion on the Company’s financial statements based on our audits.",
+        "section_id": "8",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=We%20also%20have%20audited%2C%20in,an%20unqualified%20opinion%20thereon."
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

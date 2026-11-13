@@ -1,0 +1,72 @@
+{
+  "question": "Summarize the management discussion in Apple's annual report",
+  "saved_at": "2026-11-07 19:34:28",
+  "result": {
+    "answer": "Here is a summary of Apple’s Management's Discussion and Analysis (MD&A) based on the provided Form 10-K for fiscal year 2026:\n\n* **General Context:** The MD&A discusses items for fiscal years 2026 and 2025, along with year-to-year comparisons between them [4]. Preparing financial statements requires management to make judgments, assumptions, and estimates that affect reported amounts under U.S. GAAP [2]. \n* **Legal Matters and Liabilities:** Apple records a liability when a loss is probable and reasonably estimable, which requires significant judgment [1]. Management notes that resolving legal matters inconsistently with their expectations could materially impact the company's results of operations and financial condition [1].\n* **Macroeconomic Conditions & Supply Chain:** Factors such as inflation, interest rates, component pricing, supply constraints, and currency fluctuations have impacted and could continue to materially impact Apple's business, revenue, costs, gross margin, results of operations, and financial condition [3]. Apple is currently experiencing supply constraints and rising costs due to industry-wide supply-demand imbalances for key components like advanced semiconductors, memory, and storage, and expects these trends to intensify for memory and storage components [3].\n* **Accounting Standards:** Apple plans to adopt ASU 2024-03 in the fourth quarter of 2028 using a prospective transition method [2][5]. This standard will require disclosures regarding specific expense components (such as inventory purchases, employee compensation, depreciation, and intangible asset amortization), a qualitative description of remaining amounts in those expense captions, and the amount and definition of selling expenses [5].\n* **Product Announcements:** The report notes product announcements including the iPhone Duo, iPhone 18 Pro Max, iPhone 18 Pro, Apple Watch Series 12, Apple Watch Ultra 4, and AirPods 5 [3].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.628,
+        "excerpt": "The Company records a liability when it is probable a loss has been incurred and the amount is reasonably estimable, the determination of which requires significant judgment. Resolution of legal matters in a manner inconsistent with management’s expectations could have a material impact on the Compa"
+      },
+      {
+        "number": 2,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.613,
+        "excerpt": "The Company will adopt ASU 2024-03 in its fourth quarter of 2028 using a prospective transition method.\nCritical Accounting Estimates\nThe preparation of financial statements and related disclosures in conformity with U.S. generally accepted accounting principles (“GAAP”) and the Company’s discussion"
+      },
+      {
+        "number": 3,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.61,
+        "excerpt": "•iPhone Duo, iPhone 18 Pro Max and iPhone 18 Pro\n•Apple Watch Series 12 and Apple Watch Ultra 4\n•AirPods 5\nMacroeconomic Conditions\nMacroeconomic conditions, including inflation, interest rates, component pricing, supply constraints and currency fluctuations, have directly and indirectly impacted, a"
+      },
+      {
+        "number": 4,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.608,
+        "excerpt": "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nThe following discussion should be read in conjunction with the consolidated financial statements and accompanying notes included in Part II, Item 8 of this Form 10-K. This Item generally discusses 2026 and"
+      },
+      {
+        "number": 5,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.598,
+        "excerpt": "ASU 2024-03 will require the Company to disclose the amounts of purchases of inventory, employee compensation, depreciation and intangible asset amortization, as applicable, included in certain expense captions in the Consolidated Statements of Operations, as well as qualitatively describe remaining"
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

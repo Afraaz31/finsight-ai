@@ -1,0 +1,84 @@
+{
+  "question": "apple 2026 was good or bad as compare to profits of 2025??",
+  "saved_at": "2026-11-08 12:38:36",
+  "result": {
+    "answer": "Apple Inc.'s net income rose from $112.01B in FY2025 to $132.18B in FY2026, which represents a change of +$20.16B (+18.00%) [F]. \n\nAdditional details regarding gross margins and product/service performance for fiscal year 2026 compared to 2025 include:\n* **Gross Margins (in millions):** \n  * Products gross margin was $139,659 for 2026, $112,887 for 2025, and $109,633 for 2024 [1].\n  * Services gross margin was $93,943 for 2026, $82,314 for 2025, and $71,050 for 2024 [1].\n* **Net Sales Performance:** \n  * iPhone net sales increased due to higher net sales of Pro models [1].\n  * Mac net sales increased due to higher net sales of laptops [1].\n  * iPad net sales and Wearables, Home and Accessories net sales were relatively flat [1].\n  * Services net sales increased primarily due to higher net sales from advertising and cloud services [1].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Apple Inc.",
+        "ticker": "AAPL",
+        "fiscal_year": 2026,
+        "period_end": "2026-09-26",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+        "score": 0.666,
+        "excerpt": "iPhone\niPhone net sales increased during 2026 compared to 2025 due to higher net sales of Pro models.\nMac\nMac net sales increased during 2026 compared to 2025 due to higher net sales of laptops.\niPad\niPad net sales during 2026 compared to 2025 were relatively flat.\nWearables, Home and Accessories\nWe",
+        "text": "iPhone\niPhone net sales increased during 2026 compared to 2025 due to higher net sales of Pro models.\nMac\nMac net sales increased during 2026 compared to 2025 due to higher net sales of laptops.\niPad\niPad net sales during 2026 compared to 2025 were relatively flat.\nWearables, Home and Accessories\nWearables, Home and Accessories net sales during 2026 compared to 2025 were relatively flat.\nServices\nServices net sales increased during 2026 compared to 2025 primarily due to higher net sales from advertising and cloud services.\nGross Margin\nProducts and Services gross margin and gross margin percentage for 2026, 2025 and 2024 were as follows (dollars in millions):\n2026 | 2025 | 2024\nGross margin:\nProducts | $139,659 | $112,887 | $109,633\nServices | 93,943 | 82,314 | 71,050",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm#:~:text=iPhone%20net%20sales%20increased%20during,sales%20of%20Pro%20models."
+      }
+    ],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": [],
+    "route": "both",
+    "financials": [
+      {
+        "metric": "net_income",
+        "label": "Net income",
+        "fiscal_year": null,
+        "mode": "trend",
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2025,
+            "period_start": "2024-09-29",
+            "period_end": "2025-09-27",
+            "value": 112010000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-25-000079",
+            "filed": "2025-10-31",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019325000079/",
+            "value_display": "$112.01B",
+            "yoy_change": null,
+            "yoy_change_pct": null
+          },
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 132175000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$132.18B",
+            "yoy_change": 20165000000.0,
+            "yoy_change_pct": 18.0
+          }
+        ],
+        "summary": "Apple Inc.'s net income rose from $112.01B (FY2025) to $132.18B (FY2026): a change of +$20.16B (+18.00%).",
+        "notes": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "question": "What were the biggest expenses in 2025?",
+  "saved_at": "2026-11-08 18:42:50",
+  "result": {
+    "answer": "Based on your file **kestrel_statements.xlsx** (sheet **Expenses**), your biggest expense in 2025 was **Raw materials**, which came to **151.80** in the file's units.",
+    "sources": [
+      {
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Expenses",
+        "detail": "highest 1 rows by 'Value'",
+        "ref": "T1"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_financials.csv",
+      "kestrel_statements.xlsx"
+    ],
+    "cached": false,
+    "calculation": {
+      "ref": "T1",
+      "filename": "kestrel_statements.xlsx",
+      "sheet": "Expenses",
+      "plan": {
+        "operation": "top",
+        "column": "Value",
+        "filters": [
+          {
+            "column": "Period",
+            "op": "==",
+            "value": 2025
+          }
+        ],
+        "n": 1
+      },
+      "summary": "highest 1 rows by 'Value'",
+      "table": [
+        {
+          "Category": "Raw materials",
+          "Period": 2025,
+          "Value": 151.8
+        }
+      ]
+    },
+    "calculations": [
+      {
+        "ref": "T1",
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Expenses",
+        "plan": {
+          "operation": "top",
+          "column": "Value",
+          "filters": [
+            {
+              "column": "Period",
+              "op": "==",
+              "value": 2025
+            }
+          ],
+          "n": 1
+        },
+        "summary": "highest 1 rows by 'Value'",
+        "table": [
+          {
+            "Category": "Raw materials",
+            "Period": 2025,
+            "Value": 151.8
+          }
+        ]
+      }
+    ],
+    "unverified_numbers": [],
+    "orchestrator": {
+      "decided_by": "ai",
+      "reason": "The question asks for financial expense data which is contained in the spreadsheet files.",
+      "agents": [
+        {
+          "agent": "Spreadsheet Agent",
+          "task": "What were the biggest expenses in 2025 based on the expense or financial data?",
+          "files": [
+            "kestrel_statements.xlsx",
+            "kestrel_financials.csv"
+          ],
+          "status": "kestrel_financials.csv: Data for the year 2025 is not present in the table."
+        }
+      ]
+    }
+  }
+}

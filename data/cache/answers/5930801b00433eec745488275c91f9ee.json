@@ -1,0 +1,87 @@
+{
+  "question": "What are Microsoft's major business risks?",
+  "saved_at": "2026-11-08 12:50:11",
+  "result": {
+    "answer": "Microsoft's major business risks for FY2026 include intense competition, geopolitical and global economic challenges, legal claims, climate-related operational impacts, and security vulnerabilities within its third-party ecosystem [1][2][3][4][5].\n\n* **Intense Competition:** Microsoft faces intense competition across all markets for its products and services, which could negatively impact its results of operations [1].\n* **Geopolitical and Global Risks:** Abrupt political changes, terrorist activities, and armed conflicts (such as those in Ukraine and the Middle East) can disrupt operations, increase costs, impact customer collections, and create uncertainty around technology investments [2]. Global operations also expose the company to monetary policy, inflation, recession, tariffs, trade restrictions, and geopolitical tensions [4].\n* **Legal and Regulatory Claims:** The company is subject to various claims and lawsuits arising from business practices, major product releases, AI products and services, business transactions, employment practices, and regulations, with adverse outcomes potentially resulting in significant monetary damages or injunctive relief [3].\n* **Climate Change:** Changes in climate where Microsoft operates may increase the costs of powering and cooling computer hardware used for software development and cloud-based services [4].\n* **Ecosystem and Security Vulnerabilities:** Microsoft's products depend on a broad ecosystem of third-party components; security vulnerabilities or exploits in these components could adversely impact its results of operations, reputation, or competitive position [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.738,
+        "excerpt": "ITEM 1A. RISK FACTORS\nOur operations and financial results are subject to various risks and uncertainties, including those described below, that could adversely affect our business, operations, financial condition, results of operations, liquidity, and the trading price of our common stock. Statemen",
+        "text": "ITEM 1A. RISK FACTORS\nOur operations and financial results are subject to various risks and uncertainties, including those described below, that could adversely affect our business, operations, financial condition, results of operations, liquidity, and the trading price of our common stock. Statements in this section reflect our beliefs and opinions as to matters that could adversely affect us in the future. References to past events are provided by way of example only and are not intended to be a complete listing or a representation as to whether or not such matters have occurred in the past.\nSTRATEGIC AND COMPETITIVE RISKS\nWe face intense competition across all markets for our products and services, which could adversely affect our results of operations.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=Our%20operations%20and%20financial%20results,of%20our%20common%20stock."
+      },
+      {
+        "number": 2,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.731,
+        "excerpt": "Abrupt political change, terrorist activity, and armed conflict, such as the conflicts in Ukraine and the Middle East, pose economic and other risks, which may negatively impact our ability to sell to and collect from customers, increase our operating costs, or otherwise disrupt our operations in ma",
+        "text": "Abrupt political change, terrorist activity, and armed conflict, such as the conflicts in Ukraine and the Middle East, pose economic and other risks, which may negatively impact our ability to sell to and collect from customers, increase our operating costs, or otherwise disrupt our operations in markets both directly and indirectly impacted by such events. These conditions also may add uncertainty to the timing and budget for technology investment decisions by our customers and may cause supply chain disruptions. Geopolitical change may result in changing regulatory systems and requirements and market interventions that could impact our operating strategies, access to national, regional, and global markets, hiring, and profitability.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=Abrupt%20political%20change%2C%20terrorist%20activity%2C,impacted%20by%20such%20events."
+      },
+      {
+        "number": 3,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.719,
+        "excerpt": "We have claims and lawsuits against us that may result in adverse outcomes. We are subject to a variety of claims and lawsuits. These claims may arise from a wide variety of business practices and initiatives, including major new product releases, AI products and services, significant business trans",
+        "text": "We have claims and lawsuits against us that may result in adverse outcomes. We are subject to a variety of claims and lawsuits. These claims may arise from a wide variety of business practices and initiatives, including major new product releases, AI products and services, significant business transactions, warranty or product claims, employment practices, and regulation. As we continue to expand our business and offerings, we may experience new and novel legal claims. Adverse outcomes in some or all of these claims may result in significant monetary damages or injunctive relief that could adversely affect our ability to conduct our business. Litigation and other claims are subject to inherent uncertainties and management’s view of these matters may change in the future.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=We%20have%20claims%20and%20lawsuits,result%20in%20adverse%20outcomes."
+      },
+      {
+        "number": 4,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.716,
+        "excerpt": "Changes in climate where we operate may increase the costs of powering and cooling computer hardware we use to develop software and provide cloud-based services.\nOur global business exposes us to operational and economic risks. Our customers, employees, and infrastructure are located throughout the ",
+        "text": "Changes in climate where we operate may increase the costs of powering and cooling computer hardware we use to develop software and provide cloud-based services.\nOur global business exposes us to operational and economic risks. Our customers, employees, and infrastructure are located throughout the world and a significant part of our revenue comes from international sales. The global nature of our business creates operational, economic, and geopolitical risks. Global, regional, and local economic developments, monetary policy, geopolitical tension, restrictions on international trade, such as tariffs and other controls on imports or exports, inflation, and recession, as well as political and military disputes, could adversely affect our results of operations.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=Changes%20in%20climate%20where%20we,and%20provide%20cloud%2Dbased%20services."
+      },
+      {
+        "number": 5,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.711,
+        "excerpt": "Any of these could adversely affect our reputation and results of operations. Actual or perceived vulnerabilities may lead to claims against us. Our license agreements typically contain provisions that eliminate or limit our exposure to liability, but these provisions may not withstand legal challen",
+        "text": "Any of these could adversely affect our reputation and results of operations. Actual or perceived vulnerabilities may lead to claims against us. Our license agreements typically contain provisions that eliminate or limit our exposure to liability, but these provisions may not withstand legal challenges. At times, to achieve commercial objectives, we may enter into agreements with larger liability exposure to customers.\nOur products operate in conjunction with and are dependent on products and components across a broad ecosystem of third parties. If there is a security vulnerability in one of these components, and if there is a security exploit targeting it, we could experience adverse impacts to our results of operations, reputation, or competitive position.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm#:~:text=Any%20of%20these%20could%20adversely,and%20results%20of%20operations."
+      }
+    ],
+    "companies": [
+      "MSFT"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}

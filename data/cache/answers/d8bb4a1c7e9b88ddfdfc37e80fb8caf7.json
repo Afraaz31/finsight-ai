@@ -1,0 +1,51 @@
+{
+  "question": "WHAT IS NET PROFIT OF APPLE LAST YEAR",
+  "saved_at": "2026-11-07 19:54:45",
+  "result": {
+    "answer": "For its fiscal year 2026, covering the period from September 28, 2025, to September 26, 2026, Apple Inc. (AAPL) reported a net income (net profit) of $132.18B. \n\n*Note: This figure is based on official SEC XBRL data.*\n\nPlease remember that this information is for educational purposes only and does not constitute investment advice.",
+    "sources": [],
+    "companies": [
+      "AAPL"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 0,
+    "unverified_numbers": [],
+    "route": "numbers",
+    "financials": [
+      {
+        "metric": "net_income",
+        "label": "Net income",
+        "fiscal_year": null,
+        "rows": [
+          {
+            "ticker": "AAPL",
+            "company": "Apple Inc.",
+            "metric": "net_income",
+            "label": "Net income",
+            "fiscal_year": 2026,
+            "period_start": "2025-09-28",
+            "period_end": "2026-09-26",
+            "value": 132175000000.0,
+            "unit": "USD",
+            "tag": "NetIncomeLoss",
+            "derived": false,
+            "form": "10-K",
+            "accession": "0000320193-26-000026",
+            "filed": "2026-11-03",
+            "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/",
+            "value_display": "$132.18B",
+            "yoy_change": 20165000000.0,
+            "yoy_change_pct": 18.0,
+            "rank": 1,
+            "difference_vs_leader": 0.0,
+            "share_of_leader_pct": 100.0
+          }
+        ],
+        "summary": null,
+        "notes": []
+      }
+    ]
+  }
+}

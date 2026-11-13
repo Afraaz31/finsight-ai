@@ -1,0 +1,548 @@
+{
+  "question": "report NVDA FY2026",
+  "saved_at": "2026-11-08 13:51:49",
+  "result": {
+    "ticker": "NVDA",
+    "company": "NVIDIA Corporation",
+    "fiscal_year": 2026,
+    "period_end": "2026-01-25",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "1. Company Overview",
+        "facts": [
+          {
+            "label": "Company name",
+            "value": "NVIDIA CORP",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Ticker / CIK",
+            "value": "NVDA · 0001045810",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Industry",
+            "value": "Semiconductors & Related Devices",
+            "note": "SEC industry classification (SIC)",
+            "link": null
+          },
+          {
+            "label": "Headquarters",
+            "value": "Santa Clara, CA",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "State of incorporation",
+            "value": "DE",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Listed on",
+            "value": "Nasdaq",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Established",
+            "value": "1993",
+            "note": "10-K: \"was incorporated in California in April 1993\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+          },
+          {
+            "label": "Fiscal year end",
+            "value": "January (this report: period ending 2026-01-25)",
+            "note": null,
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "background",
+        "title": "2. Company Background",
+        "facts": [],
+        "table": null,
+        "text": "* Ajay K. Puri serves as Executive Vice President, Worldwide Field Operations, having joined NVIDIA in 2005 after a 22-year career at Sun Microsystems and previous roles at Hewlett-Packard, Booz Allen Hamilton, and Texas Instruments [1].\n* The company avoids many significant costs and risks of owning and operating manufacturing operations by using suppliers for the procurement of most raw materials—such as memory, substrates, and components—allowing it to focus resources on product design, quality assurance, marketing, and customer support [4].\n* During periods of growth, the company may place non-cancellable inventory orders in advance of historical lead times, pay premiums, or provide deposits to secure future supply and capacity [4].\n* Professional Visualization revenue for fiscal year 2026 grew 70% year-over-year, driven by exceptional demand for Blackwell and the launch of the DGX Spark [14].\n* Automotive revenue for fiscal year 2026 increased 39% year-over-year, driven by continued adoption of self-driving platforms [14].",
+        "note": null
+      },
+      {
+        "id": "financials",
+        "title": "3. Financial Information",
+        "facts": [
+          {
+            "label": "Revenue",
+            "value": "$215.94B",
+            "note": "+65.47% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Total costs and expenses",
+            "value": "$85.55B",
+            "note": "revenue − operating income, calculated by Python",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Net income (profit)",
+            "value": "$120.07B",
+            "note": "+64.75% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Operating cash flow",
+            "value": "$102.72B",
+            "note": "+60.27% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Cash and cash equivalents",
+            "value": "$10.61B",
+            "note": "+23.47% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "balance_sheet",
+        "title": "4. Balance Sheet",
+        "facts": [
+          {
+            "label": "Total assets",
+            "value": "$206.80B",
+            "note": "+85.31% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Current assets",
+            "value": "$125.61B",
+            "note": "+56.76% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Total liabilities",
+            "value": "$49.51B",
+            "note": "+53.41% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Current liabilities",
+            "value": "$32.16B",
+            "note": "+78.22% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Shareholders' equity",
+            "value": "$157.29B",
+            "note": "+98.28% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "income_statement",
+        "title": "5. Income Statement",
+        "facts": [
+          {
+            "label": "Sales (revenue)",
+            "value": "$215.94B",
+            "note": "+65.47% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Cost of sales",
+            "value": "$62.48B",
+            "note": "revenue − gross profit, calculated by Python",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Gross profit",
+            "value": "$153.46B",
+            "note": "+56.82% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Operating costs",
+            "value": "$23.08B",
+            "note": "gross profit − operating income, calculated by Python",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Operating income",
+            "value": "$130.39B",
+            "note": "+60.08% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          },
+          {
+            "label": "Net income",
+            "value": "$120.07B",
+            "note": "+64.75% vs FY2025",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "ratios",
+        "title": "6. Financial Ratios",
+        "facts": [
+          {
+            "label": "Gross margin",
+            "value": "71.07%",
+            "note": "gross profit ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Operating margin",
+            "value": "60.38%",
+            "note": "operating income ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Net profit margin",
+            "value": "55.60%",
+            "note": "net income ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Current ratio",
+            "value": "3.91",
+            "note": "current assets ÷ current liabilities",
+            "link": null
+          },
+          {
+            "label": "Debt-to-equity (total liabilities basis)",
+            "value": "0.31",
+            "note": "total liabilities ÷ shareholders' equity (includes all liabilities, not only borrowings)",
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "performance",
+        "title": "7. Business Performance",
+        "facts": [
+          {
+            "label": "Revenue growth FY2022 → FY2026",
+            "value": "+702.33%",
+            "note": "$26.91B → $215.94B",
+            "link": null
+          },
+          {
+            "label": "Rank by revenue (of 5 FinSight companies)",
+            "value": "#5",
+            "note": "each company's latest fiscal year; fiscal years end in different months",
+            "link": null
+          },
+          {
+            "label": "Rank by net income (of 5 FinSight companies)",
+            "value": "#4",
+            "note": "each company's latest fiscal year; fiscal years end in different months",
+            "link": null
+          }
+        ],
+        "table": [
+          {
+            "Fiscal year": "FY2022",
+            "Revenue": "$26.91B",
+            "Revenue growth": "—",
+            "Net income": "$9.75B",
+            "Net income growth": "—"
+          },
+          {
+            "Fiscal year": "FY2023",
+            "Revenue": "$26.97B",
+            "Revenue growth": "+0.22%",
+            "Net income": "$4.37B",
+            "Net income growth": "-55.21%"
+          },
+          {
+            "Fiscal year": "FY2024",
+            "Revenue": "$60.92B",
+            "Revenue growth": "+125.85%",
+            "Net income": "$29.76B",
+            "Net income growth": "+581.32%"
+          },
+          {
+            "Fiscal year": "FY2025",
+            "Revenue": "$130.50B",
+            "Revenue growth": "+114.20%",
+            "Net income": "$72.88B",
+            "Net income growth": "+144.89%"
+          },
+          {
+            "Fiscal year": "FY2026",
+            "Revenue": "$215.94B",
+            "Revenue growth": "+65.47%",
+            "Net income": "$120.07B",
+            "Net income growth": "+64.75%"
+          }
+        ],
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "risks",
+        "title": "8. Risk Analysis",
+        "facts": [
+          {
+            "label": "Declining revenue?",
+            "value": "No",
+            "note": "+65.47% vs FY2025",
+            "link": null
+          },
+          {
+            "label": "Declining net income?",
+            "value": "No",
+            "note": "+64.75% vs FY2025",
+            "link": null
+          },
+          {
+            "label": "Net loss?",
+            "value": "No",
+            "note": "net income $120.07B",
+            "link": null
+          },
+          {
+            "label": "Negative operating cash flow?",
+            "value": "No",
+            "note": "$102.72B",
+            "link": null
+          },
+          {
+            "label": "Current ratio below 1?",
+            "value": "No",
+            "note": "3.91 (below 1 = short-term liabilities exceed short-term assets)",
+            "link": null
+          },
+          {
+            "label": "High leverage (liabilities > 2× equity)?",
+            "value": "No",
+            "note": "0.31",
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": "* Failure to meet the evolving needs of the industry and markets, or increased competition, could adversely impact financial results and market share [6].\n* Export controls have harmed the company's competitive position, which will be further harmed long-term if restrictions remain, expand in scope, or if customers purchase from competitors or develop internal solutions [3].\n* Compliance with complex and future governmental regulations—including IP ownership, taxes, tariffs, export requirements, data privacy, competition, cybersecurity, environmental rules, and the responsible use of AI—could increase costs and impact competitive position and results [2].\n* Non-cancellable and non-returnable purchase orders placed in advance of historical lead times can amplify risks and negatively impact gross margins and financial results, especially if demand is miscalculated or product designs change [7].\n* Global operating risks, including adverse economic conditions, international sales exposure, cyber-attacks and security breaches, business disruptions, long-term climate change impacts, and difficulties realizing benefits from business investments or acquisitions, could harm the business [9].",
+        "note": "Simple checks done by Python on the SEC figures (signals, not a verdict: e.g. large share buybacks lower equity and raise the liabilities ratio), then the company's own risk factors from 10-K Item 1A."
+      },
+      {
+        "id": "outlook",
+        "title": "9. Future Outlook",
+        "facts": [],
+        "table": null,
+        "text": "* The company expects to continue making investments that support its technology roadmap and the broader AI ecosystem [11][13].\n* Management expects supply constraints to be a headwind to Gaming in the first quarter of fiscal 2027 and beyond [14].\n* The company is finalizing an investment and partnership agreement with OpenAI, though there is no assurance that the transaction will be completed [13].",
+        "note": "What management says (10-K Item 7). FinSight does not make its own forecasts."
+      },
+      {
+        "id": "sources",
+        "title": "10. Data Sources",
+        "facts": [
+          {
+            "label": "Auditor",
+            "value": "PricewaterhouseCoopers LLP",
+            "note": "auditor since 2004",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=ated%20to%20future%20demand%20and,%28iii%29%20changes%20in%20technology."
+          },
+          {
+            "label": "Audit opinion: financial statements",
+            "value": "Unqualified (clean) opinion",
+            "note": "\"present fairly, in all material respects\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=al%20Control%20%2D%20Integrated%20Framework,the%20Treadway%20Commission%20%28COSO%29."
+          },
+          {
+            "label": "Audit opinion: internal control",
+            "value": "Effective",
+            "note": "\"maintained, in all material respects, effective internal control\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=sh%20flows%20for%20each%20of,United%20States%20of%20America."
+          },
+          {
+            "label": "Annual report",
+            "value": "Form 10-K, FY2026 (period ending 2026-01-25)",
+            "note": "filed 2026-02-25 · accession 0001045810-26-000021",
+            "link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+          },
+          {
+            "label": "Financial figures",
+            "value": "SEC XBRL Company Facts (as originally reported in the 10-K)",
+            "note": null,
+            "link": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
+          },
+          {
+            "label": "Company data",
+            "value": "SEC EDGAR company profile",
+            "note": null,
+            "link": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1045810&type=10-K"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      }
+    ],
+    "skipped": [],
+    "sources": [
+      {
+        "number": 1,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.278,
+        "excerpt": "Ajay K. Puri joined NVIDIA in 2005 as Senior Vice President, Worldwide Sales and became Executive Vice President, Worldwide Field Operations in 2009. Prior to NVIDIA, he held positions in sales, marketing, and general management over a 22-year career at Sun Microsystems, Inc., a computing systems co",
+        "text": "Ajay K. Puri joined NVIDIA in 2005 as Senior Vice President, Worldwide Sales and became Executive Vice President, Worldwide Field Operations in 2009. Prior to NVIDIA, he held positions in sales, marketing, and general management over a 22-year career at Sun Microsystems, Inc., a computing systems company. Mr. Puri previously held marketing, management consulting, and product development positions at Hewlett-Packard, an information technology company, Booz Allen Hamilton Inc., a management and technology consulting company, and Texas Instruments Incorporated. Mr. Puri holds a B.S.E.E. degree from the University of Minnesota, an M.S.E.E. degree from the California Institute of Technology and an M.B.A. degree from Harvard Business School.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Puri%20joined%20NVIDIA%20in%202005,Field%20Operations%20in%202009."
+      },
+      {
+        "number": 2,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.268,
+        "excerpt": "Compliance with existing or future governmental regulations, including, but not limited to, those pertaining to IP ownership and infringement, taxes, import and export requirements and tariffs, anti-corruption, business acquisitions, foreign exchange controls and cash repatriation restrictions, data",
+        "text": "Compliance with existing or future governmental regulations, including, but not limited to, those pertaining to IP ownership and infringement, taxes, import and export requirements and tariffs, anti-corruption, business acquisitions, foreign exchange controls and cash repatriation restrictions, data privacy requirements, competition and antitrust, advertising, employment, product regulations, cybersecurity, environmental, health and safety requirements, the responsible use of AI, climate change, cryptocurrency, and consumer laws, could further increase our costs, impact our competitive position, and otherwise may have a material adverse impact on our business, financial condition and results of operations in subsequent periods. Refer to “Item 1A.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Compliance%20with%20existing%20or%20future,operations%20in%20subsequent%20periods."
+      },
+      {
+        "number": 3,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.252,
+        "excerpt": "Our competitive position has been harmed by export controls, and our competitive position and future results will be further harmed, over the long term, if the restrictions remain in place or are expanded in geographic, customer, or product scope, if customers purchase product from competitors, if c",
+        "text": "Our competitive position has been harmed by export controls, and our competitive position and future results will be further harmed, over the long term, if the restrictions remain in place or are expanded in geographic, customer, or product scope, if customers purchase product from competitors, if customers develop their own internal solution, if we are unable to provide contractual warranty or other extended service obligations, if the USG does not grant licenses in a timely manner or denies licenses to significant customers or if we incur significant transition costs.\nThe licensing process may not be resolved before significant business opportunities evaporate.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Our%20competitive%20position%20has%20been,incur%20significant%20transition%20costs."
+      },
+      {
+        "number": 4,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.244,
+        "excerpt": "Additionally, we can avoid many of the significant costs and risks associated with owning and operating manufacturing operations. While we may directly procure certain raw materials used in the production of our products, such as memory, substrates, and a variety of components, our suppliers are res",
+        "text": "Additionally, we can avoid many of the significant costs and risks associated with owning and operating manufacturing operations. While we may directly procure certain raw materials used in the production of our products, such as memory, substrates, and a variety of components, our suppliers are responsible for procurement of most raw materials used in the production of our products. As a result, we can focus our resources on product design, quality assurance, marketing, and customer support. In periods of growth, we may place non-cancellable inventory orders for certain product components in advance of our historical lead times, pay premiums, or provide deposits to secure future supply and capacity and may need to continue to do so.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Additionally%2C%20we%20can%20avoid%20many,and%20operating%20manufacturing%20operations."
+      },
+      {
+        "number": 6,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.511,
+        "excerpt": "Item 1A. Risk Factors\nThe following risk factors should be considered in addition to the other information in this Annual Report on Form 10-K. The following risks could harm our business, financial condition, results of operations or reputation, which could cause our stock price to decline. Addition",
+        "text": "Item 1A. Risk Factors\nThe following risk factors should be considered in addition to the other information in this Annual Report on Form 10-K. The following risks could harm our business, financial condition, results of operations or reputation, which could cause our stock price to decline. Additional risks, trends and uncertainties not presently known to us or that we currently believe are immaterial may also harm our business, financial condition, results of operations or reputation.\nRisk Factors Summary\nRisks Related to Our Industry and Markets\n•Failure to meet the evolving needs of our industry and markets may adversely impact our financial results.\n•Competition could adversely impact our market share and financial results.\nRisks Related to Demand, Supply, and Manufacturing",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=The%20following%20risks%20could%20harm,stock%20price%20to%20decline."
+      },
+      {
+        "number": 7,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.508,
+        "excerpt": "The impact of these risks would be amplified by our non-cancellable and non-returnable purchase orders placed in advance of our historical lead times and could be exacerbated if we need to make changes to the design of future products. These risks have increased and may continue to increase as our p",
+        "text": "The impact of these risks would be amplified by our non-cancellable and non-returnable purchase orders placed in advance of our historical lead times and could be exacerbated if we need to make changes to the design of future products. These risks have increased and may continue to increase as our purchase obligations and prepaids have grown and are expected to continue to grow and become a greater portion of our total supply. All of these factors may negatively impact our gross margins and financial results.\nFactors that have caused and/or could in the future cause us to underestimate or overestimate demand, and impact the timing and volume of our revenue, include:\n•changes in product development cycles and time to market;",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=The%20impact%20of%20these%20risks,design%20of%20future%20products."
+      },
+      {
+        "number": 9,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.498,
+        "excerpt": "Risks Related to Our Global Operating Business\n•Adverse economic conditions may harm our business.\n•International sales and operations are a significant part of our business, which exposes us to risks that could harm our business.\n•Product, system security and data protection incidents or breaches, ",
+        "text": "Risks Related to Our Global Operating Business\n•Adverse economic conditions may harm our business.\n•International sales and operations are a significant part of our business, which exposes us to risks that could harm our business.\n•Product, system security and data protection incidents or breaches, as well as cyber-attacks could disrupt our operations and adversely affect our financial condition, stock price and reputation.\n•Business disruptions could harm our operations and financial results.\n•Climate change may have a long-term impact on our business.\n•We may not be able to realize the potential benefits of business investments or acquisitions, nor successfully integrate acquisition targets.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=International%20sales%20and%20operations%20are,could%20harm%20our%20business."
+      },
+      {
+        "number": 11,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.485,
+        "excerpt": "We have made, and expect to continue making, investments that support our technology roadmap and the broader AI ecosystem. In fiscal year 2026, we made the following investments:\n•We invested $17.5 billion in private companies and infrastructure funds, primarily to support early‑stage startups. Thes",
+        "text": "We have made, and expect to continue making, investments that support our technology roadmap and the broader AI ecosystem. In fiscal year 2026, we made the following investments:\n•We invested $17.5 billion in private companies and infrastructure funds, primarily to support early‑stage startups. These investments include AI model makers that purchase our products directly or through CSPs. Many of these investments are illiquid and non‑marketable. The related early-stage startups may not become profitable in the near term, or at all, and there can be no assurance that we will realize a return on our investments.\n•We made investments in publicly-held equity securities where the value may fluctuate significantly due to changes in stock prices and could adversely affect our financial results.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20have%20made%2C%20and%20expect,the%20broader%20AI%20ecosystem."
+      },
+      {
+        "number": 13,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.37,
+        "excerpt": "Refer to Note 11 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for further discussion.\nMaterial Cash Requirements and Other Obligations\nFor descriptions of our facility lease guarantees, long-term debt, purchase commitments, and operatin",
+        "text": "Refer to Note 11 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K for further discussion.\nMaterial Cash Requirements and Other Obligations\nFor descriptions of our facility lease guarantees, long-term debt, purchase commitments, and operating lease obligations, refer to Note 10, Note 11, Note 12, and Note 17 of the Notes to the Consolidated Financial Statements in Part IV, Item 15 of this Annual Report on Form 10-K, respectively.\nWe expect to continue investing in our ecosystem. We are finalizing an investment and partnership agreement with OpenAI. There is no assurance that we will enter into an investment and partnership agreement with OpenAI or that a transaction will be completed. Refer to Item 1A.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20expect%20to%20continue%20investing,investing%20in%20our%20ecosystem."
+      },
+      {
+        "number": 14,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.367,
+        "excerpt": "We expect supply constraints to be a headwind to Gaming in the first quarter of fiscal 2027 and beyond.\nProfessional Visualization revenue for fiscal year 2026 was up 70% from a year ago, driven by exceptional demand for Blackwell as well as the launch of our new DGX Spark.\nAutomotive revenue for fi",
+        "text": "We expect supply constraints to be a headwind to Gaming in the first quarter of fiscal 2027 and beyond.\nProfessional Visualization revenue for fiscal year 2026 was up 70% from a year ago, driven by exceptional demand for Blackwell as well as the launch of our new DGX Spark.\nAutomotive revenue for fiscal year 2026 was up 39% from a year ago, driven by continued adoption of our self-driving platforms.\nGross margin decreased in fiscal year 2026 as our business model transitioned from offering Hopper HGX systems to Blackwell full-scale datacenter solutions. The gross margin decrease was also impacted by a $4.5 billion charge associated with H20 excess inventory and purchase obligations.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20expect%20supply%20constraints%20to,fiscal%202027%20and%20beyond."
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "cached": false,
+    "unverified_numbers": [],
+    "markdown": "# NVIDIA Corporation (NVDA): Company Report\nForm 10-K, fiscal year 2026 (period ending 2026-01-25). Generated by FinSight AI from official SEC filings. Not investment advice.\n\n## 1. Company Overview\n- **Company name:** NVIDIA CORP\n- **Ticker / CIK:** NVDA · 0001045810\n- **Industry:** Semiconductors & Related Devices (SEC industry classification (SIC))\n- **Headquarters:** Santa Clara, CA\n- **State of incorporation:** DE\n- **Listed on:** Nasdaq\n- **Established:** 1993 (10-K: \"was incorporated in California in April 1993\")\n- **Fiscal year end:** January (this report: period ending 2026-01-25)\n\n## 2. Company Background\n* Ajay K. Puri serves as Executive Vice President, Worldwide Field Operations, having joined NVIDIA in 2005 after a 22-year career at Sun Microsystems and previous roles at Hewlett-Packard, Booz Allen Hamilton, and Texas Instruments [1].\n* The company avoids many significant costs and risks of owning and operating manufacturing operations by using suppliers for the procurement of most raw materials—such as memory, substrates, and components—allowing it to focus resources on product design, quality assurance, marketing, and customer support [4].\n* During periods of growth, the company may place non-cancellable inventory orders in advance of historical lead times, pay premiums, or provide deposits to secure future supply and capacity [4].\n* Professional Visualization revenue for fiscal year 2026 grew 70% year-over-year, driven by exceptional demand for Blackwell and the launch of the DGX Spark [14].\n* Automotive revenue for fiscal year 2026 increased 39% year-over-year, driven by continued adoption of self-driving platforms [14].\n\n## 3. Financial Information\n- **Revenue:** $215.94B (+65.47% vs FY2025)\n- **Total costs and expenses:** $85.55B (revenue − operating income, calculated by Python)\n- **Net income (profit):** $120.07B (+64.75% vs FY2025)\n- **Operating cash flow:** $102.72B (+60.27% vs FY2025)\n- **Cash and cash equivalents:** $10.61B (+23.47% vs FY2025)\n\n## 4. Balance Sheet\n- **Total assets:** $206.80B (+85.31% vs FY2025)\n- **Current assets:** $125.61B (+56.76% vs FY2025)\n- **Total liabilities:** $49.51B (+53.41% vs FY2025)\n- **Current liabilities:** $32.16B (+78.22% vs FY2025)\n- **Shareholders' equity:** $157.29B (+98.28% vs FY2025)\n\n## 5. Income Statement\n- **Sales (revenue):** $215.94B (+65.47% vs FY2025)\n- **Cost of sales:** $62.48B (revenue − gross profit, calculated by Python)\n- **Gross profit:** $153.46B (+56.82% vs FY2025)\n- **Operating costs:** $23.08B (gross profit − operating income, calculated by Python)\n- **Operating income:** $130.39B (+60.08% vs FY2025)\n- **Net income:** $120.07B (+64.75% vs FY2025)\n\n## 6. Financial Ratios\n- **Gross margin:** 71.07% (gross profit ÷ revenue)\n- **Operating margin:** 60.38% (operating income ÷ revenue)\n- **Net profit margin:** 55.60% (net income ÷ revenue)\n- **Current ratio:** 3.91 (current assets ÷ current liabilities)\n- **Debt-to-equity (total liabilities basis):** 0.31 (total liabilities ÷ shareholders' equity (includes all liabilities, not only borrowings))\n\n## 7. Business Performance\n- **Revenue growth FY2022 → FY2026:** +702.33% ($26.91B → $215.94B)\n- **Rank by revenue (of 5 FinSight companies):** #5 (each company's latest fiscal year; fiscal years end in different months)\n- **Rank by net income (of 5 FinSight companies):** #4 (each company's latest fiscal year; fiscal years end in different months)\n| Fiscal year | Revenue | Revenue growth | Net income | Net income growth |\n|---|---|---|---|---|\n| FY2022 | $26.91B | — | $9.75B | — |\n| FY2023 | $26.97B | +0.22% | $4.37B | -55.21% |\n| FY2024 | $60.92B | +125.85% | $29.76B | +581.32% |\n| FY2025 | $130.50B | +114.20% | $72.88B | +144.89% |\n| FY2026 | $215.94B | +65.47% | $120.07B | +64.75% |\n\n## 8. Risk Analysis\n_Simple checks done by Python on the SEC figures (signals, not a verdict: e.g. large share buybacks lower equity and raise the liabilities ratio), then the company's own risk factors from 10-K Item 1A._\n- **Declining revenue?:** No (+65.47% vs FY2025)\n- **Declining net income?:** No (+64.75% vs FY2025)\n- **Net loss?:** No (net income $120.07B)\n- **Negative operating cash flow?:** No ($102.72B)\n- **Current ratio below 1?:** No (3.91 (below 1 = short-term liabilities exceed short-term assets))\n- **High leverage (liabilities > 2× equity)?:** No (0.31)\n* Failure to meet the evolving needs of the industry and markets, or increased competition, could adversely impact financial results and market share [6].\n* Export controls have harmed the company's competitive position, which will be further harmed long-term if restrictions remain, expand in scope, or if customers purchase from competitors or develop internal solutions [3].\n* Compliance with complex and future governmental regulations—including IP ownership, taxes, tariffs, export requirements, data privacy, competition, cybersecurity, environmental rules, and the responsible use of AI—could increase costs and impact competitive position and results [2].\n* Non-cancellable and non-returnable purchase orders placed in advance of historical lead times can amplify risks and negatively impact gross margins and financial results, especially if demand is miscalculated or product designs change [7].\n* Global operating risks, including adverse economic conditions, international sales exposure, cyber-attacks and security breaches, business disruptions, long-term climate change impacts, and difficulties realizing benefits from business investments or acquisitions, could harm the business [9].\n\n## 9. Future Outlook\n_What management says (10-K Item 7). FinSight does not make its own forecasts._\n* The company expects to continue making investments that support its technology roadmap and the broader AI ecosystem [11][13].\n* Management expects supply constraints to be a headwind to Gaming in the first quarter of fiscal 2027 and beyond [14].\n* The company is finalizing an investment and partnership agreement with OpenAI, though there is no assurance that the transaction will be completed [13].\n\n## 10. Data Sources\n- **Auditor:** PricewaterhouseCoopers LLP (auditor since 2004)\n- **Audit opinion: financial statements:** Unqualified (clean) opinion (\"present fairly, in all material respects\")\n- **Audit opinion: internal control:** Effective (\"maintained, in all material respects, effective internal control\")\n- **Annual report:** Form 10-K, FY2026 (period ending 2026-01-25) (filed 2026-02-25 · accession 0001045810-26-000021)\n- **Financial figures:** SEC XBRL Company Facts (as originally reported in the 10-K)\n- **Company data:** SEC EDGAR company profile\n\n## Cited passages\n- [1] NVIDIA Corporation FY2026, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Puri%20joined%20NVIDIA%20in%202005,Field%20Operations%20in%202009.\n- [2] NVIDIA Corporation FY2026, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Compliance%20with%20existing%20or%20future,operations%20in%20subsequent%20periods.\n- [3] NVIDIA Corporation FY2026, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Our%20competitive%20position%20has%20been,incur%20significant%20transition%20costs.\n- [4] NVIDIA Corporation FY2026, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Additionally%2C%20we%20can%20avoid%20many,and%20operating%20manufacturing%20operations.\n- [6] NVIDIA Corporation FY2026, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=The%20following%20risks%20could%20harm,stock%20price%20to%20decline.\n- [7] NVIDIA Corporation FY2026, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=The%20impact%20of%20these%20risks,design%20of%20future%20products.\n- [9] NVIDIA Corporation FY2026, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=International%20sales%20and%20operations%20are,could%20harm%20our%20business.\n- [11] NVIDIA Corporation FY2026, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20have%20made%2C%20and%20expect,the%20broader%20AI%20ecosystem.\n- [13] NVIDIA Corporation FY2026, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20expect%20to%20continue%20investing,investing%20in%20our%20ecosystem.\n- [14] NVIDIA Corporation FY2026, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20expect%20supply%20constraints%20to,fiscal%202027%20and%20beyond."
+  }
+}

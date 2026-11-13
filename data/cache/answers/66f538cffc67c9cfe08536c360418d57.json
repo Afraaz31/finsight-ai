@@ -1,0 +1,87 @@
+{
+  "question": "Who audits NVIDIA and what did they say?",
+  "saved_at": "2026-11-08 12:38:38",
+  "result": {
+    "answer": "NVIDIA's auditor is PricewaterhouseCoopers LLP (PwC) [1]. \n\nHere are the details from their audit-related communications in the filings:\n* **Auditor Identity:** PricewaterhouseCoopers LLP, located in San Jose, California, has served as NVIDIA's auditor since 2004 [1].\n* **Basis for Opinions:** The auditor stated that they believe their audits provide a reasonable basis for their opinions [3][6].\n* **Internal Control over Financial Reporting:** Their audits included obtaining an understanding of internal control over financial reporting, assessing the risk of a material weakness, testing and evaluating the design and operating effectiveness of controls, and performing other necessary procedures [3].\n* **Critical Audit Matters:** The auditor addressed the valuation of inventories—specifically provisions for excess or obsolete inventories and excess product purchase commitments—which involved testing the effectiveness of controls related to management's provisions and assumptions regarding future demand and market conditions [4][5]. They noted that communicating critical audit matters does not alter their opinion on the consolidated financial statements taken as a whole, nor do they provide a separate opinion on the critical audit matter itself [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 15. Exhibits and Financial Statement Schedules",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.576,
+        "excerpt": "/s/PricewaterhouseCoopers LLP\nSan Jose, California\nFebruary 25, 2026\nWe have served as the Company’s auditor since 2004.\nConsolidated Statements of Income\n(In millions, except per share data)\nRevenue | $215,938 | $130,497 | $60,922\nCost of revenue | 62,475 | 32,639 | 16,621\nGross profit | 153,463 | ",
+        "text": "/s/PricewaterhouseCoopers LLP\nSan Jose, California\nFebruary 25, 2026\nWe have served as the Company’s auditor since 2004.\nConsolidated Statements of Income\n(In millions, except per share data)\nRevenue | $215,938 | $130,497 | $60,922\nCost of revenue | 62,475 | 32,639 | 16,621\nGross profit | 153,463 | 97,858 | 44,301\nOperating expenses\nResearch and development | 18,497 | 12,914 | 8,675\nSales, general and administrative | 4,579 | 3,491 | 2,654\nTotal operating expenses | 23,076 | 16,405 | 11,329\nOperating income | 130,387 | 81,453 | 32,972\nInterest income | 2,300 | 1,786 | 866\nInterest expense | ( 259 ) | ( 247 ) | ( 257 )\nOther income, net | 9,022 | 1,034 | 237\nTotal other income, net | 11,063 | 2,573 | 846\nIncome before income tax | 141,450 | 84,026 | 33,818",
+        "section_id": "15",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm"
+      },
+      {
+        "number": 3,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 15. Exhibits and Financial Statement Schedules",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.659,
+        "excerpt": "Our audit of internal control over financial reporting included obtaining an understanding of internal control over financial reporting, assessing the risk that a material weakness exists, and testing and evaluating the design and operating effectiveness of internal control based on the assessed ris",
+        "text": "Our audit of internal control over financial reporting included obtaining an understanding of internal control over financial reporting, assessing the risk that a material weakness exists, and testing and evaluating the design and operating effectiveness of internal control based on the assessed risk. Our audits also included performing such other procedures as we considered necessary in the circumstances. We believe that our audits provide a reasonable basis for our opinions.\nDefinition and Limitations of Internal Control over Financial Reporting",
+        "section_id": "15",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Our%20audit%20of%20internal%20control,on%20the%20assessed%20risk."
+      },
+      {
+        "number": 4,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 15. Exhibits and Financial Statement Schedules",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.636,
+        "excerpt": "Addressing the matter involved performing procedures and evaluating audit evidence in connection with forming our overall opinion on the consolidated financial statements. These procedures included testing the effectiveness of controls relating to management’s provisions for excess or obsolete inven",
+        "text": "Addressing the matter involved performing procedures and evaluating audit evidence in connection with forming our overall opinion on the consolidated financial statements. These procedures included testing the effectiveness of controls relating to management’s provisions for excess or obsolete inventories and excess product purchase commitments, including controls over management’s assumptions related to future demand and market conditions.",
+        "section_id": "15",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=Addressing%20the%20matter%20involved%20performing,the%20consolidated%20financial%20statements."
+      },
+      {
+        "number": 5,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 15. Exhibits and Financial Statement Schedules",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.631,
+        "excerpt": "The communication of critical audit matters does not alter in any way our opinion on the consolidated financial statements, taken as a whole, and we are not, by communicating the critical audit matter below, providing a separate opinion on the critical audit matter or on the accounts or disclosures ",
+        "text": "The communication of critical audit matters does not alter in any way our opinion on the consolidated financial statements, taken as a whole, and we are not, by communicating the critical audit matter below, providing a separate opinion on the critical audit matter or on the accounts or disclosures to which it relates.\nValuation of Inventories - Provisions for Excess or Obsolete Inventories and Excess Product Purchase Commitments\nAs described in Notes 1, 9, and 12 to the consolidated financial statements, the Company charges cost of sales for inventory provisions to write-down inventory for excess or obsolete inventory and for excess product purchase commitments.",
+        "section_id": "15",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=The%20communication%20of%20critical%20audit,to%20which%20it%20relates."
+      },
+      {
+        "number": 6,
+        "company": "NVIDIA Corporation",
+        "ticker": "NVDA",
+        "fiscal_year": 2026,
+        "period_end": "2026-01-25",
+        "section": "Item 15. Exhibits and Financial Statement Schedules",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+        "score": 0.627,
+        "excerpt": "We believe that our audits provide a reasonable basis for our opinions.\nDefinition and Limitations of Internal Control over Financial Reporting\nA company’s internal control over financial reporting is a process designed to provide reasonable assurance regarding the reliability of financial reporting",
+        "text": "We believe that our audits provide a reasonable basis for our opinions.\nDefinition and Limitations of Internal Control over Financial Reporting\nA company’s internal control over financial reporting is a process designed to provide reasonable assurance regarding the reliability of financial reporting and the preparation of financial statements for external purposes in accordance with generally accepted accounting principles.",
+        "section_id": "15",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm#:~:text=We%20believe%20that%20our%20audits,basis%20for%20our%20opinions."
+      }
+    ],
+    "companies": [
+      "NVDA"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 6,
+    "unverified_numbers": []
+  }
+}

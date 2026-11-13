@@ -1,0 +1,538 @@
+{
+  "question": "report GOOGL FY2025",
+  "saved_at": "2026-11-08 13:51:44",
+  "result": {
+    "ticker": "GOOGL",
+    "company": "Alphabet Inc.",
+    "fiscal_year": 2025,
+    "period_end": "2025-12-31",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "1. Company Overview",
+        "facts": [
+          {
+            "label": "Company name",
+            "value": "Alphabet Inc.",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Ticker / CIK",
+            "value": "GOOGL · 0001652044",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Industry",
+            "value": "Services-Computer Programming, Data Processing, Etc.",
+            "note": "SEC industry classification (SIC)",
+            "link": null
+          },
+          {
+            "label": "Headquarters",
+            "value": "Mountain View, CA",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "State of incorporation",
+            "value": "DE",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Listed on",
+            "value": "Nasdaq, Nasdaq, Nasdaq, Nasdaq",
+            "note": null,
+            "link": null
+          },
+          {
+            "label": "Established",
+            "value": "1998",
+            "note": "10-K: \"were founded in 1998\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+          },
+          {
+            "label": "Fiscal year end",
+            "value": "December (this report: period ending 2025-12-31)",
+            "note": null,
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "background",
+        "title": "2. Company Background",
+        "facts": [],
+        "table": null,
+        "text": "* The company was founded more than 25 years ago (in 1998) with the mission to organize the world’s information and make it universally accessible and useful [1][2].\n* Alphabet is structured as a collection of businesses, the largest of which is Google [13].\n* Google is reported in two segments: Google Services and Google Cloud, while all non-Google businesses are reported collectively as Other Bets [2].\n* Alphabet-level activities support these businesses by centralizing certain AI-related research and development focused on advanced research in AI and developing frontier models [2].\n* Core products and platforms within Google Services include ads, Android, Chrome, devices, Gmail, Google Drive, Google Gemini, Google Maps, Google Photos, Google Play, Search, and YouTube [1].\n* Google Services generates revenues primarily by delivering performance and brand advertising across Google Search and other properties, YouTube, and Google Network partners' properties [4].",
+        "note": null
+      },
+      {
+        "id": "financials",
+        "title": "3. Financial Information",
+        "facts": [
+          {
+            "label": "Revenue",
+            "value": "$402.84B",
+            "note": "+15.09% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Total costs and expenses",
+            "value": "$273.80B",
+            "note": "revenue − operating income, calculated by Python",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Net income (profit)",
+            "value": "$132.17B",
+            "note": "+32.01% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Operating cash flow",
+            "value": "$164.71B",
+            "note": "+31.46% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Cash and cash equivalents",
+            "value": "$30.71B",
+            "note": "+30.86% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "balance_sheet",
+        "title": "4. Balance Sheet",
+        "facts": [
+          {
+            "label": "Total assets",
+            "value": "$595.28B",
+            "note": "+32.21% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Current assets",
+            "value": "$206.04B",
+            "note": "+25.85% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Total liabilities",
+            "value": "$180.02B",
+            "note": "+43.81% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Current liabilities",
+            "value": "$102.75B",
+            "note": "+15.29% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Shareholders' equity",
+            "value": "$415.26B",
+            "note": "+27.74% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "income_statement",
+        "title": "5. Income Statement",
+        "facts": [
+          {
+            "label": "Sales (revenue)",
+            "value": "$402.84B",
+            "note": "+15.09% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Operating income",
+            "value": "$129.04B",
+            "note": "+14.81% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          },
+          {
+            "label": "Net income",
+            "value": "$132.17B",
+            "note": "+32.01% vs FY2024",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "ratios",
+        "title": "6. Financial Ratios",
+        "facts": [
+          {
+            "label": "Operating margin",
+            "value": "32.03%",
+            "note": "operating income ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Net profit margin",
+            "value": "32.81%",
+            "note": "net income ÷ revenue",
+            "link": null
+          },
+          {
+            "label": "Current ratio",
+            "value": "2.01",
+            "note": "current assets ÷ current liabilities",
+            "link": null
+          },
+          {
+            "label": "Debt-to-equity (total liabilities basis)",
+            "value": "0.43",
+            "note": "total liabilities ÷ shareholders' equity (includes all liabilities, not only borrowings)",
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "performance",
+        "title": "7. Business Performance",
+        "facts": [
+          {
+            "label": "Revenue growth FY2021 → FY2025",
+            "value": "+56.36%",
+            "note": "$257.64B → $402.84B",
+            "link": null
+          },
+          {
+            "label": "Rank by revenue (of 5 FinSight companies)",
+            "value": "#3",
+            "note": "each company's latest fiscal year; fiscal years end in different months",
+            "link": null
+          },
+          {
+            "label": "Rank by net income (of 5 FinSight companies)",
+            "value": "#3",
+            "note": "each company's latest fiscal year; fiscal years end in different months",
+            "link": null
+          }
+        ],
+        "table": [
+          {
+            "Fiscal year": "FY2021",
+            "Revenue": "$257.64B",
+            "Revenue growth": "—",
+            "Net income": "$76.03B",
+            "Net income growth": "—"
+          },
+          {
+            "Fiscal year": "FY2022",
+            "Revenue": "$282.84B",
+            "Revenue growth": "+9.78%",
+            "Net income": "$59.97B",
+            "Net income growth": "-21.12%"
+          },
+          {
+            "Fiscal year": "FY2023",
+            "Revenue": "$307.39B",
+            "Revenue growth": "+8.68%",
+            "Net income": "$73.80B",
+            "Net income growth": "+23.05%"
+          },
+          {
+            "Fiscal year": "FY2024",
+            "Revenue": "$350.02B",
+            "Revenue growth": "+13.87%",
+            "Net income": "$100.12B",
+            "Net income growth": "+35.67%"
+          },
+          {
+            "Fiscal year": "FY2025",
+            "Revenue": "$402.84B",
+            "Revenue growth": "+15.09%",
+            "Net income": "$132.17B",
+            "Net income growth": "+32.01%"
+          }
+        ],
+        "text": null,
+        "note": null
+      },
+      {
+        "id": "risks",
+        "title": "8. Risk Analysis",
+        "facts": [
+          {
+            "label": "Declining revenue?",
+            "value": "No",
+            "note": "+15.09% vs FY2024",
+            "link": null
+          },
+          {
+            "label": "Declining net income?",
+            "value": "No",
+            "note": "+32.01% vs FY2024",
+            "link": null
+          },
+          {
+            "label": "Net loss?",
+            "value": "No",
+            "note": "net income $132.17B",
+            "link": null
+          },
+          {
+            "label": "Negative operating cash flow?",
+            "value": "No",
+            "note": "$164.71B",
+            "link": null
+          },
+          {
+            "label": "Current ratio below 1?",
+            "value": "No",
+            "note": "2.01 (below 1 = short-term liabilities exceed short-term assets)",
+            "link": null
+          },
+          {
+            "label": "High leverage (liabilities > 2× equity)?",
+            "value": "No",
+            "note": "0.43",
+            "link": null
+          }
+        ],
+        "table": null,
+        "text": "* Failing to provide superior value or deliver advertisements effectively and competitively could harm the company's business, reputation, financial condition, and operating results [6].\n* Adverse macroeconomic conditions can affect the demand for advertising and advertiser spending amounts, which could harm financial condition and operating results [6].\n* Increasing investment in new businesses, products, services, and technologies is inherently risky and could divert management attention and harm the business, financial condition, and operating results [6].\n* The company generates a significant portion of its revenues (more than 70% of total revenues in 2025) from online advertising, meaning reduced advertiser spending, partner losses, shifts in online advertising, new formats, or ad-blocking technologies could harm the business [7].\n* Acquisitions, joint ventures, investments, and divestitures are important to corporate strategy but could result in operating difficulties, dilution, and unforeseen expenditures that harm financial condition and results [8].\n* The fair value of debt and equity investments can be negatively affected by liquidity, credit deterioration, financial results of underlying entities, foreign exchange rates, interest rate changes, regulatory shifts, or stock market conditions, potentially causing significant declines in investment value [9].",
+        "note": "Simple checks done by Python on the SEC figures (signals, not a verdict: e.g. large share buybacks lower equity and raise the liabilities ratio), then the company's own risk factors from 10-K Item 1A."
+      },
+      {
+        "id": "outlook",
+        "title": "9. Future Outlook",
+        "facts": [],
+        "table": null,
+        "text": "* Management expects that the ongoing evolution of the online world, including user engagement with AI products and services, will continue to benefit the business and revenues [11].\n* In 2026, management expects to significantly increase investment in technical infrastructure—including servers, network equipment, and data centers—relative to 2025 [12].\n* Management expects that existing cash, cash equivalents, short-term marketable securities, cash flows from operations, and financing activities will be sufficient to fund operating activities and cash commitments for investing and financing activities for at least the next 12 months, and thereafter for the foreseeable future [14].",
+        "note": "What management says (10-K Item 7). FinSight does not make its own forecasts."
+      },
+      {
+        "id": "sources",
+        "title": "10. Data Sources",
+        "facts": [
+          {
+            "label": "Auditor",
+            "value": "Ernst & Young LLP",
+            "note": "auditor since 1999",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=suits%2C%20reviewing%20letters%20from%20internal,management%20on%20these%20matters."
+          },
+          {
+            "label": "Audit opinion: financial statements",
+            "value": "Unqualified (clean) opinion",
+            "note": "\"present fairly, in all material respects\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=ated%20notes%20and%20financial%20statement,the%20%E2%80%9Cconsolidated%20financial%20statements%E2%80%9D%29."
+          },
+          {
+            "label": "Audit opinion: internal control",
+            "value": "Effective",
+            "note": "\"maintained, in all material respects, effective internal control\"",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Internal%20Control%E2%80%94Integrated%20Framework%20issued%20by,framework%29%20%28the%20COSO%20criteria%29."
+          },
+          {
+            "label": "Annual report",
+            "value": "Form 10-K, FY2025 (period ending 2025-12-31)",
+            "note": "filed 2026-02-05 · accession 0001652044-26-000018",
+            "link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+          },
+          {
+            "label": "Financial figures",
+            "value": "SEC XBRL Company Facts (as originally reported in the 10-K)",
+            "note": null,
+            "link": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
+          },
+          {
+            "label": "Company data",
+            "value": "SEC EDGAR company profile",
+            "note": null,
+            "link": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1652044&type=10-K"
+          }
+        ],
+        "table": null,
+        "text": null,
+        "note": null
+      }
+    ],
+    "skipped": [],
+    "sources": [
+      {
+        "number": 1,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.383,
+        "excerpt": "Our product innovations are what make our services widely used, and our brand one of the most recognized in the world. Google Services' core products and platforms include ads, Android, Chrome, devices, Gmail, Google Drive, Google Gemini, Google Maps, Google Photos, Google Play, Search, and YouTube,",
+        "text": "Our product innovations are what make our services widely used, and our brand one of the most recognized in the world. Google Services' core products and platforms include ads, Android, Chrome, devices, Gmail, Google Drive, Google Gemini, Google Maps, Google Photos, Google Play, Search, and YouTube, with broad and growing adoption by users around the world.\n4.\nOur products and services have come a long way since the company was founded more than 25 years ago. While Google Search started as a way to find web pages, organized into ten blue links, we have driven technical advancements and product innovations that have transformed Google Search into a dynamic, multimodal experience.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Our%20product%20innovations%20are%20what,recognized%20in%20the%20world."
+      },
+      {
+        "number": 2,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.328,
+        "excerpt": "We report Google in two segments, Google Services and Google Cloud, and all non-Google businesses collectively as Other Bets. Supporting these businesses, we have centralized certain AI-related research and development focused on advanced research in AI and developing the frontier models that serve ",
+        "text": "We report Google in two segments, Google Services and Google Cloud, and all non-Google businesses collectively as Other Bets. Supporting these businesses, we have centralized certain AI-related research and development focused on advanced research in AI and developing the frontier models that serve our businesses, which is reported in Alphabet-level activities. Alphabet's structure is about helping each of our businesses prosper through strong leaders and independence.\nAccess and Technology for Everyone\nThe Internet is one of the world’s most powerful equalizers; it propels ideas, people, and businesses large and small. Our mission to organize the world’s information and make it universally accessible and useful is as relevant today as it was when we were founded in 1998.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=We%20report%20Google%20in%20two,collectively%20as%20Other%20Bets."
+      },
+      {
+        "number": 4,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1. Business",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.323,
+        "excerpt": "Google Services generates revenues primarily by delivering both performance and brand advertising that appears on Google Search & other properties, YouTube, and Google Network partners' properties (\"Google Network properties\"). We continue to invest in both performance and brand advertising and seek",
+        "text": "Google Services generates revenues primarily by delivering both performance and brand advertising that appears on Google Search & other properties, YouTube, and Google Network partners' properties (\"Google Network properties\"). We continue to invest in both performance and brand advertising and seek to improve the measurability of advertising so advertisers understand the effectiveness of their campaigns.\n•Performance advertising creates and delivers relevant ads that users will click on leading to direct engagement with advertisers. Performance advertising lets our advertisers connect with users while driving measurable results. Our ads tools allow performance advertisers to create simple text-based ads.",
+        "section_id": "1",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Google%20Services%20generates%20revenues%20primarily,properties%20%28%22Google%20Network%20properties%22%29."
+      },
+      {
+        "number": 6,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.573,
+        "excerpt": "Failing to provide superior value or deliver advertisements effectively and competitively could harm our business, reputation, financial condition, and operating results.\nExpenditures by advertisers tend to correlate with overall economic conditions. Adverse macroeconomic conditions have affected, a",
+        "text": "Failing to provide superior value or deliver advertisements effectively and competitively could harm our business, reputation, financial condition, and operating results.\nExpenditures by advertisers tend to correlate with overall economic conditions. Adverse macroeconomic conditions have affected, and may in the future affect, the demand for advertising, resulting in fluctuations in the amounts our advertisers spend on advertising, which could harm our financial condition and operating results.\nOur increasing investment in new businesses, products, services, and technologies is inherently risky, and could divert management attention and harm our business, financial condition, and operating results.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Failing%20to%20provide%20superior%20value,condition%2C%20and%20operating%20results."
+      },
+      {
+        "number": 7,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.558,
+        "excerpt": "ITEM 1A.RISK FACTORS\nOur operations and financial results are subject to various risks and uncertainties, including but not limited to those described below, which could harm our business, reputation, financial condition, and operating results, and may affect the trading price and price volatility o",
+        "text": "ITEM 1A.RISK FACTORS\nOur operations and financial results are subject to various risks and uncertainties, including but not limited to those described below, which could harm our business, reputation, financial condition, and operating results, and may affect the trading price and price volatility of our Class A and Class C stock.\nRisks Specific to our Company\nWe generate a significant portion of our revenues from advertising. Reduced spending by advertisers, a loss of partners, shifts in online advertising, new and evolving advertising formats, or new or existing technologies that block ads online or affect our ability to personalize ads could harm our business.\nWe generated more than 70% of total revenues from online advertising in 2025.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Our%20operations%20and%20financial%20results,and%20Class%20C%20stock."
+      },
+      {
+        "number": 8,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.549,
+        "excerpt": "Consequently, our operating results in future quarters may fall below expectations.\nAcquisitions, joint ventures, investments, and divestitures could result in operating difficulties, dilution, and other consequences that could harm our business, financial condition, and operating results.\nAcquisiti",
+        "text": "Consequently, our operating results in future quarters may fall below expectations.\nAcquisitions, joint ventures, investments, and divestitures could result in operating difficulties, dilution, and other consequences that could harm our business, financial condition, and operating results.\nAcquisitions, joint ventures, investments, and divestitures are important elements of our overall corporate strategy and use of capital, and these transactions could be material to our financial condition and operating results. We expect to continue to evaluate and enter into discussions regarding a wide array of such potential strategic arrangements, which could create unforeseen operating difficulties and expenditures. Some of the areas where we face risks include:",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Consequently%2C%20our%20operating%20results%20in,may%20fall%20below%20expectations."
+      },
+      {
+        "number": 9,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.534,
+        "excerpt": "The fair value of our debt and equity investments may in the future be, and certain investments have been in the past, negatively affected by liquidity, credit deterioration or losses, performance and financial results of the underlying entities, foreign exchange rates, changes in interest rates, th",
+        "text": "The fair value of our debt and equity investments may in the future be, and certain investments have been in the past, negatively affected by liquidity, credit deterioration or losses, performance and financial results of the underlying entities, foreign exchange rates, changes in interest rates, the effect of new or changing regulations, the stock market in general, or other factors. As a result of these factors, the value of our investments could significantly decline, which could harm our financial condition and operating results.",
+        "section_id": "1A",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20fair%20value%20of%20our,general%2C%20or%20other%20factors."
+      },
+      {
+        "number": 11,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.455,
+        "excerpt": "Trends in Our Business and Financial Effect\nThe following long-term trends have contributed to the results of our consolidated operations, and we anticipate that they will continue to affect our future results:\n•As we continue to grow our business and meet the evolving behaviors and needs of our use",
+        "text": "Trends in Our Business and Financial Effect\nThe following long-term trends have contributed to the results of our consolidated operations, and we anticipate that they will continue to affect our future results:\n•As we continue to grow our business and meet the evolving behaviors and needs of our users and customers, our revenue growth and mix along with our cost and margin profiles are being influenced by a number of factors, including:\nExpanded AI Offerings in our Products and Services: The continuing evolution of the online world has contributed to the growth of our business. We expect that this evolution, including user engagement with AI products and services, will continue to benefit our business and our revenues.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20following%20long%2Dterm%20trends%20have,affect%20our%20future%20results%3A"
+      },
+      {
+        "number": 12,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.437,
+        "excerpt": "The time frame from date of purchase to placement in service of these assets may extend from months to years. For example, our data center construction projects are generally multi-year projects with multiple phases, where we acquire land and buildings, construct buildings, and secure and install se",
+        "text": "The time frame from date of purchase to placement in service of these assets may extend from months to years. For example, our data center construction projects are generally multi-year projects with multiple phases, where we acquire land and buildings, construct buildings, and secure and install servers and network equipment.\nDuring the years ended December 31, 2024 and 2025, we spent $52.5 billion and $91.4 billion on capital expenditures, respectively. In 2026, we expect to significantly increase, relative to 2025, our investment in our technical infrastructure, including servers and network equipment, and data centers. Depreciation of our property and equipment commences when such assets are ready for their intended use.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20time%20frame%20from%20date,from%20months%20to%20years."
+      },
+      {
+        "number": 13,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.43,
+        "excerpt": "ITEM 7.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nPlease read the following discussion and analysis of our financial condition and results of operations together with “Note about Forward-Looking Statements,” Part I, Item 1 \"Business,\" Part I, Item 1A \"Risk ",
+        "text": "ITEM 7.MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nPlease read the following discussion and analysis of our financial condition and results of operations together with “Note about Forward-Looking Statements,” Part I, Item 1 \"Business,\" Part I, Item 1A \"Risk Factors,\" and our consolidated financial statements and related notes included under Item 8 of this Annual Report on Form 10-K.\nThe following section generally discusses 2025 results compared to 2024 results. Discussion of 2024 results compared to 2023 results to the extent not included in this report can be found in Item 7 of our 2024 Annual Report on Form 10-K.\nUnderstanding Alphabet’s Financial Results\nAlphabet is a collection of businesses — the largest of which is Google.",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20following%20section%20generally%20discusses,compared%20to%202024%20results."
+      },
+      {
+        "number": 14,
+        "company": "Alphabet Inc.",
+        "ticker": "GOOGL",
+        "fiscal_year": 2025,
+        "period_end": "2025-12-31",
+        "section": "Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+        "score": 0.42,
+        "excerpt": "Net cash used in financing activities decreased from 2024 to 2025 due to an increase in proceeds from issuance of debt and a decrease in repurchases of stock, partially offset by repayments of debt.\nLiquidity and Material Cash Requirements\nWe expect existing cash, cash equivalents, short-term market",
+        "text": "Net cash used in financing activities decreased from 2024 to 2025 due to an increase in proceeds from issuance of debt and a decrease in repurchases of stock, partially offset by repayments of debt.\nLiquidity and Material Cash Requirements\nWe expect existing cash, cash equivalents, short-term marketable securities, and cash flows from operations and financing activities to continue to be sufficient to fund our operating activities and cash commitments for investing and financing activities for at least the next 12 months, and thereafter for the foreseeable future.\nCapital Expenditures and Leases",
+        "section_id": "7",
+        "deep_link": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Net%20cash%20used%20in%20financing,by%20repayments%20of%20debt."
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "cached": false,
+    "unverified_numbers": [],
+    "markdown": "# Alphabet Inc. (GOOGL): Company Report\nForm 10-K, fiscal year 2025 (period ending 2025-12-31). Generated by FinSight AI from official SEC filings. Not investment advice.\n\n## 1. Company Overview\n- **Company name:** Alphabet Inc.\n- **Ticker / CIK:** GOOGL · 0001652044\n- **Industry:** Services-Computer Programming, Data Processing, Etc. (SEC industry classification (SIC))\n- **Headquarters:** Mountain View, CA\n- **State of incorporation:** DE\n- **Listed on:** Nasdaq, Nasdaq, Nasdaq, Nasdaq\n- **Established:** 1998 (10-K: \"were founded in 1998\")\n- **Fiscal year end:** December (this report: period ending 2025-12-31)\n\n## 2. Company Background\n* The company was founded more than 25 years ago (in 1998) with the mission to organize the world’s information and make it universally accessible and useful [1][2].\n* Alphabet is structured as a collection of businesses, the largest of which is Google [13].\n* Google is reported in two segments: Google Services and Google Cloud, while all non-Google businesses are reported collectively as Other Bets [2].\n* Alphabet-level activities support these businesses by centralizing certain AI-related research and development focused on advanced research in AI and developing frontier models [2].\n* Core products and platforms within Google Services include ads, Android, Chrome, devices, Gmail, Google Drive, Google Gemini, Google Maps, Google Photos, Google Play, Search, and YouTube [1].\n* Google Services generates revenues primarily by delivering performance and brand advertising across Google Search and other properties, YouTube, and Google Network partners' properties [4].\n\n## 3. Financial Information\n- **Revenue:** $402.84B (+15.09% vs FY2024)\n- **Total costs and expenses:** $273.80B (revenue − operating income, calculated by Python)\n- **Net income (profit):** $132.17B (+32.01% vs FY2024)\n- **Operating cash flow:** $164.71B (+31.46% vs FY2024)\n- **Cash and cash equivalents:** $30.71B (+30.86% vs FY2024)\n\n## 4. Balance Sheet\n- **Total assets:** $595.28B (+32.21% vs FY2024)\n- **Current assets:** $206.04B (+25.85% vs FY2024)\n- **Total liabilities:** $180.02B (+43.81% vs FY2024)\n- **Current liabilities:** $102.75B (+15.29% vs FY2024)\n- **Shareholders' equity:** $415.26B (+27.74% vs FY2024)\n\n## 5. Income Statement\n- **Sales (revenue):** $402.84B (+15.09% vs FY2024)\n- **Operating income:** $129.04B (+14.81% vs FY2024)\n- **Net income:** $132.17B (+32.01% vs FY2024)\n\n## 6. Financial Ratios\n- **Operating margin:** 32.03% (operating income ÷ revenue)\n- **Net profit margin:** 32.81% (net income ÷ revenue)\n- **Current ratio:** 2.01 (current assets ÷ current liabilities)\n- **Debt-to-equity (total liabilities basis):** 0.43 (total liabilities ÷ shareholders' equity (includes all liabilities, not only borrowings))\n\n## 7. Business Performance\n- **Revenue growth FY2021 → FY2025:** +56.36% ($257.64B → $402.84B)\n- **Rank by revenue (of 5 FinSight companies):** #3 (each company's latest fiscal year; fiscal years end in different months)\n- **Rank by net income (of 5 FinSight companies):** #3 (each company's latest fiscal year; fiscal years end in different months)\n| Fiscal year | Revenue | Revenue growth | Net income | Net income growth |\n|---|---|---|---|---|\n| FY2021 | $257.64B | — | $76.03B | — |\n| FY2022 | $282.84B | +9.78% | $59.97B | -21.12% |\n| FY2023 | $307.39B | +8.68% | $73.80B | +23.05% |\n| FY2024 | $350.02B | +13.87% | $100.12B | +35.67% |\n| FY2025 | $402.84B | +15.09% | $132.17B | +32.01% |\n\n## 8. Risk Analysis\n_Simple checks done by Python on the SEC figures (signals, not a verdict: e.g. large share buybacks lower equity and raise the liabilities ratio), then the company's own risk factors from 10-K Item 1A._\n- **Declining revenue?:** No (+15.09% vs FY2024)\n- **Declining net income?:** No (+32.01% vs FY2024)\n- **Net loss?:** No (net income $132.17B)\n- **Negative operating cash flow?:** No ($164.71B)\n- **Current ratio below 1?:** No (2.01 (below 1 = short-term liabilities exceed short-term assets))\n- **High leverage (liabilities > 2× equity)?:** No (0.43)\n* Failing to provide superior value or deliver advertisements effectively and competitively could harm the company's business, reputation, financial condition, and operating results [6].\n* Adverse macroeconomic conditions can affect the demand for advertising and advertiser spending amounts, which could harm financial condition and operating results [6].\n* Increasing investment in new businesses, products, services, and technologies is inherently risky and could divert management attention and harm the business, financial condition, and operating results [6].\n* The company generates a significant portion of its revenues (more than 70% of total revenues in 2025) from online advertising, meaning reduced advertiser spending, partner losses, shifts in online advertising, new formats, or ad-blocking technologies could harm the business [7].\n* Acquisitions, joint ventures, investments, and divestitures are important to corporate strategy but could result in operating difficulties, dilution, and unforeseen expenditures that harm financial condition and results [8].\n* The fair value of debt and equity investments can be negatively affected by liquidity, credit deterioration, financial results of underlying entities, foreign exchange rates, interest rate changes, regulatory shifts, or stock market conditions, potentially causing significant declines in investment value [9].\n\n## 9. Future Outlook\n_What management says (10-K Item 7). FinSight does not make its own forecasts._\n* Management expects that the ongoing evolution of the online world, including user engagement with AI products and services, will continue to benefit the business and revenues [11].\n* In 2026, management expects to significantly increase investment in technical infrastructure—including servers, network equipment, and data centers—relative to 2025 [12].\n* Management expects that existing cash, cash equivalents, short-term marketable securities, cash flows from operations, and financing activities will be sufficient to fund operating activities and cash commitments for investing and financing activities for at least the next 12 months, and thereafter for the foreseeable future [14].\n\n## 10. Data Sources\n- **Auditor:** Ernst & Young LLP (auditor since 1999)\n- **Audit opinion: financial statements:** Unqualified (clean) opinion (\"present fairly, in all material respects\")\n- **Audit opinion: internal control:** Effective (\"maintained, in all material respects, effective internal control\")\n- **Annual report:** Form 10-K, FY2025 (period ending 2025-12-31) (filed 2026-02-05 · accession 0001652044-26-000018)\n- **Financial figures:** SEC XBRL Company Facts (as originally reported in the 10-K)\n- **Company data:** SEC EDGAR company profile\n\n## Cited passages\n- [1] Alphabet Inc. FY2025, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Our%20product%20innovations%20are%20what,recognized%20in%20the%20world.\n- [2] Alphabet Inc. FY2025, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=We%20report%20Google%20in%20two,collectively%20as%20Other%20Bets.\n- [4] Alphabet Inc. FY2025, Item 1. Business: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Google%20Services%20generates%20revenues%20primarily,properties%20%28%22Google%20Network%20properties%22%29.\n- [6] Alphabet Inc. FY2025, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Failing%20to%20provide%20superior%20value,condition%2C%20and%20operating%20results.\n- [7] Alphabet Inc. FY2025, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Our%20operations%20and%20financial%20results,and%20Class%20C%20stock.\n- [8] Alphabet Inc. FY2025, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Consequently%2C%20our%20operating%20results%20in,may%20fall%20below%20expectations.\n- [9] Alphabet Inc. FY2025, Item 1A. Risk Factors: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20fair%20value%20of%20our,general%2C%20or%20other%20factors.\n- [11] Alphabet Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20following%20long%2Dterm%20trends%20have,affect%20our%20future%20results%3A\n- [12] Alphabet Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20time%20frame%20from%20date,from%20months%20to%20years.\n- [13] Alphabet Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=The%20following%20section%20generally%20discusses,compared%20to%202024%20results.\n- [14] Alphabet Inc. FY2025, Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations: https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm#:~:text=Net%20cash%20used%20in%20financing,by%20repayments%20of%20debt."
+  }
+}

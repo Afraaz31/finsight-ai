@@ -1,0 +1,56 @@
+{
+  "question": "What were the 3 biggest expenses in 2025?",
+  "saved_at": "2026-11-06 19:37:07",
+  "result": {
+    "answer": "Based on the \"Expenses\" sheet in the file **kestrel_statements.xlsx**, your 3 biggest expenses in 2025 were Raw materials at 151.80, Factory wages at 62.40, and Marketing at 47.90, all in the file's units.",
+    "calculation": {
+      "plan": {
+        "operation": "top",
+        "column": "Value",
+        "n": 3,
+        "filters": [
+          {
+            "column": "Period",
+            "op": "==",
+            "value": 2025
+          }
+        ],
+        "columns": [
+          "Category",
+          "Value"
+        ]
+      },
+      "summary": "highest 3 rows by 'Value'",
+      "table": [
+        {
+          "Category": "Raw materials",
+          "Period": 2025,
+          "Value": 151.8
+        },
+        {
+          "Category": "Factory wages",
+          "Period": 2025,
+          "Value": 62.4
+        },
+        {
+          "Category": "Marketing",
+          "Period": 2025,
+          "Value": 47.9
+        }
+      ]
+    },
+    "sources": [
+      {
+        "filename": "kestrel_statements.xlsx",
+        "sheet": "Expenses",
+        "detail": "highest 3 rows by 'Value'"
+      }
+    ],
+    "model": "gemini-3.5-flash-lite",
+    "used_llm": true,
+    "documents": [
+      "kestrel_statements.xlsx"
+    ],
+    "cached": false
+  }
+}

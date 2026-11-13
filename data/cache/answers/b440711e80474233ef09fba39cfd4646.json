@@ -1,0 +1,72 @@
+{
+  "question": "What are Microsoft's major business risks?",
+  "saved_at": "2026-11-07 19:34:31",
+  "result": {
+    "answer": "Based on Microsoft Corporation's Form 10-K for FY2026 (period ending 2026-06-30), the company faces several major business risks:\n\n* **Intense Competition:** Microsoft faces intense competition across all markets for its products and services [1].\n* **Geopolitical and Global Economic Risks:** Abrupt political change, terrorist activity, armed conflict (such as in Ukraine and the Middle East), geopolitical tensions, economic developments, monetary policy, inflation, recession, and international trade restrictions (such as tariffs and import/export controls) pose economic and operational risks [2][4]. These factors can disrupt operations, impact customer budgets and technology investment timing, increase operating costs, and affect sales, collections, hiring, and profitability [2][4].\n* **Legal Claims and Lawsuits:** Microsoft is subject to various claims and lawsuits arising from business practices, major product releases, AI products and services, significant business transactions, employment practices, warranties, and regulations [3]. Adverse outcomes could result in significant monetary damages or injunctive relief [3].\n* **Climate Change:** Changes in climate where Microsoft operates may increase the costs of powering and cooling computer hardware used for software development and cloud-based services [4].\n* **Third-Party Ecosystem Vulnerabilities:** Microsoft's products depend on a broad ecosystem of third-party products and components [5]. Security vulnerabilities and exploits in these components could adversely impact Microsoft's results of operations, reputation, or competitive position [5].\n* **Liability and Security Vulnerabilities:** Actual or perceived vulnerabilities in Microsoft's own products may lead to claims and legal challenges that test the liability limits in the company's license agreements [5].",
+    "sources": [
+      {
+        "number": 1,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.738,
+        "excerpt": "ITEM 1A. RISK FACTORS\nOur operations and financial results are subject to various risks and uncertainties, including those described below, that could adversely affect our business, operations, financial condition, results of operations, liquidity, and the trading price of our common stock. Statemen"
+      },
+      {
+        "number": 2,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.731,
+        "excerpt": "Abrupt political change, terrorist activity, and armed conflict, such as the conflicts in Ukraine and the Middle East, pose economic and other risks, which may negatively impact our ability to sell to and collect from customers, increase our operating costs, or otherwise disrupt our operations in ma"
+      },
+      {
+        "number": 3,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.719,
+        "excerpt": "We have claims and lawsuits against us that may result in adverse outcomes. We are subject to a variety of claims and lawsuits. These claims may arise from a wide variety of business practices and initiatives, including major new product releases, AI products and services, significant business trans"
+      },
+      {
+        "number": 4,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.716,
+        "excerpt": "Changes in climate where we operate may increase the costs of powering and cooling computer hardware we use to develop software and provide cloud-based services.\nOur global business exposes us to operational and economic risks. Our customers, employees, and infrastructure are located throughout the "
+      },
+      {
+        "number": 5,
+        "company": "Microsoft Corporation",
+        "ticker": "MSFT",
+        "fiscal_year": 2026,
+        "period_end": "2026-06-30",
+        "section": "Item 1A. Risk Factors",
+        "document_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm",
+        "score": 0.711,
+        "excerpt": "Any of these could adversely affect our reputation and results of operations. Actual or perceived vulnerabilities may lead to claims against us. Our license agreements typically contain provisions that eliminate or limit our exposure to liability, but these provisions may not withstand legal challen"
+      }
+    ],
+    "companies": [
+      "MSFT"
+    ],
+    "used_llm": true,
+    "model": "gemini-3.5-flash-lite",
+    "cached": false,
+    "retrieved_chunks": 5,
+    "unverified_numbers": []
+  }
+}
