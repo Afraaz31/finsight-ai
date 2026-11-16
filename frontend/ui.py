@@ -60,7 +60,7 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVert
 [data-testid="stCaptionContainer"] {color: var(--fs-mute);}
 
 /* hero */
-.fs-hero {position: relative; overflow: hidden; border-radius: 26px; padding: 40px 44px; margin-bottom: 20px; color: #fff;
+.fs-hero {position: relative; overflow: hidden; border-radius: 22px; padding: 26px 34px; margin-bottom: 16px; color: #fff;
   background: radial-gradient(600px 300px at 85% 10%, rgba(139,92,246,.45), transparent 60%),
               radial-gradient(500px 300px at 10% 110%, rgba(34,211,238,.25), transparent 60%),
               linear-gradient(125deg,#0B1B4D 0%,#1E3A8A 45%,#312E81 100%);
@@ -70,13 +70,15 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVert
                     linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
   background-size: 36px 36px; mask-image: linear-gradient(90deg, transparent, #000 60%);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%);}
-.fs-hero h1 {font-size: 3rem; margin: 0 0 6px 0; font-weight: 900; letter-spacing: -0.03em;
+.fs-hero-top {display: flex; align-items: center; gap: 16px; margin-bottom: 12px; position: relative;}
+.fs-hero h1 {font-size: 2.4rem; margin: 0; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1;
   background: linear-gradient(90deg,#FFFFFF 0%,#BFDBFE 60%,#A5F3FC 100%); -webkit-background-clip: text;
   background-clip: text; color: transparent;}
-.fs-hero .sub {font-size: 1.15rem; font-weight: 600; color: #DBEAFE; margin-bottom: 10px;}
-.fs-hero p {color: rgba(226,232,240,.82); max-width: 640px; margin: 0; line-height: 1.6;}
-.fs-hero .bars {position: absolute; right: 44px; bottom: 0; display: flex; gap: 12px; align-items: flex-end;}
-.fs-hero .bars div {width: 30px; border-radius: 9px 9px 0 0;
+.fs-hero .sub {font-size: 1.05rem; font-weight: 600; color: #DBEAFE; margin-top: 4px;}
+.fs-hero p {color: rgba(226,232,240,.82); max-width: 600px; margin: 0; line-height: 1.55; font-size: .95rem;
+  position: relative;}
+.fs-hero .bars {position: absolute; right: 36px; bottom: 0; display: flex; gap: 10px; align-items: flex-end;}
+.fs-hero .bars div {width: 24px; border-radius: 8px 8px 0 0;
   background: linear-gradient(180deg,rgba(165,243,252,.95),rgba(59,130,246,.35)); box-shadow: 0 0 24px rgba(34,211,238,.35);}
 
 /* pills */
@@ -99,6 +101,8 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVert
 .fs-company .name {font-weight: 700; color: var(--fs-text); margin-top: 10px;}
 .fs-company .tick {font-size: .75rem; color: var(--fs-mute); margin-bottom: 10px; letter-spacing: .04em;}
 .fs-company .big {font-size: 1.22rem; font-weight: 800; color: #FFFFFF;}
+.fs-company .big.ni {font-size: 1rem;}
+.fs-ph-title {font-size: 1.75rem; font-weight: 800; color: #EEF2FA; line-height: 1.2;}
 .fs-company .lbl {font-size: .72rem; color: var(--fs-mute); margin-bottom: 6px;}
 .fs-kpi .v {font-size: 1.6rem; font-weight: 800; color: #FFFFFF;}
 .fs-kpi .l {font-size: .82rem; color: var(--fs-mute);}
@@ -114,6 +118,65 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVert
 .fs-brand .t {font-size: 1.25rem; font-weight: 800; color: var(--fs-text);}
 .fs-brand .t span {color: #60A5FA;}
 [data-testid="stElementContainer"]:has(.fs-dr-lock) {display: none;}
+
+/* ---------- responsive: small laptops (or a zoomed browser) ---------- */
+@media (min-width: 641px) {
+  section[data-testid="stSidebar"][data-collapsed="false"] {width: 250px !important; min-width: 250px !important;}
+}
+@media (max-width: 1200px) {
+  .block-container {padding-top: 1rem; padding-left: 1.6rem; padding-right: 1.6rem;}
+  .fs-hero {padding: 22px 26px;}
+  .fs-hero h1 {font-size: 2rem;}
+  .fs-hero .bars {opacity: .45; right: 22px;}
+  .fs-hero .bars div {width: 18px;}
+  .fs-company {padding: 14px 8px 12px;}
+  .fs-company .logo-tile {width: 50px; height: 50px; border-radius: 14px;}
+  .fs-company .name {font-size: .9rem; margin-top: 8px;}
+  .fs-company .big {font-size: 1.05rem;}
+  .fs-company .big.ni {font-size: .92rem;}
+  .fs-kpi .v {font-size: 1.35rem;}
+  .fs-ph-title {font-size: 1.5rem;}
+  .fs-section {margin: 16px 0 8px;}
+}
+
+/* ---------- responsive: phones ---------- */
+@media (max-width: 640px) {
+  .block-container {padding: 3.4rem .75rem 3rem;}      /* start below Streamlit's header bar (logo + menu) */
+  .fs-hero {padding: 18px 18px 16px; border-radius: 18px;}
+  .fs-hero-top {gap: 10px; margin-bottom: 8px;}
+  .fs-hero-top svg {display: none;}                      /* the header already shows the logo */
+  .fs-hero h1 {font-size: 1.6rem;}
+  .fs-hero .sub {font-size: .9rem;}
+  .fs-hero p {font-size: .86rem; line-height: 1.5;}
+  .fs-hero .bars {display: none;}
+  .fs-ph svg {width: 34px; height: 34px;}
+  .fs-ph-title {font-size: 1.3rem;}
+  .fs-section {font-size: 1rem;}
+  .fs-card {padding: 12px 14px; border-radius: 14px;}
+  .fs-card:hover {transform: none;}
+  .fs-kpi .v {font-size: 1.2rem;}
+  /* company card: one compact row instead of a tall tile */
+  .fs-company {display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; text-align: left;
+    padding: 10px 12px;}
+  .fs-company .logo-tile {width: 44px; height: 44px; margin: 0; border-radius: 12px;}
+  .fs-company .logo-tile img, .fs-company .logo-tile svg {width: 26px; height: 26px;}
+  .fs-company .name {margin-top: 0;}
+  .fs-company .tick {margin-bottom: 0;}
+  .fs-company .figs {text-align: right;}
+  .fs-company .fig {display: inline-block; margin-left: 10px;}
+  .fs-company .lbl {margin-bottom: 0;}
+  .fs-company .fs-up, .fs-company .fs-down {display: block;}
+  [data-testid="stMetric"] {padding: 10px 12px;}
+  /* rows of number cards (Dashboard, Monitoring): 2 per row instead of one long column */
+  [data-testid="stHorizontalBlock"]:has(.fs-kpi) {flex-direction: row !important; flex-wrap: wrap !important;
+    gap: .5rem !important;}
+  [data-testid="stHorizontalBlock"]:has(.fs-kpi) > [data-testid="stColumn"] {width: calc(50% - .25rem) !important;
+    flex: 1 1 calc(50% - .25rem) !important; min-width: calc(50% - .25rem) !important;}
+  .fs-kpi {padding: 10px 12px;}
+  .fs-kpi .v {font-size: 1.1rem;}
+  .fs-kpi .l {font-size: .74rem;}
+  h1 {font-size: 1.5rem;} h2 {font-size: 1.25rem;} h3 {font-size: 1.1rem;}
+}
 </style>
 """
 
@@ -133,8 +196,8 @@ def apply_theme() -> None:
 
 
 def page_header(icon_html: str, title: str, subtitle: str) -> None:
-    st.markdown(f"<div class='fs-brand' style='margin-bottom:2px'>{icon_html}"
-                f"<div><div style='font-size:1.75rem;font-weight:800;color:#EEF2FA'>{title}</div>"
+    st.markdown(f"<div class='fs-brand fs-ph' style='margin-bottom:2px'>{icon_html}"
+                f"<div><div class='fs-ph-title'>{title}</div>"
                 f"<div class='fs-muted'>{subtitle}</div></div></div>", unsafe_allow_html=True)
     st.write("")
 
@@ -534,11 +597,13 @@ def company_card(ticker: str, name: str, fin: dict | None) -> str:
     rev = latest(fin, "revenue") if fin else None
     ni = latest(fin, "net_income") if fin else None
     fy = f"FY{rev['fiscal_year']}" if rev else ""
+    # Wide screens: a centred tile. Phones (CSS below 640px): one compact row: logo | name | figures.
     return (f"<div class='fs-card fs-company'><div class='logo-tile'>{company_logo_img(ticker, 36)}</div>"
-            f"<div class='name'>{html.escape(name)}</div><div class='tick'>{ticker} · {fy}</div>"
-            f"<div class='big'>{fmt_money(rev['value']) if rev else '—'}</div><div class='lbl'>Revenue</div>"
-            f"<div class='big' style='font-size:1rem'>{fmt_money(ni['value']) if ni else '—'}</div>"
-            f"<div class='lbl'>Net income</div>{delta_html(rev.get('yoy_change_pct') if rev else None)}</div>")
+            f"<div class='who'><div class='name'>{html.escape(name)}</div><div class='tick'>{ticker} · {fy}</div></div>"
+            f"<div class='figs'><div class='fig'><div class='big'>{fmt_money(rev['value']) if rev else '—'}</div>"
+            f"<div class='lbl'>Revenue</div></div>"
+            f"<div class='fig'><div class='big ni'>{fmt_money(ni['value']) if ni else '—'}</div>"
+            f"<div class='lbl'>Net income</div></div>{delta_html(rev.get('yoy_change_pct') if rev else None)}</div></div>")
 
 
 __all__ = ["apply_theme", "page_header", "pill", "safe_md", "fmt_money", "delta_html", "health", "companies",

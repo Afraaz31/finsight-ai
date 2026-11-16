@@ -13,17 +13,16 @@ HOME_QUESTIONS = [
 
 st.markdown(f"""
 <div class="fs-hero">
-  <div class="fs-brand" style="margin-bottom:10px">{ui.finsight_mark(54)}</div>
-  <h1>FinSight AI</h1>
-  <div class="sub">Your evidence-backed financial research assistant</div>
-  <p>Ask questions about the official SEC 10-K reports of five of the world's largest companies, compare their
-  exact reported figures, or upload your own financial documents. Every answer shows its sources, and every
-  number comes from the filings or an exact Python calculation, never from the AI's imagination.</p>
-  <div class="bars"><div style="height:50px"></div><div style="height:78px"></div><div style="height:104px"></div>
-  <div style="height:136px"></div><div style="height:170px"></div></div>
+  <div class="bars"><div style="height:34px"></div><div style="height:52px"></div><div style="height:70px"></div>
+  <div style="height:92px"></div><div style="height:116px"></div></div>
+  <div class="fs-hero-top">{ui.finsight_mark(46)}
+    <div><h1>FinSight AI</h1><div class="sub">Your evidence-backed financial research assistant</div></div></div>
+  <p>Ask about the SEC 10-K reports of Apple, Microsoft, Amazon, Alphabet and NVIDIA, compare their exact
+  figures, or analyse your own files. Every answer shows its sources, and every number comes from the filings or
+  an exact Python calculation, never from the AI's imagination.</p>
 </div>""", unsafe_allow_html=True)
 
-c1, c2, c3, _ = st.columns([1, 1, 1, 2])
+c1, c2, c3 = st.columns(3)        # on phones these stack into full-width buttons
 if c1.button("💬  Ask a question", type="primary", width="stretch"):
     st.switch_page("views/ask.py")
 if c2.button("📂  Upload files", width="stretch"):
