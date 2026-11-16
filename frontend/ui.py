@@ -27,7 +27,7 @@ html, body, [class*="css"], .stMarkdown, .stButton button, input, textarea {font
   radial-gradient(700px 600px at 60% 110%, rgba(34,211,238,.08), transparent 60%), var(--fs-bg);
   background-attachment: fixed;}
 [data-testid="stHeader"] {background: transparent;}
-.block-container {padding-top: 1.6rem; padding-bottom: 3rem; max-width: 1200px;}
+.block-container {padding: 1.6rem 3rem 3rem; max-width: 1700px;}   /* wide screens: only a small margin */
 
 /* sidebar */
 [data-testid="stSidebar"] {background: linear-gradient(180deg,#0B1222 0%,#070C18 100%); border-right: 1px solid var(--fs-line);}
@@ -75,7 +75,7 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVert
   background: linear-gradient(90deg,#FFFFFF 0%,#BFDBFE 60%,#A5F3FC 100%); -webkit-background-clip: text;
   background-clip: text; color: transparent;}
 .fs-hero .sub {font-size: 1.05rem; font-weight: 600; color: #DBEAFE; margin-top: 4px;}
-.fs-hero p {color: rgba(226,232,240,.82); max-width: 600px; margin: 0; line-height: 1.55; font-size: .95rem;
+.fs-hero p {color: rgba(226,232,240,.82); max-width: 760px; margin: 0; line-height: 1.55; font-size: .95rem;
   position: relative;}
 .fs-hero .bars {position: absolute; right: 36px; bottom: 0; display: flex; gap: 10px; align-items: flex-end;}
 .fs-hero .bars div {width: 24px; border-radius: 8px 8px 0 0;
@@ -121,13 +121,15 @@ div[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVert
 
 /* ---------- responsive: small laptops (or a zoomed browser) ---------- */
 @media (min-width: 641px) {
-  section[data-testid="stSidebar"][data-collapsed="false"] {width: 250px !important; min-width: 250px !important;}
+  section[data-testid="stSidebar"][data-collapsed="false"] {width: 272px !important; min-width: 272px !important;}
+  [data-testid="stSidebarNav"] a {margin: 3px 4px;}                /* room for "Company Dashboard" */
 }
 @media (max-width: 1200px) {
   .block-container {padding-top: 1rem; padding-left: 1.6rem; padding-right: 1.6rem;}
   .fs-hero {padding: 22px 26px;}
   .fs-hero h1 {font-size: 2rem;}
   .fs-hero .bars {opacity: .45; right: 22px;}
+  .fs-hero p {max-width: 78%;}                                     /* keep the text clear of the bars */
   .fs-hero .bars div {width: 18px;}
   .fs-company {padding: 14px 8px 12px;}
   .fs-company .logo-tile {width: 50px; height: 50px; border-radius: 14px;}
