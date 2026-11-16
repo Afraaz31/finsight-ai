@@ -300,6 +300,8 @@ The build copies the code plus the ready-made data, so the app needs no ingestio
 
 It also writes `deploy_meta.json` (the public demo settings) and a `requirements.txt` with the exact package versions plus **CPU-only PyTorch**: about 200 MB instead of 2 GB of GPU libraries. On Streamlit Cloud: branch `live-demo`, main file `frontend/app.py`, Python 3.11, and `GEMINI_API_KEY` in **Secrets**. The first visit after the app has been asleep takes about 2 minutes, while it loads the index and the embedding model.
 
+**Staying awake:** Streamlit Cloud puts apps to sleep after about 12 hours without visitors. A GitHub Actions job ([`.github/workflows/keep-awake.yml`](.github/workflows/keep-awake.yml), free on public repos) opens the app in a headless browser every 6 hours ([`scripts/keep_awake.py`](scripts/keep_awake.py)). If it's asleep, the job clicks the wake-up button and waits until the home page has loaded.
+
 **Public demo mode** (`PUBLIC_DEMO=true`) makes the app safe for strangers:
 - **Uploads:** uploading and deleting files are turned off in the API and the UI, so no visitor sees another visitor's files. The 4 sample files stay available.
 - **Monitoring:** the page doesn't show visitors' questions; the API removes them from the traces.
